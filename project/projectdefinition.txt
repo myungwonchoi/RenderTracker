@@ -1,0 +1,22 @@
+// projectdefinition.txt
+Platform=Win64
+Type=DLL
+
+APIS=\
+cinema.framework;\
+core.framework
+
+C4D=true
+
+stylecheck.level=0
+stylecheck.enum-registration=false
+stylecheck.enum-class=false
+
+ModuleId=com.antigravity.render_tracker
+SourceDir=source;
+
+// Optional: specific dependencies on other C4D modules
+ModuleDepends=cinema.framework;
+
+// Optional: specific dependencies on other C4D modules
+// ModuleDepends=cinema.framework;

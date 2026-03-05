@@ -1,0 +1,4 @@
+STRINGTABLE vprendertracker
+{
+	vprendertracker "RenderTracker (Cinema 4D)";
+}

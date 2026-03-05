@@ -1,0 +1,7 @@
+// C4D-StringResource
+// Identifier	Text
+
+STRINGTABLE
+{
+	vprendernotifier "RenderTracker (Cinema 4D)";
+}
