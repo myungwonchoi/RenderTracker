@@ -739,3 +739,101 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 02:42:13] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
 [2026-03-06 02:42:13] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
 [2026-03-06 02:42:16] [INFO] Cleared all history
+[2026-03-06 02:46:31] [INFO] Minimized to system tray
+[2026-03-06 02:49:38] [INFO] Monitor started (PySide6)
+[2026-03-06 02:49:38] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:49:42] [INFO] New render detected: Render_20260306_024942.json
+[2026-03-06 02:49:42] [INFO] PID: 13912
+[2026-03-06 02:49:42] [INFO] New render detected (TS: 1772732982.028009)
+[2026-03-06 02:49:43] [INFO] Started Discord notified
+[2026-03-06 02:49:43] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 02:49:44] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 02:49:46] [INFO] Thumbnail updated: Frame 10
+[2026-03-06 02:49:47] [INFO] Thumbnail updated: Frame 13
+[2026-03-06 02:49:48] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 02:49:49] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 02:49:50] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 02:49:51] [INFO] Thumbnail updated: Frame 22
+[2026-03-06 02:49:53] [INFO] Thumbnail updated: Frame 27
+[2026-03-06 02:49:55] [INFO] Thumbnail updated: Frame 32
+[2026-03-06 02:49:57] [INFO] Thumbnail updated: Frame 37
+[2026-03-06 02:49:58] [INFO] Thumbnail updated: Frame 40
+[2026-03-06 02:50:00] [INFO] Thumbnail updated: Frame 44
+[2026-03-06 02:50:01] [INFO] Thumbnail updated: Frame 47
+[2026-03-06 02:50:03] [INFO] Thumbnail updated: Frame 52
+[2026-03-06 02:50:04] [INFO] Thumbnail updated: Frame 54
+[2026-03-06 02:50:06] [INFO] Thumbnail updated: Frame 59
+[2026-03-06 02:50:07] [INFO] Thumbnail updated: Frame 62
+[2026-03-06 02:50:09] [INFO] Thumbnail updated: Frame 66
+[2026-03-06 02:50:10] [INFO] Thumbnail updated: Frame 69
+[2026-03-06 02:50:11] [INFO] Thumbnail updated: Frame 71
+[2026-03-06 02:50:13] [INFO] Thumbnail updated: Frame 76
+[2026-03-06 02:50:15] [INFO] Thumbnail updated: Frame 81
+[2026-03-06 02:50:16] [INFO] Thumbnail updated: Frame 83
+[2026-03-06 02:50:18] [INFO] Thumbnail updated: Frame 88
+[2026-03-06 02:50:20] [INFO] Thumbnail updated: Frame 92
+[2026-03-06 02:50:22] [INFO] Thumbnail updated: Frame 97
+[2026-03-06 02:50:23] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:50:24] [INFO] → Finished
+[2026-03-06 02:51:38] [INFO] Monitor started (PySide6)
+[2026-03-06 02:51:38] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:51:39] [INFO] → Finished
+[2026-03-06 02:51:40] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:52:16] [INFO] Monitor started (PySide6)
+[2026-03-06 02:52:16] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:52:17] [INFO] → Finished
+[2026-03-06 02:52:18] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:53:10] [INFO] Settings updated
+[2026-03-06 02:53:11] [INFO] Settings updated
+[2026-03-06 02:53:12] [INFO] Settings updated
+[2026-03-06 02:53:12] [INFO] Settings updated
+[2026-03-06 02:53:13] [INFO] Settings updated
+[2026-03-06 02:53:14] [INFO] Settings updated
+[2026-03-06 02:53:14] [INFO] Settings updated
+[2026-03-06 02:53:15] [INFO] Settings updated
+[2026-03-06 02:53:41] [INFO] Monitor started (PySide6)
+[2026-03-06 02:53:41] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:53:42] [INFO] → Finished
+[2026-03-06 02:53:43] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:53:54] [INFO] New render detected: Render_20260306_025354.json
+[2026-03-06 02:53:54] [INFO] New render detected (TS: 1772733234.848342)
+[2026-03-06 02:53:55] [INFO] Started Discord notified
+[2026-03-06 02:53:55] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 02:54:05] [INFO] Monitor started (PySide6)
+[2026-03-06 02:54:05] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:54:06] [INFO] Thumbnail updated: Frame 28
+[2026-03-06 02:54:08] [INFO] Thumbnail updated: Frame 32
+[2026-03-06 02:54:10] [INFO] Thumbnail updated: Frame 37
+[2026-03-06 02:54:11] [INFO] Thumbnail updated: Frame 39
+[2026-03-06 02:54:12] [INFO] Thumbnail updated: Frame 42
+[2026-03-06 02:54:13] [INFO] Thumbnail updated: Frame 44
+[2026-03-06 02:54:15] [INFO] Thumbnail updated: Frame 49
+[2026-03-06 02:54:17] [INFO] Thumbnail updated: Frame 54
+[2026-03-06 02:54:18] [INFO] Thumbnail updated: Frame 56
+[2026-03-06 02:54:19] [INFO] Thumbnail updated: Frame 59
+[2026-03-06 02:54:21] [INFO] Thumbnail updated: Frame 63
+[2026-03-06 02:54:23] [INFO] Thumbnail updated: Frame 68
+[2026-03-06 02:54:24] [INFO] Thumbnail updated: Frame 71
+[2026-03-06 02:54:25] [INFO] Thumbnail updated: Frame 73
+[2026-03-06 02:54:27] [INFO] Thumbnail updated: Frame 78
+[2026-03-06 02:54:29] [INFO] Thumbnail updated: Frame 82
+[2026-03-06 02:54:31] [INFO] Thumbnail updated: Frame 87
+[2026-03-06 02:54:32] [INFO] Thumbnail updated: Frame 90
+[2026-03-06 02:54:34] [INFO] Thumbnail updated: Frame 94
+[2026-03-06 02:54:36] [INFO] Thumbnail updated: Frame 99
+[2026-03-06 02:54:37] [INFO] → Finished
+[2026-03-06 02:54:38] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:55:39] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:55:40] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:55:40] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:55:41] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:55:41] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:55:42] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:57:26] [INFO] Monitor started (PySide6)
+[2026-03-06 02:57:26] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 02:57:27] [INFO] → Finished
+[2026-03-06 02:57:28] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 02:57:28] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:57:29] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:57:30] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value
+[2026-03-06 02:57:30] [INFO] [History] cannot access local variable 'pct' where it is not associated with a value

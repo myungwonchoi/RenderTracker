@@ -1748,13 +1748,26 @@ class RenderMonitorApp(QMainWindow):
         rounded = QPixmap(size)
         rounded.fill(Qt.transparent)
         
+        from PySide6.QtGui import QPainter, QPainterPath, QPen, QColor
+        from PySide6.QtCore import QRectF
         painter = QPainter(rounded)
         painter.setRenderHint(QPainter.Antialiasing)
         painter.setRenderHint(QPainter.SmoothPixmapTransform)
+        
+        # 라운딩 마스크 (이미지가 둥글게 잘리도록)
         path = QPainterPath()
-        path.addRoundedRect(0, 0, size.width(), size.height(), radius, radius)
+        path.addRoundedRect(QRectF(0, 0, size.width(), size.height()), radius, radius)
         painter.setClipPath(path)
         painter.drawPixmap(0, 0, pixmap)
+        
+        # 테두리 그리기 (UI 스타일의 1px 테두리와 완전히 일치하도록 수학적 보정)
+        painter.setClipping(False)
+        pen = QPen(QColor(T.BORDER))
+        pen.setWidth(1)
+        painter.setPen(pen)
+        # 1px 두께 선이 정확히 안쪽 경계에 위치하도록 0.5 오프셋 사용 및 곡률 축소
+        painter.drawRoundedRect(QRectF(0.5, 0.5, size.width() - 1, size.height() - 1), radius - 0.5, radius - 0.5)
+        
         painter.end()
         return rounded
 
@@ -2027,7 +2040,7 @@ class RenderMonitorApp(QMainWindow):
                 if actual_source != getattr(self, processed_key, None):
                     needs_update = True
 
-            if needs_update and PILLOW_AVAILABLE:
+            if needs_update:
                 try:
                     # [Optimization] Pillow의 draft()와 thumbnail()을 같이 사용하여 가장 가볍게 불러옴
                     with Image.open(actual_source) as img:
@@ -2040,8 +2053,13 @@ class RenderMonitorApp(QMainWindow):
                         # 2단계: 최단 시간 보간법(NEAREST)으로 썸네일 생성 및 복사
                         img.thumbnail(target_size, resample=Image.Resampling.NEAREST)
                         
-                        # [Fix] 3단계: 알파 채널 처리 (RGBA -> RGB) 
-                        # JPEG는 투명도를 지원하지 않으므로, 투명 영역을 배경색(검정)으로 채워줍니다.
+                        # [Fix] 3단계: 16:9 패딩 배경은 검은색, 알파가 있는 영역에만 투명 패턴 표시
+                        bg_size = (240, 135)
+                        bg = Image.new("RGB", bg_size, (11, 11, 11))
+                        
+                        paste_x = (bg_size[0] - img.width) // 2
+                        paste_y = (bg_size[1] - img.height) // 2
+                        
                         is_transparent = (img.mode in ("RGBA", "P"))
                         if is_transparent:
                             # 투명 배경 이미지 로드 (BG_Transparent.png)
@@ -2049,20 +2067,23 @@ class RenderMonitorApp(QMainWindow):
                             if os.path.exists(bg_path):
                                 try:
                                     with Image.open(bg_path) as bg_img:
-                                        # 썸네일 크기에 맞춰 배경 이미지 리사이즈 (바둑판 무늬 유지 등을 위해 NEAREST 사용 가능)
-                                        bg = bg_img.convert("RGB").resize(img.size, Image.Resampling.NEAREST)
+                                        pattern = bg_img.convert("RGB").resize(bg_size, Image.Resampling.NEAREST)
+                                        img_bg = pattern.crop((paste_x, paste_y, paste_x + img.width, paste_y + img.height))
                                 except:
-                                    bg = Image.new("RGB", img.size, (11, 11, 11))
+                                    img_bg = Image.new("RGB", img.size, (11, 11, 11))
                             else:
-                                bg = Image.new("RGB", img.size, (11, 11, 11))
+                                img_bg = Image.new("RGB", img.size, (11, 11, 11))
                                 
                             if img.mode == "RGBA":
-                                bg.paste(img, mask=img.split()[3]) # 3번 인덱스가 알파 채널
+                                img_bg.paste(img, mask=img.split()[3])
                             else:
-                                bg.paste(img)
-                            save_img = bg
+                                img_bg.paste(img)
+                                
+                            bg.paste(img_bg, (paste_x, paste_y))
                         else:
-                            save_img = img
+                            bg.paste(img, (paste_x, paste_y))
+                            
+                        save_img = bg
 
                         # 4단계: 로컬 history 폴더에 저장 (이미지 복사 효과)
                         save_img.save(thumb_path, "JPEG", quality=80)
@@ -2086,35 +2107,6 @@ class RenderMonitorApp(QMainWindow):
                     cfg["label"].setPixmap(QPixmap())
                     cfg["label"].setText("No Image")
 
-            elif needs_update and not PILLOW_AVAILABLE:
-                # Pillow가 없을 경우 기존 QImageReader 방식 (계란용 대비)
-                try:
-                    reader = QImageReader(actual_source)
-                    if reader.canRead():
-                        orig_size = reader.size()
-                        target_size = QSize(240, 135)
-                        target_size = orig_size.scaled(target_size, Qt.KeepAspectRatio)
-                        reader.setScaledSize(target_size)
-                        image = reader.read()
-                        if not image.isNull():
-                            image.save(thumb_path, "JPG", 85)
-                            pix = QPixmap.fromImage(image)
-                            masked_pix = self._mask_rounded_pixmap(pix, radius=12)
-                            cfg["label"].setPixmap(masked_pix)
-                            cfg["label"].setText("")
-                            setattr(self, cfg["path_attr"], thumb_path)
-                            setattr(self, processed_key, actual_source)
-                        else:
-                            # QImageReader로 이미지 로드 실패 시 No Image
-                            cfg["label"].setPixmap(QPixmap())
-                            cfg["label"].setText("No Image")
-                    else:
-                        # QImageReader가 파일을 읽을 수 없을 때 No Image
-                        cfg["label"].setPixmap(QPixmap())
-                        cfg["label"].setText("No Image")
-                except: 
-                    cfg["label"].setPixmap(QPixmap())
-                    cfg["label"].setText("No Image")
             else:
                 # 이미 처리된 파일이 있는 경우 화면 로딩
                 current_shown = getattr(self, cfg["path_attr"], None)
