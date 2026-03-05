@@ -1368,6 +1368,7 @@ class RenderMonitorApp(QMainWindow):
     def _set_bar(self, pct, color):
         val = int(pct * 1000)
         self.progress_bar.setValue(val)
+        self.pct_label.setText(f"{pct * 100:.1f}%")
         self.progress_bar.setStyleSheet(f"""
             QProgressBar {{ background-color: {T.BORDER}; border: none; border-radius: 4px; text-align: right; color: transparent; }}
             QProgressBar::chunk {{ background-color: {color}; border-radius: 4px; }}
@@ -1737,7 +1738,7 @@ class RenderMonitorApp(QMainWindow):
                             # _process 이전에 먼저 상태를 설정 (이후 _process에서 override 방지 로직 필요)
                             self._set_status("not_responding", T.ORANGE, T.BADGE_RED)
                     
-                    self._process(data, from_history=(target == self._viewing_file))
+                    self._process(data, from_history=(target != self._active_file))
         except Exception as e:
             pass
 
