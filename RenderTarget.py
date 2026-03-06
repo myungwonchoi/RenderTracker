@@ -259,10 +259,6 @@ class RenderMonitorApp(QMainWindow):
         scrollbar = self.log_text.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
 
-    def _trigger_glow(self, color_hex):
-        """창 전체 글로우 효과를 트리거합니다."""
-        interface.trigger_main_glow(self, color_hex)
-
     def _open_settings(self):
         dlg = interface.SettingsDialog(self, self.cfg, self.app_msgs, self._on_cfg_changed)
         dlg.exec()
@@ -437,9 +433,6 @@ class RenderMonitorApp(QMainWindow):
         except Exception as e:
             pass
 
-    def _mask_rounded_pixmap(self, pixmap, radius=12):
-        return interface.mask_rounded_pixmap(pixmap, radius)
-
     def _process(self, data, from_history=False):
         init = data.get("start",  {})
         upd  = data.get("update", {})
@@ -487,7 +480,7 @@ class RenderMonitorApp(QMainWindow):
             self._play_render_sound("Start")
             self._activate_main_window()
             QApplication.alert(self, 0)
-            self._trigger_glow(T.BLUE)
+            interface.trigger_main_glow(self, T.BLUE)
 
         # 상태 결정 및 UI 업데이트
         status = self.state_engine.last_status
@@ -531,7 +524,7 @@ class RenderMonitorApp(QMainWindow):
 
             if "FRESH_END" in events:
                 is_fin = (status == "Finished")
-                self._trigger_glow(T.GREEN if is_fin else T.RED)
+                interface.trigger_main_glow(self, T.GREEN if is_fin else T.RED)
                 threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
                 self._play_render_sound("End" if is_fin else "Error")
                 self._activate_main_window()
@@ -649,7 +642,7 @@ class RenderMonitorApp(QMainWindow):
             self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
         self._set_status("crashed", T.RED, T.BADGE_RED)
-        self._trigger_glow(T.RED)
+        interface.trigger_main_glow(self, T.RED)
         self._set_bar(self.progress_bar.value() / 1000.0, T.RED)
         self._play_render_sound("Error")
         self._activate_main_window()
