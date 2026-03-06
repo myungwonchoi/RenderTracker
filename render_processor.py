@@ -160,3 +160,102 @@ def process_thumbnail(actual_source, thumb_path):
             return True
     except Exception:
         return False
+
+def get_history_files():
+    """정렬된 히스토리 파일 목록을 반환합니다."""
+    if not os.path.isdir(HISTORY_DIR): return []
+    return sorted(
+        [os.path.join(HISTORY_DIR, f) for f in os.listdir(HISTORY_DIR) if f.startswith("Render_") and f.endswith(".json")],
+        reverse=True
+    )
+
+def get_history_item_data(path):
+    """히스토리 카드에 필요한 기초 데이터를 추출합니다."""
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        info = data.get("start", {})
+        return {
+            "doc_name": info.get("doc_name", "Unknown"),
+            "software": info.get("software", "C4D"),
+            "start_ts": info.get("start_ts")
+        }
+    except:
+        return {"doc_name": "Unknown", "software": "C4D", "start_ts": None}
+
+def delete_history_files(path):
+    """특정 히스토리 JSON 파일과 연관된 이미지들을 삭제합니다."""
+    try:
+        if os.path.exists(path):
+            os.remove(path)
+        for suffix in ["_LastFrame.jpg", "_LastFrameTemp.jpg", "_FirstFrame.jpg", "_FirstFrameTemp.jpg"]:
+            img_p = path.replace(".json", suffix)
+            if os.path.exists(img_p): os.remove(img_p)
+        return True
+    except:
+        return False
+
+def clear_all_render_history():
+    """모든 히스토리 파일 및 썸네일을 삭제합니다."""
+    deleted_count = 0
+    try:
+        for f in os.listdir(HISTORY_DIR):
+            if f.startswith("Render_") and (f.endswith(".json") or f.endswith(".jpg")):
+                os.remove(os.path.join(HISTORY_DIR, f))
+                deleted_count += 1
+        return True
+    except:
+        return False
+
+# ── 상태 전이 엔진 (State Engine) ──────────────────────────────────────────────
+
+class RenderStateEngine:
+    """렌더링 상태 변화를 추적하고 이벤트를 발생시키는 엔진입니다."""
+    def __init__(self, app_start_ts):
+        self.app_start_ts = app_start_ts
+        self.last_start_ts = None
+        self.last_status = None
+        self.last_rendered_frames = -1
+
+    def detect_events(self, data, from_history=False):
+        """데이터를 분석하여 발생한 이벤트 목록을 반환합니다."""
+        events = []
+        is_realtime = not from_history
+        
+        info = data.get("start", {})
+        upd = data.get("update", {})
+        end = data.get("end", {})
+        
+        start_ts = info.get("start_ts")
+        end_ts = end.get("end_ts", -1)
+        ren = upd.get("rendered_frames", 0)
+        
+        # 1. 세션 변화 감지
+        is_new_session = (start_ts is not None and start_ts != self.last_start_ts)
+        if is_new_session:
+            self.last_start_ts = start_ts
+            self.last_status = None
+            self.last_rendered_frames = -1
+            events.append("SESSION_STARTED")
+            if is_realtime and start_ts > self.app_start_ts:
+                events.append("FRESH_START")
+
+        # 2. 상태 변화 감지
+        current_status = determine_render_status(info, upd, end)
+        if current_status != self.last_status:
+            prev_status = self.last_status
+            self.last_status = current_status
+            events.append(f"STATUS_TO_{current_status.upper()}")
+            
+            # 종료 이벤트 처리
+            if current_status in ("Finished", "Stopped"):
+                if is_realtime and end_ts > self.app_start_ts:
+                    events.append("FRESH_END")
+
+        # 3. 진행도 변화 감지 (디스코드 알림용)
+        if current_status == "Progress" and ren != self.last_rendered_frames:
+            if not is_new_session: # 새 세션 시작 직후가 아닐 때만
+                events.append("PROGRESS_UPDATED")
+            self.last_rendered_frames = ren
+
+        return events

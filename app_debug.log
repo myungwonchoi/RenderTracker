@@ -1094,3 +1094,46 @@ NameError: name 'QProgressBar' is not defined
 [2026-03-06 15:45:10] [INFO] Thumbnail updated: Frame 91
 [2026-03-06 15:45:12] [INFO] Thumbnail updated: Frame 100
 [2026-03-06 15:45:13] [INFO] → Finished
+[2026-03-06 15:47:43] [INFO] Monitor started (PySide6)
+[2026-03-06 15:47:43] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:47:44] [INFO] → Finished
+[2026-03-06 15:47:44] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:52:27] [INFO] Monitor started (PySide6)
+[2026-03-06 15:52:27] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:52:28] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:52:31] [INFO] New render detected: Render_20260306_155230.json
+[2026-03-06 15:52:31] [INFO] New render detected (TS: 1772779950.135502)
+[2026-03-06 15:52:31] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 15:52:31] [INFO] Started Discord notified
+[2026-03-06 15:52:33] [INFO] Thumbnail updated: Frame 14
+[2026-03-06 15:52:34] [INFO] → Stopped
+[2026-03-06 15:52:34] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 15:59:13] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 785, in <module>
+    setup_dpi_awareness()
+    ^^^^^^^^^^^^^^^^^^^
+NameError: name 'setup_dpi_awareness' is not defined
+
+[2026-03-06 15:59:29] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 794, in <module>
+    path = os.path.join(FONTS_DIR, fname)
+                        ^^^^^^^^^
+NameError: name 'FONTS_DIR' is not defined
+
+[2026-03-06 15:59:48] [INFO] Monitor started (PySide6)
+[2026-03-06 15:59:48] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:59:48] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 812, in <module>
+    window = RenderMonitorApp()
+             ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 124, in __init__
+    self.glow_overlay = MainGlowOverlay(self)
+                        ^^^^^^^^^^^^^^^
+NameError: name 'MainGlowOverlay' is not defined
+
+[2026-03-06 16:00:13] [INFO] Monitor started (PySide6)
+[2026-03-06 16:00:13] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 16:00:14] [INFO] Thumbnail updated: Frame 15

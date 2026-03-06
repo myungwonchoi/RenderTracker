@@ -1,4 +1,5 @@
 import os
+import time
 import json
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton, 
@@ -766,3 +767,185 @@ def update_progress_bar(bar, pct_label, pct, color):
     """)
     pct_label.setText(f"{pct*100:.1f}%")
     pct_label.setStyleSheet(f"color: {color}; font-weight: bold;")
+
+def update_info_label(label, value):
+    """정보 라벨의 텍스트를 안전하게 업데이트합니다."""
+    text = str(value)
+    if label.text() != text:
+        label.setText(text)
+
+def update_render_info(app, init, upd, fmt_time_func):
+    """텍스트 기반 렌더링 정보를 UI에 일괄 업데이트합니다."""
+    sw = init.get("software", "—")
+    update_info_label(app._info_vars.get("software"), sw)
+    update_info_label(app._info_vars.get("renderer"), init.get("renderer", "—"))
+    
+    doc_name = init.get("doc_name", "")
+    update_info_label(app._info_vars.get("doc"), doc_name if doc_name else "—")
+    app.app_title_lbl.setText(doc_name if doc_name else "—")
+    
+    # Blender일 경우 특정 필드 숨김 처리
+    is_blender = (sw.upper() == "BLENDER")
+    for key in ["render_set", "take"]:
+        if key in app._card_labels:
+            app._card_labels[key].setVisible(not is_blender)
+            app._info_vars[key].setVisible(not is_blender)
+            
+    if not is_blender:
+        update_info_label(app._info_vars.get("render_set"), init.get("render_setting", "—"))
+        update_info_label(app._info_vars.get("take"), init.get("take_name", "—"))
+
+    update_info_label(app._info_vars.get("resolution"), f"{init.get('res_x',0)} × {init.get('res_y',0)}")
+    update_info_label(app._info_vars.get("frame_range"), f"{init.get('start_frame',0)} – {init.get('end_frame',0)}  ({init.get('total_frames',0)} frames)")
+    update_info_label(app._info_vars.get("start_time"), init.get("start_time","—"))
+    
+    path = init.get("output_path","")
+    update_info_label(app._info_vars.get("output_path"), path.replace("\\", "\\\u200b").replace("/", "/\u200b") if path else "—")
+    
+    update_info_label(app._info_vars.get("current_frame_time"), upd.get("field_current_frame_time", "—"))
+    update_info_label(app._info_vars.get("last_frame"), fmt_time_func(upd.get("last_frame_duration", 0)))
+    update_info_label(app._info_vars.get("avg_frame"), fmt_time_func(upd.get("avg_frame_duration", 0)))
+    update_info_label(app._info_vars.get("elapsed"), fmt_time_func(upd.get("elapsed_seconds", 0)))
+    
+    app.start_f_label.setText(f"{init.get('start_frame','—')} F")
+    app.end_f_label.setText(f"{init.get('end_frame','—')} F")
+    app.curr_f_prog_label.setText(f"{upd.get('current_frame',0)}F")
+
+def update_thumbnail_label(app, label, thumb_path):
+    """썸네일 라벨에 이미지를 그리고 마스크를 적용합니다."""
+    pix = QPixmap(thumb_path)
+    if not pix.isNull():
+        masked_pix = mask_rounded_pixmap(pix, radius=12)
+        label.setPixmap(masked_pix)
+        label.setText("")
+        return True
+    else:
+        label.setPixmap(QPixmap())
+        label.setText("No Image")
+        return False
+
+def add_history_card(app, path, data, status_color, load_callback, menu_callback, top=True):
+    """새로운 히스토리 카드를 생성하여 사이드바에 추가합니다."""
+    try:
+        basename = os.path.basename(path)
+        date_part = basename[len("Render_"):-len(".json")]
+        dt = time.strptime(date_part, "%Y%m%d_%H%M%S")
+        label = time.strftime("%Y-%m-%d %H:%M:%S", dt)
+    except: 
+        label = os.path.basename(path)
+    
+    card = HistoryCard(path, label, data["doc_name"], data["software"], status_color)
+    card.clicked.connect(load_callback)
+    card.rightClicked.connect(menu_callback)
+    
+    if top:
+        app.sidebar_layout_inner.insertWidget(0, card)
+    else:
+        app.sidebar_layout_inner.insertWidget(app.sidebar_layout_inner.count() - 1, card)
+        
+    app._history_btns[path] = card
+    return card
+
+def sync_history_sidebar(app, history_files, get_data_func, get_color_func, load_callback, menu_callback):
+    """파일 목록에 맞춰 사이드바 위젯들을 최신화합니다."""
+    current_paths = set(history_files)
+    known_paths = set(app._history_btns.keys())
+    
+    # 1. 삭제된 파일 위젯 제거
+    removed_paths = known_paths - current_paths
+    for p in removed_paths:
+        btn = app._history_btns.pop(p, None)
+        if btn: btn.deleteLater()
+        app._history_mtimes.pop(p, None)
+
+    # 2. 추가된 파일 위젯 생성
+    added_paths = current_paths - known_paths
+    if added_paths:
+        # 정렬된 리스트(history_files)에서 새로 추가된 것만 역순으로 순회하며 상단에 삽입
+        for path in reversed(history_files):
+            if path in added_paths:
+                data = get_data_func(path)
+                color = get_color_func(path)
+                app._history_mtimes[path] = os.path.getmtime(path)
+                add_history_card(app, path, data, color, load_callback, menu_callback, top=True)
+    
+    # 3. 기존 파일 내용 변경 체크 (색상 등)
+    for path in history_files:
+        if path in known_paths:
+            try:
+                mt = os.path.getmtime(path)
+                if mt != app._history_mtimes.get(path, 0):
+                    app._history_mtimes[path] = mt
+                    color = get_color_func(path)
+                    if path in app._history_btns:
+                        app._history_btns[path].set_status_color(color)
+            except: pass
+            
+    # 4. 하이라이트 적용
+    active_path = app._viewing_file or app._active_file
+    for path, card in app._history_btns.items():
+        card.set_active(path == active_path)
+
+def apply_ui_translations(app):
+    """애플리케이션의 모든 UI 텍스트에 번역을 적용합니다."""
+    # 최상단 타이틀바 고정
+    app.title_bar.title_label.setText("MW Render Monitor")
+    
+    app.prog_hdr_lbl.setText(app.g("progress_label", "Progress"))
+    app.sb_hdr_lbl.setText(app.g("history", "Render History"))
+    
+    # 볼륨 아이콘 업데이트
+    if app.is_muted:
+        app.volume_btn.setText("🔇")
+    else:
+        app.volume_btn.setText("🔊")
+    
+    pid_text = app.g("pid", "PID")
+    cur_pid = (app.watched_pid if app.watched_pid else "—")
+    app.pid_label.setText(f"{pid_text}: {cur_pid}")
+    
+    # 정보 카드 번역 매핑
+    INFO_MAP = {
+        "software": "ui_software", "renderer": "ui_renderer", "doc": "ui_doc", "render_set": "ui_render_set",
+        "take": "ui_take", "resolution": "ui_resolution", "frame_range": "ui_frame_range",
+        "start_time": "ui_start_time", "end_time": "ui_end_time", 
+        "total_elapsed": "ui_elapsed", "output_path": "ui_output_path"
+    }
+    for key, lbl in app._card_labels.items():
+        app_msg_key = INFO_MAP.get(key, f"ui_{key}")
+        lbl.setText(app.app_msgs.get(app_msg_key, key))
+        
+    # 진행도 정보 번역 매핑
+    PROG_MAP = {
+        "current_frame_time": "field_current_frame_time", "last_frame": "ui_last_frame",
+        "avg_frame": "ui_avg_frame", "elapsed": "ui_elapsed",
+        "remaining": "ui_remaining", "eta": "ui_eta"
+    }
+    for key, lbl in app._prog_labels.items():
+        app_msg_key = PROG_MAP.get(key, f"ui_{key}")
+        lbl.setText(app.app_msgs.get(app_msg_key, key))
+        
+    app._log_section_lbl.setText(app.g("log", "Log"))
+    
+    # 현재 상태 뱃지 텍스트 갱신
+    if app.last_status:
+        key_map = {
+            "Progress": "progress", "Started": "started", "Finished": "finished", 
+            "Stopped": "stopped", "Crashed": "crashed", "NotResponding": "not_responding",
+            "SoftwareClosed": "software_closed"
+        }
+        badge_key = key_map.get(app.last_status, app.last_status.lower())
+        app.status_badge.setText(app.g(badge_key, app.last_status))
+
+def trigger_main_glow(app, color_hex):
+    """창 전체 글로우 효과를 트리거합니다."""
+    if not hasattr(app, "glow_overlay"): return
+    
+    # 트리거 시 크기 재조정 및 최상단으로 올리기
+    app.glow_overlay.resize(app.width(), app.height() - 34)
+    app.glow_overlay.raise_()
+    
+    if hasattr(app, "_glow_anim") and app._glow_anim: 
+        app._glow_anim.stop()
+        
+    app._glow_anim = trigger_glow_anim(app.glow_overlay, "intensity", color_hex)

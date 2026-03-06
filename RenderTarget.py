@@ -8,30 +8,14 @@ import json
 import time
 import threading
 import traceback
-import messenger
-import psutil
-from PIL import Image
 import constants
 import path_manager
-from path_manager import (
-    BASE_DIR, HISTORY_DIR, CONFIG_FILE, LOCALE_DIR, 
-    FONTS_DIR, LOG_FILE, IMAGES_DIR, SOUNDS_DIR
-)
-from config_manager import load_config, save_config, load_messages
+import config_manager
+import render_processor
+import interface
+import messenger
 from styles import T, STYLE_SHEET_TEMPLATE
 from datetime import datetime
-from interface import (
-    CustomMessageBox, GlowCard, MainGlowOverlay, CustomTitleBar, 
-    HistoryCard, CustomSizeGrip, SettingsDialog,
-    build_main_ui, mask_rounded_pixmap, trigger_glow_anim,
-    update_status_badge, update_progress_bar
-)
-from render_processor import (
-    fmt_time, get_latest_render_file, get_status_color_from_file,
-    force_update_json_on_crash, process_thumbnail,
-    log_to_file, handle_exception, setup_dpi_awareness,
-    determine_render_status, resolve_image_path
-)
 
 path_manager.ensure_directories()
 
@@ -49,15 +33,7 @@ from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 # (Paths now managed via path_manager.py)
 
-sys.excepthook = handle_exception
-
-
-# ── 설정·메시지 유틸 ───────────────────────────────────────────────────────────
-# (Config management logic now handled via config_manager.py)
-
-# (Time formatting now handled via render_processor.py)
-
-# (UI Components now handled via components.py)
+sys.excepthook = render_processor.handle_exception
 
 # ── 메인 윈도우 앱 ─────────────────────────────────────────────────────────────
 class RenderMonitorApp(QMainWindow):
@@ -75,7 +51,7 @@ class RenderMonitorApp(QMainWindow):
         self._setup_native_window()
         
         # 설정 로드
-        self.cfg = load_config()
+        self.cfg = config_manager.load_config()
         
         # 창 위치 및 크기 복원 (저장된 정보가 있으면 복원, 없으면 중앙 정렬)
         geom = self.cfg.get("window_geometry")
@@ -87,8 +63,8 @@ class RenderMonitorApp(QMainWindow):
         else:
             self._center_window()
         self._app_lang = self.cfg.get("app_language", "ko")
-        self.app_msgs = load_messages(self._app_lang)
-        self.msgs = load_messages(self.cfg.get("language", "ko"))
+        self.app_msgs = config_manager.load_messages(self._app_lang)
+        self.msgs = config_manager.load_messages(self.cfg.get("language", "ko"))
         
         self.start_app_ts = time.time()
         self.last_start_ts = None
@@ -99,6 +75,9 @@ class RenderMonitorApp(QMainWindow):
         self.crash_sent = False
         self.last_init = {}
         self.last_upd = {}
+        
+        # 상태 전이 엔진 초기화
+        self.state_engine = render_processor.RenderStateEngine(self.start_app_ts)
         
         self._active_file = None
         self._viewing_file = None
@@ -135,14 +114,14 @@ class RenderMonitorApp(QMainWindow):
         self._apply_lang()
         
         self._log("Monitor started (PySide6)")
-        self._log(f"Watching: {HISTORY_DIR}")
+        self._log(f"Watching: {path_manager.HISTORY_DIR}")
         
         self.poll_timer = QTimer(self)
         self.poll_timer.timeout.connect(self._poll)
         self.poll_timer.start(constants.POLLING_INTERVAL_MS)
 
         # Glow Overlay (창 전체 은은하게 빛나기)
-        self.glow_overlay = MainGlowOverlay(self)
+        self.glow_overlay = interface.MainGlowOverlay(self)
         self.glow_overlay.setGeometry(0, 34, self.width(), self.height() - 34)
         self.glow_overlay.lower() 
 
@@ -174,7 +153,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _build_ui(self):
         # 인터페이스 빌더를 호출하여 레이아웃 구성 (interface.py로 위임)
-        build_main_ui(self)
+        interface.build_main_ui(self)
         
         # 버튼 시그널 연결
         self.volume_btn.clicked.connect(self._toggle_mute)
@@ -200,7 +179,7 @@ class RenderMonitorApp(QMainWindow):
         """창을 닫을 때 종료되지 않고 시스템 트레이로 숨김"""
         # 창 위치/크기 저장
         self.cfg["window_geometry"] = self.saveGeometry().toHex().data().decode()
-        save_config(self.cfg)
+        config_manager.save_config(self.cfg)
         
         # 이미 트레이 아이콘이 보이고 있다면 창만 숨기고 종료 차단
         if self.tray_icon.isVisible():
@@ -216,7 +195,7 @@ class RenderMonitorApp(QMainWindow):
         self.tray_icon = QSystemTrayIcon(self)
         
         # 아이콘 설정 (기존 설정 아이콘 활용)
-        icon_path = os.path.join(IMAGES_DIR, "Icon_Setting.png")
+        icon_path = os.path.join(path_manager.IMAGES_DIR, "Icon_Setting.png")
         if os.path.exists(icon_path):
             self.tray_icon.setIcon(QIcon(icon_path))
         
@@ -257,19 +236,13 @@ class RenderMonitorApp(QMainWindow):
         # 깜빡임 방지용 체크 로직은 상위 호출부에서 유지
         if self.status_badge.text() == txt and self.status_badge.property("status_key") == key:
             return
-        update_status_badge(self.status_badge, txt, fg, bg)
+        interface.update_status_badge(self.status_badge, txt, fg, bg)
         self.status_badge.setProperty("status_key", key)
 
-    def _iv(self, key, val):
-        if key in self._info_vars:
-            new_txt = str(val)
-            if self._info_vars[key].text() == new_txt:
-                return
-            self._info_vars[key].setText(new_txt)
 
     def _set_bar(self, pct, color):
         if not hasattr(self, "progress_bar"): return
-        update_progress_bar(self.progress_bar, self.pct_label, pct, color)
+        interface.update_progress_bar(self.progress_bar, self.pct_label, pct, color)
 
     def g(self, key, default=""):
         return self.app_msgs.get(f"ui_{key}", self.app_msgs.get(key, default or key))
@@ -330,7 +303,7 @@ class RenderMonitorApp(QMainWindow):
         ts = time.strftime("%H:%M:%S")
         line = f"[{ts}] {msg}"
         print(line)
-        log_to_file(msg, level)
+        render_processor.log_to_file(msg, level)
         self.log_text.append(line)
         scrollbar = self.log_text.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
@@ -343,18 +316,18 @@ class RenderMonitorApp(QMainWindow):
         self.glow_overlay.raise_()
         
         if self._glow_anim: self._glow_anim.stop()
-        self._glow_anim = trigger_glow_anim(self.glow_overlay, "intensity", color_hex)
+        self._glow_anim = interface.trigger_glow_anim(self.glow_overlay, "intensity", color_hex)
 
     def _open_settings(self):
-        dlg = SettingsDialog(self, self.cfg, self.app_msgs, self._on_cfg_changed)
+        dlg = interface.SettingsDialog(self, self.cfg, self.app_msgs, self._on_cfg_changed)
         dlg.exec()
 
     def _on_cfg_changed(self, new_cfg):
         prev_lang = self._app_lang
         self.cfg = new_cfg
-        self.msgs = load_messages(new_cfg.get("language","ko"))
+        self.msgs = config_manager.load_messages(new_cfg.get("language","ko"))
         self._app_lang = new_cfg.get("app_language","ko")
-        self.app_msgs = load_messages(self._app_lang)
+        self.app_msgs = config_manager.load_messages(self._app_lang)
         if self._app_lang != prev_lang:
             self._apply_lang()
         self._update_volume()
@@ -367,107 +340,35 @@ class RenderMonitorApp(QMainWindow):
                 os.startfile(folder)
             else:
                 msg = self.g("path_not_found", "The folder path does not exist.")
-                dlg = CustomMessageBox(self, self.g("app_title"), msg)
+                dlg = interface.CustomMessageBox(self, self.g("app_title"), msg)
                 dlg.exec()
 
     # ── 히스토리 및 폴링 로직 ────────────────────────────────────────────────────────
     def _get_latest_render_file(self):
-        return get_latest_render_file()
+        return render_processor.get_latest_render_file()
 
     def _refresh_sidebar(self):
-        if not os.path.isdir(HISTORY_DIR): return
-        # 파일명 정렬 (성능을 위해 getmtime 배제)
-        files = sorted(
-            [os.path.join(HISTORY_DIR, f) for f in os.listdir(HISTORY_DIR) if f.startswith("Render_") and f.endswith(".json")],
-            reverse=True
+        history_files = render_processor.get_history_files()
+        interface.sync_history_sidebar(
+            self, history_files, 
+            render_processor.get_history_item_data, 
+            self._get_status_color_from_file,
+            self._load_history, 
+            self._show_history_context_menu
         )
-        
-        current_paths = set(files)
-        known_paths = set(self._history_btns.keys())
-        
-        # 1. 삭제된 파일 위젯 제거
-        removed_paths = known_paths - current_paths
-        for p in removed_paths:
-            btn = self._history_btns.pop(p, None)
-            if btn: btn.deleteLater()
-            self._history_mtimes.pop(p, None)
-
-        # 2. 추가된 파일 위젯 생성
-        added_paths = current_paths - known_paths
-        if added_paths:
-            # 순서를 유지하기 위해 정렬된 리스트에서 새로 추가된 것만 추출
-            # reversed(files)를 사용하는 이유는 insertWidget(0)이 역순으로 쌓기 때문입니다.
-            for path in reversed(files):
-                if path in added_paths:
-                    # 레이아웃 상단에 추가해야 함 (insertWidget)
-                    self._add_to_sidebar(path, top=True)
-        
-        # 3. 기존 파일 내용 변경 체크 (상태 색상 등)
-        for path in files:
-            if path in known_paths:
-                try:
-                    mt = os.path.getmtime(path)
-                    if mt != self._history_mtimes.get(path, 0):
-                        self._history_mtimes[path] = mt
-                        color = self._get_status_color_from_file(path)
-                        if path in self._history_btns:
-                            self._history_btns[path].set_status_color(color)
-                except: pass
-            
-        self._highlight_sidebar(self._viewing_file or self._active_file)
 
     def _get_status_color_from_file(self, path):
         color_map = {'YELLOW': T.YELLOW, 'GREEN': T.GREEN, 'RED': T.RED}
-        return get_status_color_from_file(path, color_map)
-
-    def _add_to_sidebar(self, path, top=False):
-        doc_name = "Unknown"
-        sw = "C4D"
-        status_color = T.RED
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            self._history_mtimes[path] = os.path.getmtime(path)
-            info = data.get("start", {})
-            doc_name = info.get("doc_name", "Unknown")
-            sw = info.get("software", "C4D")
-            status_color = self._get_status_color_from_file(path)
-        except: pass
-
-        try:
-            basename = os.path.basename(path)
-            date_part = basename[len("Render_"):-len(".json")]
-            dt = time.strptime(date_part, "%Y%m%d_%H%M%S")
-            label = time.strftime("%Y-%m-%d %H:%M:%S", dt)
-        except: label = os.path.basename(path)
-        
-        card = HistoryCard(path, label, doc_name, sw, status_color)
-        card.clicked.connect(self._load_history)
-        card.rightClicked.connect(self._show_history_context_menu)
-        
-        if top:
-            # 레이아웃의 맨 위에 추가 (인덱스 0)
-            self.sidebar_layout_inner.insertWidget(0, card)
-        else:
-            # 기존 방식: 스페이서 바로 위에 추가
-            self.sidebar_layout_inner.insertWidget(self.sidebar_layout_inner.count() - 1, card)
-            
-        self._history_btns[path] = card
-        self._highlight_sidebar(self._viewing_file or self._active_file)
-
-    def _highlight_sidebar(self, active_path):
-        for path, card in self._history_btns.items():
-            card.set_active(path == active_path)
+        return render_processor.get_status_color_from_file(path, color_map)
 
     def _load_history(self, path):
         self._viewing_file = path
-        self._highlight_sidebar(path)
+        # 하이라이트 즉시 갱신 (지휘자 판단)
+        self._refresh_sidebar()
         
-        # [Fix] 항목 변경 시 즉시 이미지를 지우지 않고, _process에서 로드 결과에 따라 처리 (유지 후 대체)
-        self._first_img_path = None
-        self._last_img_path = None
-        self._first_img_mtime = 0
-        self._last_img_mtime = 0
+        # [Fix] 항목 변경 시 이미지 캐시 초기화
+        self._first_img_path = self._last_img_path = None
+        self._first_img_mtime = self._last_img_mtime = 0
         
         if not os.path.exists(path):
             self._log(f"[History] File not found: {os.path.basename(path)}")
@@ -497,46 +398,31 @@ class RenderMonitorApp(QMainWindow):
         menu.exec(QCursor.pos())
 
     def _remove_history_item(self, path):
-        try:
-            # 원본 JSON 삭제
-            if os.path.exists(path):
-                os.remove(path)
-                
-            # 관련 이미지 삭제
-            for suffix in ["_LastFrame.jpg", "_LastFrameTemp.jpg", "_FirstFrame.jpg", "_FirstFrameTemp.jpg"]:
-                img_p = path.replace(".json", suffix)
-                if os.path.exists(img_p): os.remove(img_p)
-            
+        if render_processor.delete_history_files(path):
             self._log(f"Removed history: {os.path.basename(path)}")
-            
-            # 현재 보고 있는 파일이 삭제된 거라면 메인 뷰 초기화
+            # 현재 보고 있는 파일 삭제 시 뷰 초기화
             if self._viewing_file == path or self._active_file == path:
                 self._viewing_file = None
                 if self._active_file == path: self._active_file = None
                 self._reset_main_view()
-
             self._refresh_sidebar()
-        except Exception as e:
-            self._log(f"Error removing history: {e}")
+        else:
+            self._log(f"Error removing history: {os.path.basename(path)}", "ERROR")
 
     def _clear_all_history(self):
         msg = "Are you sure you want to delete ALL render history?"
         if self._app_lang == "ko":
             msg = "정말 모든 렌더 기록을 삭제하시겠습니까?"
             
-        dlg = CustomMessageBox(self, self.g("ui_history"), msg)
+        dlg = interface.CustomMessageBox(self, self.g("ui_history"), msg)
         if dlg.exec():
-            try:
-                for f in os.listdir(HISTORY_DIR):
-                    if f.startswith("Render_") and (f.endswith(".json") or f.endswith(".jpg")):
-                        os.remove(os.path.join(HISTORY_DIR, f))
+            if render_processor.clear_all_render_history():
                 self._log("Cleared all history")
-                self._viewing_file = None
-                self._active_file = None
+                self._viewing_file = self._active_file = None
                 self._reset_main_view()
                 self._refresh_sidebar()
-            except Exception as e:
-                self._log(f"Error clearing history: {e}")
+            else:
+                self._log("Error clearing history", "ERROR")
 
     def _reset_main_view(self):
         """메인 뷰의 정보들을 초기화(비움)"""
@@ -607,7 +493,7 @@ class RenderMonitorApp(QMainWindow):
             pass
 
     def _mask_rounded_pixmap(self, pixmap, radius=12):
-        return mask_rounded_pixmap(pixmap, radius)
+        return interface.mask_rounded_pixmap(pixmap, radius)
 
     def _process(self, data, from_history=False):
         init = data.get("start",  {})
@@ -624,157 +510,87 @@ class RenderMonitorApp(QMainWindow):
         sw       = init.get("software", "—")
         is_ended = (end_ts is not None and end_ts > 0)
         
-        # 2. 알림/신호 발생 조건 선판단 (복잡한 if 방지)
+        # 2. 이벤트 감지 (상태 전이 엔진 위임)
+        events = self.state_engine.detect_events(data, from_history)
         is_realtime = not from_history
-        is_new      = (start_ts is not None and start_ts != self.last_start_ts)
-        # "앱 실행 이후에 일어난 일인가?"
-        is_fresh_start = (is_realtime and start_ts and start_ts > self.start_app_ts)
-        is_fresh_end   = (is_realtime and end_ts and end_ts > self.start_app_ts)
-
-        self.last_init = init
-        self.last_upd  = upd
 
         # 3. PID 감시 (프로세스 추적)
         if pid and pid != self.watched_pid:
             self.watched_pid = pid
             self.crash_sent  = False
-            self.pid_label.setText(f"{self.g('pid', 'PID')}: {pid}")
+            interface.update_info_label(self.pid_label, f"{self.g('pid', 'PID')}: {pid}")
             self._log(f"PID: {pid}")
-            if PSUTIL_AVAILABLE:
-                threading.Thread(target=self._watch_pid, args=(pid,), daemon=True).start()
+            threading.Thread(target=self._watch_pid, args=(pid,), daemon=True).start()
 
-        # 4. 새로운 렌더링 세션 시작 처리
-        if is_new:
-            self.last_start_ts        = start_ts
-            self.progress_msg_id      = None
-            self.crash_sent           = False
-            self.last_status          = None
-            self.last_rendered_frames = -1
+        # 4. 이벤트별 처리 (지휘)
+        if "SESSION_STARTED" in events:
+            self.progress_msg_id = None
+            self.crash_sent = False
             self._last_thumb_update_ts = 0
             self._last_thumb_frame_num = -1
+            self._first_img_path = self._last_img_path = None
+            self._first_img_mtime = self._last_img_mtime = 0
             
-            # [Fix] 히스토리 조회 시에는 끊김 없는 전환을 위해 이미지를 유지하지만,
-            # 실시간으로 새로운 렌더링이 감지된 경우에는 이전 흔적을 지우기 위해 화면을 비움
-            self._first_img_path = None
-            self._last_img_path = None
-            self._first_img_mtime = 0
-            self._last_img_mtime = 0
-            
-            # 실시간 모니터링 중 새로운 세션이 감지된 경우에만 썸네일 영역 초기화
             if is_realtime:
                 self.first_img_label.setPixmap(QPixmap()); self.first_img_label.setText("No Image")
                 self.last_img_label.setPixmap(QPixmap());  self.last_img_label.setText("No Image")
-            
-            self._set_status("started", T.GREEN, T.BADGE_GREEN)
-            # 실시간 새 렌더링이면 알림 발생
-            if is_fresh_start:
-                self._log(f"New render detected (TS: {start_ts})")
-                threading.Thread(target=self._do_started, args=(dict(init),), daemon=True).start()
-                self._play_render_sound("Start")
-                self._activate_main_window()
-                QApplication.alert(self, 0)
-                # 시작 글로우 (파란색)
-                self._trigger_glow(T.BLUE)
-            self._set_status("started", T.GREEN, T.BADGE_GREEN)
-            
-            # [Fix] 실시간으로 새로운 렌더링이 시작될 때만 양쪽 패널 모두 최상단으로 스크롤
-            if not from_history:
                 self._scroll_to_top(sidebar=True)
 
-        # 5. 상태 결정 (Progress / Finished / Stopped) - 로직 분리
-        status = determine_render_status(init, upd, end)
+        if "FRESH_START" in events:
+            self._log(f"New render detected (TS: {start_ts})")
+            threading.Thread(target=self._do_started, args=(dict(init),), daemon=True).start()
+            self._play_render_sound("Start")
+            self._activate_main_window()
+            QApplication.alert(self, 0)
+            self._trigger_glow(T.BLUE)
 
-        # 6. UI 업데이트 (항상 실행)
-        self._iv("software", sw)
-        self._iv("renderer", init.get("renderer", "—"))
-        
-        doc_name = init.get("doc_name", "")
-        self._iv("doc", doc_name if doc_name else "—")
-        if doc_name:
-            self.app_title_lbl.setText(doc_name)
-        else:
-            self.app_title_lbl.setText("—")
-        
-        is_blender = (sw.upper() == "BLENDER")
-        for key in ["render_set", "take"]:
-            if key in self._card_labels:
-                self._card_labels[key].setVisible(not is_blender)
-                self._info_vars[key].setVisible(not is_blender)
+        # 상태 결정 및 UI 업데이트
+        status = self.state_engine.last_status
+        interface.update_render_info(self, init, upd, render_processor.fmt_time)
 
-        if not is_blender:
-            self._iv("render_set", init.get("render_setting", "—"))
-            self._iv("take",       init.get("take_name", "—"))
-        
-        self._iv("resolution",  f"{init.get('res_x',0)} × {init.get('res_y',0)}")
-        self._iv("frame_range", f"{init.get('start_frame',0)} – {init.get('end_frame',0)}  ({tot} frames)")
-        self._iv("start_time",  init.get("start_time","—"))
-        
-        path = init.get("output_path","")
-        self._iv("output_path", path.replace("\\", "\\\u200b").replace("/", "/\u200b") if path else "—")
-        
-        self._iv("current_frame_time", upd.get("field_current_frame_time", "—"))
-        self._iv("last_frame",         fmt_time(upd.get("last_frame_duration", 0)))
-        self._iv("avg_frame",          fmt_time(upd.get("avg_frame_duration", 0)))
-        self._iv("elapsed",            fmt_time(upd.get("elapsed_seconds", 0)))
-        self.start_f_label.setText(f"{init.get('start_frame','—')} F")
-        self.end_f_label.setText(f"{init.get('end_frame','—')} F")
-        self.curr_f_prog_label.setText(f"{upd.get('current_frame',0)}F")
-
-        # 7. 상태별 신호 발송 로직 (리팩토링됨)
+        # 5. 상태별 상세 로직
         pct = ren / tot if tot > 0 else 0.0
         
         if status == "Progress":
             # [Fix] 외부에서 이미 '응답 없음'으로 판단된 경우, 단순히 '진행 중'으로 덮어쓰지 않음
-            if self.last_status == "NotResponding" and not from_history:
-                # 상태 뱃지의 텍스트는 유지하고 진행바 등만 업데이트하도록 설정 유지
+            if self.last_status == "NotResponding" and is_realtime:
                 pass 
             else:
                 self.last_status = "Progress"
                 rem = upd.get("remaining_seconds", -1)
-                self._iv("remaining", fmt_time(rem) if rem >= 0 else "—")
-                self._iv("eta", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
-                self._iv("end_time", "—")
-                self._iv("total_elapsed", fmt_time(upd.get("elapsed_seconds", 0)))
+                interface.update_info_label(self._info_vars.get("remaining"), render_processor.fmt_time(rem) if rem >= 0 else "—")
+                interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
+                interface.update_info_label(self._info_vars.get("end_time"), "—")
+                interface.update_info_label(self._info_vars.get("total_elapsed"), render_processor.fmt_time(upd.get("elapsed_seconds", 0)))
                 self._set_status("progress", T.YELLOW, T.BADGE_YELLOW)
             self._set_bar(pct, T.YELLOW)
 
-            # 진행 상황이 변했고, 실시간 모드인 경우에만 디스코드 업데이트
-            if not is_new and ren != self.last_rendered_frames:
-                self.last_rendered_frames = ren
-                if is_realtime:
-                    threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id, self._last_img_path), daemon=True).start()
+            if "PROGRESS_UPDATED" in events and is_realtime:
+                threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id, self._last_img_path), daemon=True).start()
 
         elif status in ("Finished", "Stopped"):
-            # 이전 상태와 다를 때만 로그 및 처리
-            if self.last_status != status:
+            if f"STATUS_TO_{status.upper()}" in events:
                 if is_realtime: self._log(f"→ {status}")
                 self.last_status = status
                 
-                # UI 데이터 갱신
-                self._iv("current_frame_time", self._info_vars["last_frame"].text())
-                self._iv("remaining", "—")
-                self._iv("eta", "—")
-                self._iv("end_time", end.get("end_time","—"))
-                self._iv("total_elapsed", fmt_time(upd.get("elapsed_seconds", 0)))
+                interface.update_info_label(self._info_vars.get("current_frame_time"), self._info_vars["last_frame"].text())
+                interface.update_info_label(self._info_vars.get("remaining"), "—")
+                interface.update_info_label(self._info_vars.get("eta"), "—")
+                interface.update_info_label(self._info_vars.get("end_time"), end.get("end_time","—"))
+                interface.update_info_label(self._info_vars.get("total_elapsed"), render_processor.fmt_time(upd.get("elapsed_seconds", 0)))
                 
                 is_fin = (status == "Finished")
                 self._set_status(status.lower(), (T.GREEN if is_fin else T.RED), (T.BADGE_GREEN if is_fin else T.BADGE_RED))
                 self._set_bar(pct, (T.GREEN if is_fin else T.RED))
-                
-                # [Fix] 실시간으로 렌더가 종료/중단되었을 때만 스크롤 초기화
-                if not from_history:
-                    self._scroll_to_top(sidebar=True)
+                if is_realtime: self._scroll_to_top(sidebar=True)
 
-
-                # [실시간 알림 및 효과] 앱 실행 이후에 발생한 신규 이벤트인 경우에만 실행
-                if is_realtime and is_fresh_end:
-                    # 글로우 효과
-                    self._trigger_glow(T.GREEN if is_fin else T.RED)
-                    # 외부 알림 및 소리
-                    threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
-                    self._play_render_sound("End" if is_fin else "Error")
-                    self._activate_main_window()
-                    QApplication.alert(self, 0)
+            if "FRESH_END" in events:
+                is_fin = (status == "Finished")
+                self._trigger_glow(T.GREEN if is_fin else T.RED)
+                threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
+                self._play_render_sound("End" if is_fin else "Error")
+                self._activate_main_window()
+                QApplication.alert(self, 0)
         else:
             pass
 
@@ -817,14 +633,14 @@ class RenderMonitorApp(QMainWindow):
 
 
             # 원본 파일 해소 (로직 분리)
-            actual_source = resolve_image_path(raw_source)
+            actual_source = render_processor.resolve_image_path(raw_source)
             
             if not actual_source:
                 cfg["label"].setPixmap(QPixmap())
                 cfg["label"].setText("No Image")
                 continue
 
-            thumb_path = os.path.join(HISTORY_DIR, json_basename.replace(".json", cfg["suffix"]))
+            thumb_path = os.path.join(path_manager.HISTORY_DIR, json_basename.replace(".json", cfg["suffix"]))
             
             # 3초 스로틀 체크 (Last Frame 용)
             if cfg["throttle"] and not from_history:
@@ -849,13 +665,9 @@ class RenderMonitorApp(QMainWindow):
                     needs_update = True
 
             if needs_update:
-                if process_thumbnail(actual_source, thumb_path):
-                    # 화면 표시용 Pixmap 변환 (UI 의존 로직은 유지)
-                    pix = QPixmap(thumb_path)
-                    if not pix.isNull():
-                        masked_pix = self._mask_rounded_pixmap(pix, radius=12)
-                        cfg["label"].setPixmap(masked_pix)
-                        cfg["label"].setText("")
+                if render_processor.process_thumbnail(actual_source, thumb_path):
+                    # 화면 표시용 Pixmap 변환 (로직 분리 - interface.py)
+                    interface.update_thumbnail_label(self, cfg["label"], thumb_path)
                     
                     # 상태 기록
                     setattr(self, cfg["path_attr"], thumb_path)
@@ -869,19 +681,11 @@ class RenderMonitorApp(QMainWindow):
                     cfg["label"].setText("No Image")
 
             else:
-                # 이미 처리된 파일이 있는 경우 화면 로딩
+                # 이미 처리된 파일이 있는 경우 화면 로딩 (로직 분리 - interface.py)
                 current_shown = getattr(self, cfg["path_attr"], None)
                 if not current_shown or current_shown != thumb_path:
-                    pix = QPixmap(thumb_path)
-                    if not pix.isNull():
-                        masked_pix = self._mask_rounded_pixmap(pix, radius=12)
-                        cfg["label"].setPixmap(masked_pix)
-                        cfg["label"].setText("")
+                    if interface.update_thumbnail_label(self, cfg["label"], thumb_path):
                         setattr(self, cfg["path_attr"], thumb_path)
-                    else:
-                        # 썸네일 파일 로드 실패(손상 등) 시 No Image
-                        cfg["label"].setPixmap(QPixmap())
-                        cfg["label"].setText("No Image")
 
     def _watch_pid(self, pid):
         try: psutil.Process(pid).wait()
@@ -896,7 +700,7 @@ class RenderMonitorApp(QMainWindow):
         self.last_status = "Crashed"
         
         # JSON 강제 업데이트 (분리된 로직 호출)
-        if force_update_json_on_crash(self._active_file):
+        if render_processor.force_update_json_on_crash(self._active_file):
             self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
         self._set_status("crashed", T.RED, T.BADGE_RED)
@@ -938,12 +742,12 @@ class RenderMonitorApp(QMainWindow):
             new_vol = 0
             
         self.cfg["volume"] = new_vol
-        save_config(self.cfg)
+        config_manager.save_config(self.cfg)
         self._update_volume()
         self._log(f"Volume: {'Muted' if self.is_muted else f'{new_vol}%'}")
 
     def _play_render_sound(self, sound_type):
-        sound_dir = SOUNDS_DIR
+        sound_dir = path_manager.SOUNDS_DIR
         s_path = os.path.join(sound_dir, f"{sound_type}.mp3")
         if os.path.exists(s_path):
             self.player.setSource(QUrl.fromLocalFile(s_path))
@@ -978,7 +782,7 @@ class RenderMonitorApp(QMainWindow):
 
 
 if __name__ == "__main__":
-    setup_dpi_awareness()
+    render_processor.setup_dpi_awareness()
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     
     app = QApplication(sys.argv)
@@ -987,7 +791,7 @@ if __name__ == "__main__":
     fonts_loaded = False
     for fname in ["Pretendard-Regular.otf", "Pretendard-Medium.otf", "Pretendard-SemiBold.otf", "Pretendard-Bold.otf",
                   "Pretendard-Regular.ttf", "Pretendard-Medium.ttf", "Pretendard-SemiBold.ttf", "Pretendard-Bold.ttf"]:
-        path = os.path.join(FONTS_DIR, fname)
+        path = os.path.join(path_manager.FONTS_DIR, fname)
         if os.path.exists(path):
             if QFontDatabase.addApplicationFont(path) != -1:
                 fonts_loaded = True
