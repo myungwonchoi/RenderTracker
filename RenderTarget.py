@@ -11,8 +11,15 @@ import requests
 import traceback
 import discord_utils
 import constants
+import path_manager
+from path_manager import (
+    BASE_DIR, HISTORY_DIR, CONFIG_FILE, LOCALE_DIR, 
+    FONTS_DIR, LOG_FILE, IMAGES_DIR, SOUNDS_DIR
+)
 from styles import T, STYLE_SHEET_TEMPLATE
 from datetime import datetime
+
+path_manager.ensure_directories()
 
 try:
     import psutil
@@ -37,17 +44,7 @@ from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QIcon, QCursor, QColor,
 from PySide6.QtCore import Qt, QTimer, Signal, QPoint, QSize, QUrl, Property, QPropertyAnimation, QEasingCurve
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
-# ── 경로 ───────────────────────────────────────────────────────────────────────
-if getattr(sys, 'frozen', False):
-    BASE_DIR = os.path.dirname(sys.executable)
-else:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-HISTORY_DIR   = os.path.join(BASE_DIR, "history")
-CONFIG_FILE   = os.path.join(BASE_DIR, "config.json")
-LOCALE_DIR    = os.path.join(BASE_DIR, "locale")
-FONTS_DIR     = os.path.join(BASE_DIR, "res", "fonts")
-LOG_FILE      = os.path.join(BASE_DIR, "app_debug.log")
+# (Paths now managed via path_manager.py)
 
 def log_to_file(msg, level="INFO"):
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -772,7 +769,7 @@ class RenderMonitorApp(QMainWindow):
         self.settings_btn.setObjectName("SettingsBtn")
         
         # 아이콘 설정
-        icon_path = os.path.join(BASE_DIR, "res", "Images", "Icon_Setting.png")
+        icon_path = os.path.join(IMAGES_DIR, "Icon_Setting.png")
         if os.path.exists(icon_path):
             self.settings_btn.setIcon(QIcon(icon_path))
             self.settings_btn.setIconSize(QSize(20, 20))
@@ -970,7 +967,7 @@ class RenderMonitorApp(QMainWindow):
         self.tray_icon = QSystemTrayIcon(self)
         
         # 아이콘 설정 (기존 설정 아이콘 활용)
-        icon_path = os.path.join(BASE_DIR, "res", "Images", "Icon_Setting.png")
+        icon_path = os.path.join(IMAGES_DIR, "Icon_Setting.png")
         if os.path.exists(icon_path):
             self.tray_icon.setIcon(QIcon(icon_path))
         
@@ -1723,7 +1720,7 @@ class RenderMonitorApp(QMainWindow):
                         is_transparent = (img.mode in ("RGBA", "P"))
                         if is_transparent:
                             # 투명 배경 이미지 로드 (BG_Transparent.png)
-                            bg_path = os.path.join(BASE_DIR, "res", "Images", "BG_Transparent.png")
+                            bg_path = os.path.join(IMAGES_DIR, "BG_Transparent.png")
                             if os.path.exists(bg_path):
                                 try:
                                     with Image.open(bg_path) as bg_img:
@@ -1860,7 +1857,7 @@ class RenderMonitorApp(QMainWindow):
         self._log(f"Volume: {'Muted' if self.is_muted else f'{new_vol}%'}")
 
     def _play_render_sound(self, sound_type):
-        sound_dir = os.path.join(BASE_DIR, "res", "sounds")
+        sound_dir = SOUNDS_DIR
         s_path = os.path.join(sound_dir, f"{sound_type}.mp3")
         if os.path.exists(s_path):
             self.player.setSource(QUrl.fromLocalFile(s_path))
