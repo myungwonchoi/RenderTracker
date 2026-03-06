@@ -9,6 +9,9 @@ import time
 import threading
 import requests
 import traceback
+import discord_utils
+import constants
+from styles import T, STYLE_SHEET_TEMPLATE
 from datetime import datetime
 
 try:
@@ -63,251 +66,6 @@ def handle_exception(exc_type, exc_value, exc_traceback):
 
 sys.excepthook = handle_exception
 
-# ── shadcn 다크 팔레트 & QSS ───────────────────────────────────────────────────
-class T:
-    BG      = "#09090b"   # zinc-950
-    CARD    = "#18181b"   # zinc-900
-    BORDER  = "#27272a"   # zinc-800
-    INPUT   = "#09090b"
-    FG      = "#fafafa"   # zinc-50
-    MUTED   = "#a1a1aa"   # zinc-400 (Contrast improved)
-    MUTED2  = "#a1a1aa"   # zinc-400
-
-    GREEN   = "#22c55e"
-    YELLOW  = "#eab308"
-    BLUE    = "#3b82f6"
-    RED     = "#ef4444"
-    ORANGE  = "#f97316"
-
-    BADGE_GREEN  = "#052e16"
-    BADGE_YELLOW = "#1c1500"
-    BADGE_BLUE   = "#0c1a3a"
-    BADGE_RED    = "#1c0505"
-
-    # ── 애니메이션 설정 (밀리초 단위)
-    GLOW_PEAK_MS = 300   # 최대 강도에 도달하는 시간
-    GLOW_EXIT_MS = 2500  # 피크 이후 사라지는 시간
-    GLOW_INTENSITY = 0.3 # 글로우의 최대 강도 (0.0 ~ 1.0)
-    GLOW_SPREAD = 100    # 글로우가 퍼지는 범위 (픽셀)
-
-STYLE_SHEET_TEMPLATE = f"""
-QWidget {{
-    font-family: {{FONT_FAMILY}};
-    color: {T.FG};
-}}
-QMainWindow, #MainBackground {{
-    background-color: {T.BG};
-    border: 1px solid {T.BORDER};
-    border-radius: 12px;
-}}
-QScrollArea, QScrollArea > QWidget > QWidget {{
-    background-color: {T.BG};
-    border: none;
-}}
-#Card {{
-    background-color: {T.CARD};
-    border: 1px solid {T.BORDER};
-    border-radius: 12px;
-}}
-#TitleBar {{
-    background-color: {T.BORDER};
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-}}
-#TitleBar QLabel {{
-    font-size: 11px;
-    font-weight: 500;
-    color: {T.MUTED};
-}}
-
-#TitleBar QPushButton {{
-    background-color: transparent;
-    border: none;
-    color: {T.MUTED};
-    font-size: 14px;
-}}
-#TitleBar QPushButton:hover {{
-    color: {T.FG};
-    background-color: {T.MUTED};
-}}
-#TitleBar #CloseBtn:hover {{
-    background-color: #e11d48;
-    color: white;
-}}
-QScrollBar:vertical {{
-    border: none;
-    background: transparent;
-    width: 5px;
-    margin: 4px 1px;
-}}
-QScrollBar::handle:vertical {{
-    background: {T.BORDER};
-    min-height: 40px;
-    border-radius: 2px;
-}}
-QScrollBar::handle:vertical:hover {{
-    background: {T.MUTED};
-}}
-QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical, QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {{
-    background: none;
-    height: 0px;
-}}
-QScrollBar:horizontal {{
-    border: none;
-    background: transparent;
-    height: 5px;
-    margin: 1px 4px;
-}}
-QScrollBar::handle:horizontal {{
-    background: {T.BORDER};
-    min-width: 40px;
-    border-radius: 2px;
-}}
-QScrollBar::handle:horizontal:hover {{
-    background: {T.MUTED};
-}}
-QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal, QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {{
-    background: none;
-    width: 0px;
-}}
-QProgressBar {{
-    background-color: {T.BORDER};
-    border: none;
-    border-radius: 4px;
-    text-align: right;
-    color: transparent; /* 텍스트 숨김 */
-}}
-QProgressBar::chunk {{
-    background-color: {T.GREEN}; /* 기본색 (동적으로 변경됨) */
-    border-radius: 4px;
-}}
-#SettingsBtn {{
-    background-color: {T.CARD};
-    border: 1px solid {T.BORDER};
-    border-radius: 4px;
-    qproperty-text: ""; 
-    min-width: 32px;
-    max-width: 32px;
-    min-height: 32px;
-    max-height: 32px;
-}}
-#VolumeBtn {{
-    background-color: {T.CARD};
-    border: 1px solid {T.BORDER};
-    border-radius: 4px;
-    qproperty-text: "";
-    min-width: 32px;
-    max-width: 32px;
-    min-height: 32px;
-    max-height: 32px;
-}}
-#SettingsBtn:hover, #VolumeBtn:hover {{
-    background-color: {T.BORDER};
-}}
-QSlider::track:horizontal {{
-    height: 4px;
-    background: {T.BORDER};
-    border-radius: 2px;
-}}
-QSlider::handle:horizontal {{
-    background: {T.BLUE};
-    width: 14px;
-    height: 14px;
-    margin: -5px 0;
-    border-radius: 7px;
-}}
-QLineEdit {{
-    background-color: {T.INPUT};
-    border: 1px solid {T.BORDER};
-    padding: 6px;
-    border-radius: 4px;
-    color: {T.FG};
-    font-size: 13px;
-}}
-
-QLineEdit:focus {{
-    border: 1px solid {T.BLUE};
-}}
-QTextEdit {{
-    background-color: transparent;
-    color: {T.MUTED2};
-    border: none;
-}}
-QPushButton#PrimaryBtn {{
-    background-color: {T.BLUE};
-    color: {T.FG};
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    padding: 8px 16px;
-}}
-QPushButton#PrimaryBtn:hover {{
-    background-color: #2563eb;
-}}
-QPushButton#SecondaryBtn {{
-    background-color: {T.CARD};
-    color: {T.FG};
-    border: 1px solid {T.BORDER};
-    border-radius: 4px;
-    padding: 8px 16px;
-}}
-QPushButton#SecondaryBtn:hover {{
-    background-color: {T.BORDER};
-}}
-QRadioButton, QCheckBox {{
-    background-color: transparent;
-    color: {T.FG};
-    spacing: 8px;
-    outline: none;
-    font-size: 13px;
-}}
-QRadioButton::indicator, QCheckBox::indicator {{
-    width: 18px;
-    height: 18px;
-    border: 2px solid {T.BORDER};
-    background-color: {T.INPUT};
-}}
-QCheckBox::indicator {{
-    border-radius: 4px;
-}}
-QRadioButton::indicator {{
-    border-radius: 9px; /* 완전한 원형 */
-}}
-QCheckBox::indicator:checked {{
-    background-color: {T.BLUE};
-    border: 2px solid {T.BLUE};
-    image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E");
-}}
-QRadioButton::indicator:checked {{
-    border: 2px solid {T.BLUE};
-    image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle fill='%233b82f6' cx='12' cy='12' r='7'/%3E%3C/svg%3E");
-}}
-QRadioButton::indicator:hover, QCheckBox::indicator:hover {{
-    border: 2px solid {T.MUTED};
-}}
-QRadioButton::indicator:disabled, QCheckBox::indicator:disabled {{
-    background-color: {T.BORDER};
-}}
-QMenu {{
-    background-color: {T.CARD};
-    border: 1px solid {T.BORDER};
-    border-radius: 6px;
-    padding: 4px;
-}}
-QMenu::item {{
-    padding: 6px 20px;
-    border-radius: 4px;
-    color: {T.FG};
-}}
-QMenu::item:selected {{
-    background-color: {T.BORDER};
-}}
-QMenu::separator {{
-    height: 1px;
-    background: {T.BORDER};
-    margin: 4px 0px;
-}}
-"""
 
 # ── 설정·메시지 유틸 ───────────────────────────────────────────────────────────
 def load_config():
@@ -340,108 +98,6 @@ def fmt_time(s):
     return f"{h:02d}:{m:02d}:{s:02d}"
 
 # ── 디스코드 웹훅 연동 (순수 파이썬 유지) ──────────────────────────────────────────
-def send_discord(url, embed, uid="", mention=False):
-    if not url: return None
-    try:
-        body = {"embeds": [embed]}
-        if mention and uid: body["content"] = f"<@{uid}>"
-        r = requests.post(url + "?wait=true", json=body, timeout=10)
-        if r.status_code in (200, 201): return r.json().get("id")
-    except Exception: pass
-    return None
-
-def patch_discord(url, mid, embed):
-    if not url or not mid: return
-    try: requests.patch(f"{url}/messages/{mid}", json={"embeds":[embed]}, timeout=10)
-    except Exception: pass
-
-def embed(title, desc, color, fields=None):
-    e = {"title": title, "description": desc, "color": color}
-    if fields: e["fields"] = fields
-    return e
-
-# 알림 함수들(notify_started, notify_progress, notify_finished, notify_crash)은 
-# 원본 코드와 동일하게 동작하도록 유지 (길이 관계상 생략하지 않고 모두 포함)
-def notify_started(init, cfg, msgs):
-    doc=init.get("doc_name",""); rs=init.get("render_setting",""); pc=cfg.get("pc_name","")
-    rx=init.get("res_x",0); ry=init.get("res_y",0); sf=init.get("start_frame",0)
-    ef=init.get("end_frame",0); tot=init.get("total_frames",0)
-    path=init.get("output_path",""); st=init.get("start_time","")
-    t=msgs.get("render_started_title","Render Started [{doc_name}] - [{render_setting}]")
-    t=t.replace("{doc_name}",doc).replace("{render_setting}",rs)
-    sw=init.get("software","C4D"); rn=init.get("renderer",rs)
-    d=msgs.get("render_started_desc","-# PC: {pc_name}").replace("{pc_name}",pc)
-    f=[{"name":msgs.get("ui_software","Software"),"value":f"`{sw}`","inline":True},
-       {"name":msgs.get("ui_renderer","Renderer"),"value":f"`{rn}`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_resolution","Resolution"),"value":f"`{rx}x{ry}`","inline":True},
-       {"name":msgs.get("field_frame_range","Frame Range"),"value":f"`{sf}~{ef} ({tot}f)`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_start_time","Start Time"),"value":f"`{st}`","inline":False},
-       {"name":msgs.get("field_render_path","Output Path"),"value":f"`{path}`","inline":False}]
-    return send_discord(cfg.get("webhook_url",""), embed(t,d,0x22c55e,f), cfg.get("discord_userid",""), cfg.get("use_mention",False))
-
-def notify_progress(init, upd, cfg, msgs, pmid):
-    doc=init.get("doc_name",""); rs=init.get("render_setting",""); pc=cfg.get("pc_name","")
-    tot=init.get("total_frames",1); ren=upd.get("rendered_frames",0)
-    curr_f=upd.get("current_frame", 0)
-    el=upd.get("elapsed_seconds",0); rem=upd.get("remaining_seconds",-1)
-    avg=upd.get("avg_frame_duration",0); lf=upd.get("last_frame_duration",0)
-    cft_time=upd.get("field_current_frame_time","—")
-    t=msgs.get("rendering_progress_title","Rendering... [{doc_name}] - [{render_setting}]")
-    t=t.replace("{doc_name}",doc).replace("{render_setting}",rs)
-    sw=init.get("software","C4D"); rn=init.get("renderer",rs)
-    prog = min(int(ren/tot*10), 10) if tot > 0 else 0
-    bar = "🟩" * prog + "⬜" * (10 - prog)
-    d=msgs.get("rendering_progress_desc","{progress_bar}\n\n-# PC: {pc_name}")
-    d=d.replace("{progress_bar}",bar).replace("{pc_name}",pc)
-    eta=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()+rem)) if rem>=0 else "—"
-    f=[{"name":msgs.get("ui_software","Software"),"value":f"`{sw}`","inline":True},
-       {"name":msgs.get("ui_renderer","Renderer"),"value":f"`{rn}`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_current_frame_status","Frame"),"value":f"`{curr_f}`","inline":True},
-       {"name":msgs.get("field_progress","Progress"),"value":f"`{ren}/{tot}`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_current_frame_time","Current"),"value":f"`{cft_time}`","inline":True},
-       {"name":msgs.get("field_last_frame","Last"),"value":f"`{fmt_time(lf)}`","inline":True},
-       {"name":msgs.get("field_average","Avg"),"value":f"`{fmt_time(avg)}`","inline":True},
-       {"name":msgs.get("field_elapsed","Elapsed"),"value":f"`{fmt_time(el)}`","inline":True},
-       {"name":msgs.get("field_remaining","Remaining"),"value":f"`{fmt_time(rem)}`","inline":True},
-       {"name":msgs.get("field_eta","ETA"),"value":f"`{eta}`","inline":True}]
-    e2=embed(t,d,0xeab308,f); wh=cfg.get("webhook_url","")
-    if pmid: patch_discord(wh,pmid,e2); return pmid
-    return send_discord(wh,e2,cfg.get("discord_userid",""),cfg.get("use_mention",False))
-
-def notify_finished(init, upd, end, cfg, msgs, is_fin):
-    doc=init.get("doc_name",""); rs=init.get("render_setting",""); pc=cfg.get("pc_name","")
-    tot=init.get("total_frames",0); ren=upd.get("rendered_frames",0)
-    el=upd.get("elapsed_seconds",0); path=init.get("output_path","")
-    st=init.get("start_time",""); et=end.get("end_time","")
-    tk=("render_finished_title" if is_fin else "render_stopped_title")
-    col=0x3b82f6 if is_fin else 0xef4444
-    t=msgs.get(tk,"Render Finished").replace("{doc_name}",doc).replace("{render_setting}",rs)
-    sw=init.get("software","C4D"); rn=init.get("renderer",rs)
-    d=msgs.get("render_finished_desc","-# PC: {pc_name}").replace("{pc_name}",pc)
-    f=[{"name":msgs.get("ui_software","Software"),"value":f"`{sw}`","inline":True},
-       {"name":msgs.get("ui_renderer","Renderer"),"value":f"`{rn}`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_total_elapsed","Total"),"value":f"`{fmt_time(el)}`","inline":True},
-       {"name":msgs.get("field_start_time","Start"),"value":f"`{st}`","inline":True},
-       {"name":msgs.get("field_end_time","End"),"value":f"`{et}`","inline":True},
-       {"name":msgs.get("field_progress","Progress"),"value":f"`{ren}/{tot}`","inline":False},
-       {"name":msgs.get("field_render_path","Output"),"value":f"`{path}`","inline":False}]
-    send_discord(cfg.get("webhook_url",""),embed(t,d,col,f),cfg.get("discord_userid",""),cfg.get("use_mention",False))
-
-def notify_crash(init, upd, cfg, msgs):
-    ren=upd.get("rendered_frames",0); tot=init.get("total_frames",0); path=init.get("output_path","")
-    sw=init.get("software","C4D"); rn=init.get("renderer","—")
-    t=msgs.get("crash_title","C4D Crashed!"); d=msgs.get("crash_desc","Cinema 4D closed unexpectedly.")
-    f=[{"name":msgs.get("ui_software","Software"),"value":f"`{sw}`","inline":True},
-       {"name":msgs.get("ui_renderer","Renderer"),"value":f"`{rn}`","inline":True},
-       {"name":"\u200b","value":"\u200b","inline":True},
-       {"name":msgs.get("field_current_frame_status","Last Frame"),"value":f"`{ren}/{tot}`","inline":True},
-       {"name":msgs.get("field_render_path","Output"),"value":f"`{path}`","inline":False}]
-    send_discord(cfg.get("webhook_url",""),embed(t,d,0xef4444,f),cfg.get("discord_userid",""),cfg.get("use_mention",False))
 
 # ── 커스텀 메시지 박스 ────────────────────────────────────────────────────────
 class CustomMessageBox(QDialog):
@@ -995,7 +651,7 @@ class RenderMonitorApp(QMainWindow):
         
         self.poll_timer = QTimer(self)
         self.poll_timer.timeout.connect(self._poll)
-        self.poll_timer.start(1000)
+        self.poll_timer.start(constants.POLLING_INTERVAL_MS)
 
         # Glow Overlay (창 전체 은은하게 빛나기)
         self.glow_overlay = MainGlowOverlay(self)
@@ -1886,13 +1542,16 @@ class RenderMonitorApp(QMainWindow):
         
         self._iv("current_frame_time", upd.get("field_current_frame_time", "—"))
         self._iv("last_frame",         fmt_time(upd.get("last_frame_duration", 0)))
+        self._iv("avg_frame",          fmt_time(upd.get("avg_frame_duration", 0)))
+        self._iv("elapsed",            fmt_time(upd.get("elapsed_seconds", 0)))
         self.start_f_label.setText(f"{init.get('start_frame','—')} F")
         self.end_f_label.setText(f"{init.get('end_frame','—')} F")
         self.curr_f_prog_label.setText(f"{upd.get('current_frame',0)}F")
 
         # 7. 상태별 신호 발송 로직 (리팩토링됨)
+        pct = ren / tot if tot > 0 else 0.0
+        
         if status == "Progress":
-            pct = ren / tot if tot > 0 else 0.0
             # [Fix] 외부에서 이미 '응답 없음'으로 판단된 경우, 단순히 '진행 중'으로 덮어쓰지 않음
             if self.last_status == "NotResponding" and not from_history:
                 # 상태 뱃지의 텍스트는 유지하고 진행바 등만 업데이트하도록 설정 유지
@@ -1903,7 +1562,7 @@ class RenderMonitorApp(QMainWindow):
                 self._iv("remaining", fmt_time(rem) if rem >= 0 else "—")
                 self._iv("eta", time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
                 self._iv("end_time", "—")
-                self._iv("total_elapsed", "—")
+                self._iv("total_elapsed", fmt_time(upd.get("elapsed_seconds", 0)))
                 self._set_status("progress", T.YELLOW, T.BADGE_YELLOW)
             self._set_bar(pct, T.YELLOW)
 
@@ -1911,7 +1570,7 @@ class RenderMonitorApp(QMainWindow):
             if not is_new and ren != self.last_rendered_frames:
                 self.last_rendered_frames = ren
                 if is_realtime:
-                    threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id), daemon=True).start()
+                    threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id, self._last_img_path), daemon=True).start()
 
         elif status in ("Finished", "Stopped"):
             # 이전 상태와 다를 때만 로그 및 처리
@@ -1940,7 +1599,7 @@ class RenderMonitorApp(QMainWindow):
                     # 글로우 효과
                     self._trigger_glow(T.GREEN if is_fin else T.RED)
                     # 외부 알림 및 소리
-                    threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin), daemon=True).start()
+                    threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
                     self._play_render_sound("End" if is_fin else "Error")
                     self._activate_main_window()
                     QApplication.alert(self, 0)
@@ -2162,19 +1821,19 @@ class RenderMonitorApp(QMainWindow):
         self._play_render_sound("Error")
         self._activate_main_window()
         self._scroll_to_top()
-        threading.Thread(target=notify_crash, args=(self.last_init, self.last_upd, self.cfg, self.msgs), daemon=True).start()
+        threading.Thread(target=discord_utils.notify_crash, args=(self.last_init, self.last_upd, self.cfg, self.msgs), daemon=True).start()
 
     def _do_started(self, init):
-        mid = notify_started(init, self.cfg, self.msgs)
+        mid = discord_utils.notify_started(init, self.cfg, self.msgs)
         if mid: self._log("Started Discord notified")
 
-    def _do_progress(self, init, upd, captured):
-        new_id = notify_progress(init, upd, self.cfg, self.msgs, captured)
+    def _do_progress(self, init, upd, captured, thumb_path=None):
+        new_id = discord_utils.notify_progress(init, upd, self.cfg, self.msgs, captured, thumb_path=thumb_path)
         if new_id and new_id != captured:
             self.progress_msg_id = new_id
 
-    def _do_finished(self, init, upd, end, is_fin):
-        notify_finished(init, upd, end, self.cfg, self.msgs, is_fin)
+    def _do_finished(self, init, upd, end, is_fin, thumb_path=None):
+        discord_utils.notify_finished(init, upd, end, self.cfg, self.msgs, is_fin, pmid=self.progress_msg_id, thumb_path=thumb_path)
 
     def _update_volume(self):
         vol = self.cfg.get("volume", 50)
