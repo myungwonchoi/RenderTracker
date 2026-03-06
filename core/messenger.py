@@ -18,9 +18,10 @@ def send_discord(url, embed, uid="", mention=False, file_path=None):
             # 파일이 있으면 attachment: 루틴 사용
             fname = os.path.basename(file_path)
             embed["image"] = {"url": f"attachment://{fname}"}
-            files = {"file": (fname, open(file_path, "rb"))}
-            # 파일과 함께 보낼 때는 payload_json 형식을 사용해야 함
-            r = requests.post(url + "?wait=true", data={"payload_json": json.dumps(body)}, files=files, timeout=15)
+            with open(file_path, "rb") as f:
+                files = {"file": (fname, f)}
+                # 파일과 함께 보낼 때는 payload_json 형식을 사용해야 함
+                r = requests.post(url + "?wait=true", data={"payload_json": json.dumps(body)}, files=files, timeout=15)
         else:
             r = requests.post(url + "?wait=true", json=body, timeout=10)
 
@@ -33,13 +34,13 @@ def patch_discord(url, mid, embed, file_path=None):
     try:
         # attachments: [] 를 지정하여 기존에 업로드된 파일들을 모두 제거하고 새 파일을 올립니다.
         body = {"embeds": [embed], "attachments": []}
-        files = None
         if file_path and os.path.exists(file_path):
             fname = os.path.basename(file_path)
             embed["image"] = {"url": f"attachment://{fname}"}
-            files = {"file": (fname, open(file_path, "rb"))}
-            # 파일과 함께 보낼 때는 payload_json 형식을 사용해야 함
-            requests.patch(f"{url}/messages/{mid}", data={"payload_json": json.dumps(body)}, files=files, timeout=15)
+            with open(file_path, "rb") as f:
+                files = {"file": (fname, f)}
+                # 파일과 함께 보낼 때는 payload_json 형식을 사용해야 함
+                requests.patch(f"{url}/messages/{mid}", data={"payload_json": json.dumps(body)}, files=files, timeout=15)
         else:
             requests.patch(f"{url}/messages/{mid}", json={"embeds":[embed]}, timeout=10)
     except Exception: pass

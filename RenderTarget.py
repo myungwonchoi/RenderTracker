@@ -90,8 +90,8 @@ class RenderMonitorApp(QMainWindow):
         self._viewing_file = None
         self._history_btns = {}
         self._history_mtimes = {}
-        self.last_init = {}
-        self.last_upd = {}
+        self.last_init = {} # [Fix] For crash notifications
+        self.last_upd = {}  # [Fix] For crash notifications
         self._first_img_path = None
         self._first_img_mtime = 0
         self._last_img_path = None
@@ -286,29 +286,40 @@ class RenderMonitorApp(QMainWindow):
     def _poll(self):
         """단일 책임 원칙에 따른 지휘자: 0.5초마다 모든 상황을 판단하고 조율"""
         try:
-            # 1. Discovery: 시스템 현재 상태 파악
-            latest_file = engine.get_latest_render_file()
-            
-            # 2. Decision: 세션 변화 처리 (New Active)
-            if latest_file and latest_file != self._active_file:
-                prev_active = self._active_file
-                self._active_file = latest_file
-                self._log(f"Session changed: {os.path.basename(prev_active) if prev_active else 'None'} -> {os.path.basename(latest_file)}")
-                # 자동 점프 판단 (과거 기록을 보고 있었다면)
-                if self._viewing_file:
-                    self._log(f"Resetting viewing_file from {os.path.basename(self._viewing_file)} to active session")
-                    self._viewing_file = None # 실시간 활성 뷰로 강제 전환
-
-            # 3. Decision: 백그라운드 종료 감지에 따른 자동 점프
-            # (활성 파일이 바뀐 게 아니더라도, 활성 파일의 내용이 '끝남'으로 변했을 때)
             target_path = self._viewing_file if self._viewing_file else self._active_file
             
-            # [Debug Log] Polling 시작 시점 기록
-            # self._log(f"Polling: Target={os.path.basename(target_path) if target_path else 'None'}, Active={os.path.basename(self._active_file) if self._active_file else 'None'}")
-            
+            # 1. 시스템 정보 수집 (Engine 위임)
+            #watched_pid = self.watched_pid
             res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
             
-            # 프로세스 종료 감지
+            latest_file = res.get("latest_file")
+
+            # 2. Decision: 세션 변화 처리 (New Active)
+            # 실시간 렌더가 없는 상태에서 새 파일이 감지되거나, 활성 파일이 바뀐 경우
+            if latest_file and latest_file != self._active_file:
+                # [Log] 신규 세션 상세 정보 기록 및 상태 초기화
+                try:
+                    with open(latest_file, "r", encoding="utf-8") as f:
+                        meta = json.load(f).get("start", {})
+                        soft = meta.get("software", "Unknown")
+                        pid = meta.get("c4d_pid", None)
+                        
+                        # 중요: 신규 세션 감지 시 감시 PID 업데이트 및 크래시 상태 초기화
+                        self.watched_pid = pid
+                        self.crash_sent = False
+                        self._active_file = latest_file
+                        
+                        # 타겟 경로 갱신 (히스토리를 보는 중이 아니면 새 파일로 즉시 점프)
+                        if not self._viewing_file:
+                            target_path = latest_file
+                            res["target_data"] = res.get("active_data") # active_data를 target_data로 활용 가능하나, poll 구조상 새로 읽어오는게 안전
+                        
+                        self._log(f"Session Changed: [{soft}] (PID:{pid}) {os.path.basename(latest_file)}")
+                except Exception as e:
+                    self._log(f"Session switch error: {str(e)}", "ERROR")
+                    self._active_file = latest_file # 에러나도 일단 경로는 업데이트
+
+            # 3. 프로세스 종료 감지 (Crashed/Ended)
             if res["crashed"] and not self.crash_sent:
                 self._log(f"Process termination detected (PID: {self.watched_pid})")
                 self.crash_sent = True
@@ -384,50 +395,60 @@ class RenderMonitorApp(QMainWindow):
 
     def _process(self, data, target_path, events=None, from_history=False):
         """UI 액션 센터: 넘겨받은 데이터를 기반으로 UI, Glow, 사운드 실행"""
-        if events is None: events = []
-        init, upd, end = data.get("start", {}), data.get("update", {}), data.get("end", {})
-        ren, tot = upd.get("rendered_frames", 0), init.get("total_frames", 1)
-        is_realtime = not from_history
-        software = init.get("software", "Unknown")
-        
-        # 실시간 데이터 시각 동기화
-        if is_realtime:
-            start_ts = init.get("start_ts", 0)
-            if start_ts > self._last_jump_start_ts:
-                self._log(f"Processing real-time data for {software} (Start TS: {start_ts})")
-            self._last_jump_start_ts = max(self._last_jump_start_ts, start_ts)
-            curr_end_ts = end.get("end_ts", 0)
-            if curr_end_ts > 0:
-                self._last_jump_end_ts = max(self._last_jump_end_ts, curr_end_ts)
-
-        # 0. 세션 시작 처리 (캐시 초기화 등)
-        if "SESSION_STARTED" in events:
-            self.progress_msg_id = None
-            self._reset_thumbnail_cache()
-            self._refresh_sidebar() # 새 파일 감지 시 사이드바 갱신
+        try:
+            if events is None: events = []
+            init, upd, end = data.get("start", {}), data.get("update", {}), data.get("end", {})
+            
+            # [Fix] 크래시 상황 대비 최신 데이터 보관
+            self.last_init = init
+            self.last_upd = upd
+            
+            ren, tot = upd.get("rendered_frames", 0), init.get("total_frames", 1)
+            is_realtime = not from_history
+            software = init.get("software", "Unknown")
+            
+            # 실시간 데이터 시각 동기화
             if is_realtime:
-                interface.prepare_session_view(self)
+                start_ts = init.get("start_ts", 0)
+                if start_ts > self._last_jump_start_ts:
+                    self._log(f"Processing real-time data for {software} (Start TS: {start_ts})")
+                self._last_jump_start_ts = max(self._last_jump_start_ts, start_ts)
+                curr_end_ts = end.get("end_ts", 0)
+                if curr_end_ts > 0:
+                    self._last_jump_end_ts = max(self._last_jump_end_ts, curr_end_ts)
 
-        # 1. 최우선 피드백 처리 (Glow, 사운드 등 반응형 최우선)
-        status = self.state_engine.last_status
-        if "FRESH_START" in events:
-            self._handle_render_started_feedback(init)
-        
-        if "FRESH_END" in events:
-            self._handle_render_ended_feedback(status, init, upd, end)
+            # 0. 세션 시작 처리 (캐시 초기화 등)
+            if "SESSION_STARTED" in events:
+                self.progress_msg_id = None
+                self._reset_thumbnail_cache()
+                self._refresh_sidebar() # 새 파일 감지 시 사이드바 갱신
+                if is_realtime:
+                    interface.prepare_session_view(self)
 
-        # 2. UI 텍스트 및 상태 뱃지 업데이트 (상세 정보 채우기)
-        interface.update_render_info(self, init, upd, engine.fmt_time)
+            # 1. 최우선 피드백 처리 (Glow, 사운드 등 반응형 최우선)
+            status = self.state_engine.last_status
+            if "FRESH_START" in events:
+                self._handle_render_started_feedback(init)
+            
+            if "FRESH_END" in events:
+                self._handle_render_ended_feedback(status, init, upd, end)
 
-        # 3. 진행도/완료 상태별 UI 세부 분기
-        pct = ren / tot if tot > 0 else 0.0
-        if status == "Progress":
-            self._handle_progress_update(upd, pct, events, init, is_realtime)
-        elif status in ("Finished", "Stopped"):
-            self._handle_render_ended_ui(status, events, init, upd, end, is_realtime, pct)
+            # 2. UI 텍스트 및 상태 뱃지 업데이트 (상세 정보 채우기)
+            interface.update_render_info(self, init, upd, engine.fmt_time)
 
-        # 4. 실시간 썸네일 프로세싱 (의존성 주입: target_path 전달)
-        self._update_thumbnails(init, upd, target_path, from_history)
+            # 3. 진행도/완료 상태별 UI 세부 분기
+            pct = ren / tot if tot > 0 else 0.0
+            if status == "Progress":
+                self._handle_progress_update(upd, pct, events, init, is_realtime)
+            elif status in ("Finished", "Stopped"):
+                self._handle_render_ended_ui(status, events, init, upd, end, is_realtime, pct)
+
+            # 4. 실시간 썸네일 프로세싱 (의존성 주입: target_path 전달)
+            self._update_thumbnails(init, upd, target_path, from_history)
+        except Exception as e:
+            err_details = traceback.format_exc()
+            self._log(f"Process error: {str(e)}", "ERROR")
+            engine.log_to_file(f"Detailed Process Error:\n{err_details}", "ERROR")
 
 
     def _handle_render_started_feedback(self, init):
@@ -594,20 +615,29 @@ class RenderMonitorApp(QMainWindow):
 
     def _on_crash(self):
         """렌더링 프로세스 비정상 종료 시 처리"""
-        self._log("C4D process ended (Crash or Closed)")
-        self.last_status = "Crashed"
-        
-        # JSON 강제 업데이트 (분리된 로직 호출)
-        if engine.force_update_json_on_crash(self._active_file):
-            self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
+        try:
+            soft = self.last_init.get("software", "DCC")
+            pid_str = f" (PID: {self.watched_pid})" if self.watched_pid else ""
+            self._log(f"{soft} process ended{pid_str}")
+            self.last_status = "Crashed"
+            
+            # JSON 강제 업데이트 (분리된 로직 호출)
+            if engine.force_update_json_on_crash(self._active_file):
+                self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
-        interface.update_status_by_key(self, "crashed", T.RED, T.BADGE_RED)
-        interface.trigger_main_glow(self, T.RED)
-        interface.update_progress(self, self.progress_bar.value() / 1000.0, T.RED)
-        interface.play_sound(self, "Error")
-        interface.focus_window(self)
-        interface.scroll_to_top(self)
-        threading.Thread(target=messenger.notify_crash, args=(self.last_init, self.last_upd, self.cfg, self.msgs), daemon=True).start()
+            interface.update_status_by_key(self, "crashed", T.RED, T.BADGE_RED)
+            interface.trigger_main_glow(self, T.RED)
+            interface.update_progress(self, self.progress_bar.value() / 1000.0, T.RED)
+            interface.play_sound(self, "Error")
+            interface.focus_window(self)
+            interface.scroll_to_top(self)
+            
+            # 알림 데이터 복제 (스레드 안전)
+            init_copy = dict(self.last_init)
+            upd_copy = dict(self.last_upd)
+            threading.Thread(target=messenger.notify_crash, args=(init_copy, upd_copy, self.cfg, self.msgs), daemon=True).start()
+        except Exception as e:
+            self._log(f"Crash handler error: {str(e)}", "ERROR")
 
     def _messenger_started(self, init):
         """렌더링 시작 시 디스코드 알림 전송"""

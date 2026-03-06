@@ -3,7 +3,7 @@
 
 # JSON 파일 폴링 주기 (단위: ms)
 # 1000ms = 1초마다 히스토리 폴더의 최신 JSON 파일을 체크합니다.
-POLLING_INTERVAL_MS = 500
+POLLING_INTERVAL_MS = 1000
 
 # 디스코드 진행 상황 업데이트 쿨타임 (단위: seconds)
 # 5.0 = 최소 5초 간격으로 디스코드 메시지를 업데이트합니다.

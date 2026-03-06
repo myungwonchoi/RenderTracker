@@ -275,26 +275,6 @@ class RenderMonitor:
         except:
             return None
 
-    def poll(self, active_file, viewing_file, watched_pid):
-        """1초마다 실행되는 핵심 모니터링 로직"""
-        res = {
-            "new_active": None,
-            "crashed": False,
-            "data": None,
-            "is_history": False,
-            "hang_detected": False,
-            "active_ended": False
-        }
-        
-        # 1. 프로세스 체크
-        if watched_pid:
-            try:
-                p = psutil.Process(watched_pid)
-                if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
-                    res["crashed"] = True
-            except (psutil.NoSuchProcess, psutil.AccessDenied):
-                res["crashed"] = True
-
     def poll(self, target_file, active_file, watched_pid):
         """정직한 데이터 제공자: 요청받은 데이터와 시스템 상태만 반환"""
         res = {

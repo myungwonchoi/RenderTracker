@@ -2273,3 +2273,79 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-07 01:15:50] [INFO] New session detected: Render_20260307_011549.json
 [2026-03-07 01:15:50] [INFO] New render detected (TS: 1772813749.0)
 [2026-03-07 01:15:50] [INFO] Started Discord notified
+[2026-03-07 01:18:13] [INFO] Thumbnail updated: Frame 10
+[2026-03-07 01:18:15] [INFO] Session changed: [Blender] (PID:13912) Render_20260307_011815.json
+[2026-03-07 01:18:15] [INFO] Processing real-time data for Blender (Start TS: 1772813895.1752968)
+[2026-03-07 01:18:15] [INFO] New render detected (TS: 1772813895.1752968)
+[2026-03-07 01:18:15] [INFO] Thumbnail updated: Frame 2
+[2026-03-07 01:18:16] [INFO] Started Discord notified
+[2026-03-07 01:18:17] [INFO] Thumbnail updated: Frame 9
+[2026-03-07 01:18:18] [INFO] Thumbnail updated: Frame 14
+[2026-03-07 01:18:19] [INFO] Thumbnail updated: Frame 21
+[2026-03-07 01:18:21] [INFO] Thumbnail updated: Frame 28
+[2026-03-07 01:18:22] [INFO] Thumbnail updated: Frame 35
+[2026-03-07 01:18:24] [INFO] Thumbnail updated: Frame 45
+[2026-03-07 01:18:26] [INFO] Thumbnail updated: Frame 50
+[2026-03-07 01:18:32] [INFO] Session changed: [Cinema 4D] (PID:55532) Render_20260307_011831.json
+[2026-03-07 01:18:32] [INFO] Processing real-time data for Cinema 4D (Start TS: 1772813911.0)
+[2026-03-07 01:18:32] [INFO] New render detected (TS: 1772813911.0)
+[2026-03-07 01:18:32] [INFO] Started Discord notified
+[2026-03-07 01:18:33] [INFO] Thumbnail updated: Frame 1
+[2026-03-07 01:18:34] [INFO] Thumbnail updated: Frame 2
+[2026-03-07 01:18:36] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 01:18:37] [INFO] Thumbnail updated: Frame 5
+[2026-03-07 01:18:39] [INFO] Thumbnail updated: Frame 6
+[2026-03-07 01:18:40] [INFO] Thumbnail updated: Frame 7
+[2026-03-07 01:18:42] [INFO] Thumbnail updated: Frame 9
+[2026-03-07 01:18:43] [INFO] Thumbnail updated: Frame 10
+[2026-03-07 01:18:53] [INFO] Session changed: [Blender] (PID:13912) Render_20260307_011853.json
+[2026-03-07 01:18:53] [INFO] Processing real-time data for Blender (Start TS: 1772813933.033518)
+[2026-03-07 01:18:53] [INFO] New render detected (TS: 1772813933.033518)
+[2026-03-07 01:18:54] [INFO] Started Discord notified
+[2026-03-07 01:41:13] [INFO] Thumbnail updated: Frame 50
+[2026-03-07 01:41:16] [INFO] Session Changed: [Blender] (PID:13912) Render_20260307_014115.json
+[2026-03-07 01:41:17] [INFO] Processing real-time data for Blender (Start TS: 1772815275.2818573)
+[2026-03-07 01:41:17] [INFO] New render detected (TS: 1772815275.2818573)
+[2026-03-07 01:41:17] [INFO] Thumbnail updated: Frame 10
+[2026-03-07 01:41:18] [INFO] Started Discord notified
+[2026-03-07 01:41:19] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 01:41:21] [INFO] Thumbnail updated: Frame 29
+[2026-03-07 01:41:22] [INFO] Thumbnail updated: Frame 34
+[2026-03-07 01:41:24] [INFO] Thumbnail updated: Frame 43
+[2026-03-07 01:41:25] [INFO] Thumbnail updated: Frame 48
+[2026-03-07 01:41:26] [INFO] Thumbnail updated: Frame 50
+[2026-03-07 01:41:29] [INFO] Session Changed: [Cinema 4D] (PID:55532) Render_20260307_014128.json
+[2026-03-07 01:41:30] [INFO] Processing real-time data for Cinema 4D (Start TS: 1772815288.0)
+[2026-03-07 01:41:30] [INFO] New render detected (TS: 1772815288.0)
+[2026-03-07 01:41:30] [INFO] Thumbnail updated: Frame 1
+[2026-03-07 01:41:30] [INFO] Started Discord notified
+[2026-03-07 01:41:32] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 01:41:33] [INFO] Thumbnail updated: Frame 4
+[2026-03-07 01:41:35] [INFO] Thumbnail updated: Frame 5
+[2026-03-07 01:41:37] [INFO] Thumbnail updated: Frame 7
+[2026-03-07 01:41:38] [INFO] Thumbnail updated: Frame 8
+[2026-03-07 01:41:40] [INFO] Thumbnail updated: Frame 10
+[2026-03-07 01:41:46] [INFO] Session Changed: [Blender] (PID:13912) Render_20260307_014145.json
+[2026-03-07 01:41:47] [INFO] Processing real-time data for Blender (Start TS: 1772815305.9523704)
+[2026-03-07 01:41:47] [INFO] New render detected (TS: 1772815305.9523704)
+[2026-03-07 01:41:47] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 01:41:48] [INFO] Started Discord notified
+[2026-03-07 01:41:49] [INFO] Thumbnail updated: Frame 5
+[2026-03-07 01:41:51] [INFO] Thumbnail updated: Frame 7
+[2026-03-07 01:41:53] [INFO] Thumbnail updated: Frame 14
+[2026-03-07 01:41:55] [INFO] Thumbnail updated: Frame 24
+[2026-03-07 01:41:57] [INFO] Thumbnail updated: Frame 34
+[2026-03-07 01:41:59] [INFO] Thumbnail updated: Frame 44
+[2026-03-07 01:42:00] [INFO] Thumbnail updated: Frame 48
+[2026-03-07 01:42:01] [INFO] Thumbnail updated: Frame 50
+[2026-03-07 01:42:05] [INFO] Session Changed: [Cinema 4D] (PID:55532) Render_20260307_014204.json
+[2026-03-07 01:42:06] [INFO] Processing real-time data for Cinema 4D (Start TS: 1772815324.0)
+[2026-03-07 01:42:06] [INFO] New render detected (TS: 1772815324.0)
+[2026-03-07 01:42:06] [INFO] Thumbnail updated: Frame 1
+[2026-03-07 01:42:07] [INFO] Started Discord notified
+[2026-03-07 01:42:08] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 01:42:09] [INFO] Thumbnail updated: Frame 4
+[2026-03-07 01:42:11] [INFO] Thumbnail updated: Frame 5
+[2026-03-07 01:42:13] [INFO] Thumbnail updated: Frame 7
+[2026-03-07 01:42:15] [INFO] Thumbnail updated: Frame 9
+[2026-03-07 01:42:17] [INFO] Thumbnail updated: Frame 10
