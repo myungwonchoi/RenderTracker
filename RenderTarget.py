@@ -197,7 +197,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _on_tray_activated(self, reason):
         """트레이 아이콘 클릭/더블클릭 시 창 띄움"""
-        if reason in (QSystemTrayIcon.Trigger, QSystemTrayIcon.DoubleTrigger):
+        if reason in (QSystemTrayIcon.Trigger, QSystemTrayIcon.DoubleClick):
             if self.isVisible():
                 self.hide()
             else:

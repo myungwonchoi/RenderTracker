@@ -1382,3 +1382,28 @@ AttributeError: 'RenderMonitorApp' object has no attribute '_activate_main_windo
 [2026-03-06 19:52:42] [INFO] Started Discord notified
 [2026-03-06 19:52:44] [INFO] Thumbnail updated: Frame 16
 [2026-03-06 19:52:45] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 20:27:24] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 200, in _on_tray_activated
+    if reason in (QSystemTrayIcon.Trigger, QSystemTrayIcon.DoubleTrigger):
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute 'DoubleTrigger'
+
+[2026-03-06 20:33:01] [INFO] New render detected: Render_20260306_203301.json
+[2026-03-06 20:33:01] [INFO] New render detected (TS: 1772796781.0945442)
+[2026-03-06 20:33:01] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 20:33:02] [INFO] Started Discord notified
+[2026-03-06 20:33:03] [INFO] Thumbnail updated: Frame 13
+[2026-03-06 20:33:04] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 20:33:06] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 20:33:12] [INFO] New render detected: Render_20260306_203312.json
+[2026-03-06 20:33:12] [INFO] New render detected (TS: 1772796792.267187)
+[2026-03-06 20:33:12] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 20:33:13] [INFO] Started Discord notified
+[2026-03-06 20:34:17] [INFO] New render detected: Render_20260306_203417.json
+[2026-03-06 20:34:17] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 20:34:18] [INFO] New render detected (TS: 1772796857.0691073)
+[2026-03-06 20:34:18] [INFO] Thumbnail updated: Frame 9
+[2026-03-06 20:34:19] [INFO] Started Discord notified
+[2026-03-06 20:34:20] [INFO] Thumbnail updated: Frame 19
+[2026-03-06 20:34:21] [INFO] Thumbnail updated: Frame 20
