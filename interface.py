@@ -770,9 +770,87 @@ def update_progress_bar(bar, pct_label, pct, color):
 
 def update_info_label(label, value):
     """정보 라벨의 텍스트를 안전하게 업데이트합니다."""
+    if not label: return
     text = str(value)
     if label.text() != text:
         label.setText(text)
+
+def reset_main_view(app):
+    """메인 화면의 모든 정보와 이미지를 초기 상태로 비웁니다."""
+    for key in app._info_vars:
+        update_info_label(app._info_vars.get(key), "—")
+    app.app_title_lbl.setText("—")
+    app.status_badge.setText("")
+    app.pct_label.setText("0.0%")
+    app.progress_bar.setValue(0)
+    
+    app.first_img_label.setPixmap(QPixmap())
+    app.first_img_label.setText("No Image")
+    app.last_img_label.setPixmap(QPixmap())
+    app.last_img_label.setText("No Image")
+    
+    pid_text = app.g("pid", "PID")
+    app.pid_label.setText(f"{pid_text}: —")
+
+def prepare_session_view(app):
+    """새 세션 시작 시 썸네일 라벨을 초기화하고 상단으로 스크롤합니다."""
+    app.first_img_label.setText("No Image")
+    app.last_img_label.setText("No Image")
+    app.first_img_label.setPixmap(QPixmap())
+    app.last_img_label.setPixmap(QPixmap())
+    scroll_to_top(app)
+
+def update_status_by_key(app, key, fg, bg):
+    """번역 키와 색상을 받아 상태 뱃지를 업데이트합니다."""
+    txt = app.g(key)
+    if app.status_badge.text() == txt and app.status_badge.property("status_key") == key:
+        return
+    update_status_badge(app.status_badge, txt, fg, bg)
+    app.status_badge.setProperty("status_key", key)
+
+def update_progress(app, pct, color):
+    """진행 바와 퍼센트 라벨을 통합 업데이트합니다."""
+    if not hasattr(app, "progress_bar"): return
+    update_progress_bar(app.progress_bar, app.pct_label, pct, color)
+
+def focus_window(app):
+    """윈도우 순정 애니메이션을 동반하여 창을 최상단으로 가져옵니다."""
+    if app.isActiveWindow() and not app.isMinimized():
+        return
+    if app.isMinimized():
+        app.showNormal()
+    else:
+        app.showMinimized()
+        from PySide6.QtCore import QTimer
+        QTimer.singleShot(50, app.showNormal)
+        QTimer.singleShot(50, app.activateWindow)
+    app.activateWindow()
+
+def scroll_to_top(app, sidebar=True):
+    """사이드바와 메인 레이아웃의 스크롤을 최상단으로 이동합니다."""
+    from PySide6.QtCore import QTimer
+    if sidebar and hasattr(app, "sidebar_scroll"):
+        app.sidebar_scroll.verticalScrollBar().setValue(0)
+        QTimer.singleShot(100, lambda: app.sidebar_scroll.verticalScrollBar().setValue(0))
+    
+    if hasattr(app, "right_scroll"):
+        app.right_scroll.verticalScrollBar().setValue(0)
+        QTimer.singleShot(100, lambda: app.right_scroll.verticalScrollBar().setValue(0))
+
+def play_sound(app, sound_type):
+    """지정된 사운드 파일을 재생합니다."""
+    import os
+    import path_manager
+    from PySide6.QtCore import QUrl
+    s_path = os.path.join(path_manager.SOUNDS_DIR, f"{sound_type}.mp3")
+    if os.path.exists(s_path):
+        app.player.setSource(QUrl.fromLocalFile(s_path))
+        app.player.play()
+
+def update_volume_icon(app, is_muted):
+    """볼륨 상태에 따라 아이콘을 업데이트합니다."""
+    if hasattr(app, 'volume_btn'):
+        app.volume_btn.setText("🔇" if is_muted else "🔊")
 
 def update_render_info(app, init, upd, fmt_time_func):
     """텍스트 기반 렌더링 정보를 UI에 일괄 업데이트합니다."""

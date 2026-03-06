@@ -1137,3 +1137,81 @@ NameError: name 'MainGlowOverlay' is not defined
 [2026-03-06 16:00:13] [INFO] Monitor started (PySide6)
 [2026-03-06 16:00:13] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
 [2026-03-06 16:00:14] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 16:20:00] [INFO] Monitor started (PySide6)
+[2026-03-06 16:20:00] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 16:20:01] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 16:20:10] [INFO] New render detected: Render_20260306_162009.json
+[2026-03-06 16:20:10] [INFO] New render detected (TS: 1772781609.7156005)
+[2026-03-06 16:20:10] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 16:20:11] [INFO] Started Discord notified
+[2026-03-06 16:24:08] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:24:09] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:24:09] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:24:09] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:56] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:56] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:56] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:57] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:57] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:57] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:59] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:26:59] [INFO] [History] name 'from_history' is not defined
+[2026-03-06 16:29:47] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:29:52] [INFO] New render detected: Render_20260306_162951.json
+[2026-03-06 16:29:53] [INFO] Thumbnail updated: Frame 8
+[2026-03-06 16:30:17] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:37:54] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:37:58] [INFO] New render detected: Render_20260306_163758.json
+[2026-03-06 16:37:58] [INFO] New render detected (TS: 1772782678.5283241)
+[2026-03-06 16:37:59] [INFO] Started Discord notified
+[2026-03-06 16:37:59] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 16:38:00] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 16:38:25] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:39:15] [INFO] New render detected: Render_20260306_163915.json
+[2026-03-06 16:39:15] [INFO] New render detected (TS: 1772782755.8511765)
+[2026-03-06 16:39:16] [INFO] Started Discord notified
+[2026-03-06 16:39:16] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 16:39:18] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 16:39:19] [INFO] Thumbnail updated: Frame 19
+[2026-03-06 16:39:21] [INFO] Thumbnail updated: Frame 29
+[2026-03-06 16:39:23] [INFO] Thumbnail updated: Frame 38
+[2026-03-06 16:39:25] [INFO] Thumbnail updated: Frame 47
+[2026-03-06 16:39:26] [INFO] Thumbnail updated: Frame 52
+[2026-03-06 16:39:28] [INFO] Thumbnail updated: Frame 61
+[2026-03-06 16:39:30] [INFO] Thumbnail updated: Frame 70
+[2026-03-06 16:39:32] [INFO] Thumbnail updated: Frame 79
+[2026-03-06 16:39:33] [INFO] Thumbnail updated: Frame 84
+[2026-03-06 16:39:34] [INFO] Thumbnail updated: Frame 89
+[2026-03-06 16:39:35] [INFO] Thumbnail updated: Frame 93
+[2026-03-06 16:39:37] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:43:49] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 649, in <module>
+    window = RenderMonitorApp()
+             ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 62, in __init__
+    self._setup_tray_icon()
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 189, in _setup_tray_icon
+    tray_menu.addAction(self.g("ui_show", "Show"), self._activate_main_window)
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RenderMonitorApp' object has no attribute '_activate_main_window'
+
+[2026-03-06 16:45:22] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 16:45:30] [INFO] New render detected: Render_20260306_164530.json
+[2026-03-06 16:45:30] [INFO] New render detected (TS: 1772783130.5735116)
+[2026-03-06 16:45:31] [INFO] Started Discord notified
+[2026-03-06 16:45:31] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 16:45:32] [INFO] Thumbnail updated: Frame 10
+[2026-03-06 16:45:34] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 16:45:35] [INFO] Thumbnail updated: Frame 25
+[2026-03-06 16:45:37] [INFO] Thumbnail updated: Frame 34
+[2026-03-06 16:45:38] [INFO] Thumbnail updated: Frame 38
+[2026-03-06 16:45:40] [INFO] Thumbnail updated: Frame 48
+[2026-03-06 16:45:42] [INFO] Thumbnail updated: Frame 56
+[2026-03-06 16:45:43] [INFO] Thumbnail updated: Frame 61
+[2026-03-06 16:45:45] [INFO] Thumbnail updated: Frame 70
+[2026-03-06 16:45:46] [INFO] Thumbnail updated: Frame 75
+[2026-03-06 16:45:48] [INFO] Thumbnail updated: Frame 84
+[2026-03-06 16:45:49] [INFO] Thumbnail updated: Frame 88
+[2026-03-06 16:45:51] [INFO] Thumbnail updated: Frame 97
+[2026-03-06 16:45:53] [INFO] Thumbnail updated: Frame 100
