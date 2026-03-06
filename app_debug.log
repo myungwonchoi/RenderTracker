@@ -1442,3 +1442,32 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 21:01:36] [INFO] Started Discord notified
 [2026-03-06 21:01:40] [INFO] Thumbnail updated: Frame 2
 [2026-03-06 21:01:44] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 21:06:58] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 21:07:00] [INFO] New render detected: Render_20260306_210700.json
+[2026-03-06 21:07:00] [INFO] New render detected (TS: 1772798820.0305285)
+[2026-03-06 21:07:01] [INFO] Started Discord notified
+[2026-03-06 21:07:04] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 21:07:10] [INFO] New render detected: Render_20260306_210710.json
+[2026-03-06 21:07:10] [INFO] New render detected (TS: 1772798830.4149733)
+[2026-03-06 21:07:11] [INFO] Started Discord notified
+[2026-03-06 21:07:11] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 21:07:12] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 21:07:14] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:07:16] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:07:17] [INFO] New render detected: Render_20260306_210717.json
+[2026-03-06 21:07:17] [INFO] New render detected (TS: 1772798837.2904549)
+[2026-03-06 21:07:18] [INFO] Started Discord notified
+[2026-03-06 21:07:21] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:07:21] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 21:07:22] [INFO] New render detected (TS: 1772798837.2904549)
+[2026-03-06 21:07:22] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:07:23] [INFO] Started Discord notified
+[2026-03-06 21:07:28] [INFO] New render detected: Render_20260306_210728.json
+[2026-03-06 21:07:28] [INFO] New render detected (TS: 1772798848.5221279)
+[2026-03-06 21:07:29] [INFO] Started Discord notified
+[2026-03-06 21:07:29] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 21:07:30] [INFO] Thumbnail updated: Frame 10
+[2026-03-06 21:07:33] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:07:34] [INFO] New render detected (TS: 1772798848.5221279)
+[2026-03-06 21:07:34] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:07:35] [INFO] Started Discord notified

@@ -294,6 +294,14 @@ class RenderMonitorApp(QMainWindow):
                 self._refresh_sidebar()
                 interface.reset_main_view(self)
 
+            if res.get("active_ended") and self._viewing_file:
+                self._log("Background render ended. Switching to active view.")
+                self._viewing_file = None
+                # 즉시 뷰 전환을 위해 사이드바 및 UI 초기화
+                self._refresh_sidebar()
+                interface.reset_main_view(self)
+                interface.scroll_to_top(self)
+
             if res["hang_detected"] and self.last_status != "NotResponding":
                 self._log("Potential render hang detected", "WARNING")
                 self.last_status = "NotResponding"

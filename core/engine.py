@@ -291,9 +291,22 @@ class RenderMonitor:
             res["new_active"] = latest
 
         # 3. 데이터 로드 및 분석 대상 결정
+        # 사용자가 과거 기록을 보고 있더라도, 실제 활성화된 파일(active_file)의 상태 변화를 체크해야 함
         target = viewing_file if viewing_file else (res["new_active"] or active_file)
+        
+        # [백그라운드 감시] 현재 보고 있는 파일이 active_file이 아닐 경우, active_file의 종료 여부를 별도로 체크
+        actual_active = (res["new_active"] or active_file)
+        if viewing_file and actual_active and os.path.exists(actual_active):
+            try:
+                with open(actual_active, "r", encoding="utf-8") as f_act:
+                    act_data = json.load(f_act)
+                    # 종료 일시(end_ts)가 기록되었는지 확인
+                    if act_data.get("end", {}).get("end_ts", -1) > 0:
+                        res["active_ended"] = True
+            except: pass
+
         if target and os.path.exists(target):
-            is_history = (viewing_file is not None) or (target != (res["new_active"] or active_file))
+            is_history = (viewing_file is not None) or (target != actual_active)
             res["is_history"] = is_history
             
             try:
