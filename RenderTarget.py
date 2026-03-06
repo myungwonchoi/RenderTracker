@@ -96,6 +96,8 @@ class RenderMonitorApp(QMainWindow):
         self._first_img_mtime = 0
         self._last_img_path = None
         self._last_img_mtime = 0
+        self._last_jump_start_ts = 0
+        self._last_jump_end_ts = 0
 
     def _load_initial_data(self):
         """앱 시작 시 가장 최근의 렌더 기록을 모니터링 대상으로 설정 (Silent 로드)"""
@@ -104,7 +106,9 @@ class RenderMonitorApp(QMainWindow):
             try:
                 with open(latest, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    self.last_start_ts = data.get("start", {}).get("start_ts")
+                    init, end = data.get("start", {}), data.get("end", {})
+                    self._last_jump_start_ts = init.get("start_ts", 0)
+                    self._last_jump_end_ts = end.get("end_ts", 0)
                     self._active_file = latest
                     # 초기 데이터 로드 (Silent)
                     self._process(data, from_history=True) 
@@ -273,30 +277,72 @@ class RenderMonitorApp(QMainWindow):
             self._log(f"[History] {e}")
 
     def _poll(self):
-        """메인 모니터링 루프: 엔진에 의뢰하여 상태 감시 및 UI 갱신"""
+        """단일 책임 원칙에 따른 지휘자: 0.5초마다 모든 상황을 판단하고 조율"""
         try:
-            # 1. 사이드바 및 상태 갱신은 항시 수행 (사용자 요청)
-            self._refresh_sidebar()
-
-            # 2. 엔진에 폴링 의뢰 (비즈니스 로직 분리)
-            res = self.monitor.poll(self._active_file, self._viewing_file, self.watched_pid)
-
-            # 3. 결과에 따른 처리
+            target_file = self._viewing_file if self._viewing_file else self._active_file
+            res = self.monitor.poll(target_file, self._active_file, self.watched_pid)
+            
+            # 1. 프로세스 상태 체크
             if res["crashed"] and not self.crash_sent:
                 self.crash_sent = True
                 QTimer.singleShot(0, self._on_crash)
 
-            if res["new_active"]:
-                self._active_file = res["new_active"]
-                self._log(f"New render detected: {os.path.basename(res['new_active'])}")
+            # 2. 새로운 렌더링 세션 감지 (Follow-the-Latest)
+            if res["latest_file"] and res["latest_file"] != self._active_file:
+                # 새로운 파일이 생겼다면 직접 읽어 내용 확인 (엔진에 의존하지 않음)
+                latest_data = self.monitor._read_json(res["latest_file"])
+                if latest_data:
+                    info = latest_data.get("start", {})
+                    # 데이터가 '정말로' 준비된 (Unknown 아님) 시점에 세션 교체
+                    if info.get("doc_name") not in (None, "", "Unknown"):
+                        self._active_file = res["latest_file"]
+                        self._log(f"New session detected: {info.get('doc_name')}")
+                        
+                        # 시작 시점 자동 전환 판단
+                        if self._viewing_file:
+                            start_ts = info.get("start_ts", 0)
+                            if start_ts > self._last_jump_start_ts:
+                                self._last_jump_start_ts = start_ts
+                                self._log(f"Auto-switching: New session started ({info.get('doc_name')})")
+                                self._viewing_file = None
+                                self._refresh_sidebar()
+                                interface.reset_main_view(self)
 
-            if res["hang_detected"] and self.last_status != "NotResponding":
-                self._log("Potential render hang detected", "WARNING")
-                self.last_status = "NotResponding"
-                interface.update_status_by_key(self, "not_responding", T.ORANGE, T.BADGE_RED)
+            # 3. 백그라운드 종료(End) 감지 및 자동 전환
+            if self._viewing_file and res["active_data"]:
+                # 현재 보고 있는 파일이 활성 파일과 다를 때만 점프 (자기 자신 열람시는 방해 안 함)
+                if self._viewing_file != self._active_file:
+                    end_ts = res["active_data"].get("end", {}).get("end_ts", 0)
+                    if end_ts > self._last_jump_end_ts:
+                        self._last_jump_end_ts = end_ts
+                        self._log(f"Auto-switching: Background render ended ({end_ts})")
+                        self._viewing_file = None
+                        self._refresh_sidebar()
+                        interface.scroll_to_top(self)
+                        interface.focus_window(self)
 
-            if res["data"]:
-                self._process(res["data"], from_history=res["is_history"])
+            # 4. 행(Hang) 감지 (실시간 감시 대상 기준)
+            if not self._viewing_file and res["target_data"]:
+                mtime = os.path.getmtime(self._active_file)
+                upd = res["target_data"].get("update", {})
+                avg = upd.get("avg_frame_duration", 10.0)
+                threshold = max(avg * 3, 120.0)
+                is_progress = (res["target_data"].get("end", {}).get("end_ts", -1) <= 0)
+                if is_progress and (time.time() - mtime > threshold) and self.last_status != "NotResponding":
+                    self._log("Potential render hang detected", "WARNING")
+                    self.last_status = "NotResponding"
+                    interface.update_status_by_key(self, "not_responding", T.ORANGE, T.BADGE_RED)
+
+            # 5. 데이터 프로세싱 및 판단 (Polling Stage Judgment)
+            if res["target_data"]:
+                from_history = (self._viewing_file is not None)
+                # [판단] 폴링 단계에서 사건 발생 여부를 먼저 파악
+                events = self.state_engine.detect_events(res["target_data"], from_history)
+                # [실행] 판단 결과를 넘겨서 UI, Glow, 사운드를 한곳에서 처리
+                self._process(res["target_data"], events, from_history)
+
+            # 사이드바 리스트 갱신 (0.5초 주기로 정직하게 동기화)
+            self._refresh_sidebar()
 
         except Exception as e:
             self._log(f"Polling error: {str(e)}", "ERROR")
@@ -346,98 +392,67 @@ class RenderMonitorApp(QMainWindow):
             else:
                 self._log("Error clearing history", "ERROR")
 
-    def _process(self, data, from_history=False):
-        """렌더링 데이터(JSON)를 해석하고 상태 전이에 따른 비즈니스 로직 및 UI 업데이트 수행"""
+    def _process(self, data, events, from_history=False):
+        """UI 액션 센터: 넘겨받은 데이터를 기반으로 UI, Glow, 사운드 실행"""
         init, upd, end = data.get("start", {}), data.get("update", {}), data.get("end", {})
         ren, tot = upd.get("rendered_frames", 0), init.get("total_frames", 1)
-        
-        # 1. 상태 전이 엔진을 통한 이벤트 감지
-        events = self.state_engine.detect_events(data, from_history)
         is_realtime = not from_history
+        
+        # 실시간 데이터 시각 동기화
+        if is_realtime:
+            self._last_jump_start_ts = max(self._last_jump_start_ts, init.get("start_ts", 0))
+            curr_end_ts = end.get("end_ts", 0)
+            if curr_end_ts > 0:
+                self._last_jump_end_ts = max(self._last_jump_end_ts, curr_end_ts)
 
-        # [Smart View Switch] 실시간 이벤트가 발생했는데 사용자가 과거 기록을 보고 있다면 자동 전환
-        if is_realtime and self._viewing_file:
-            if "SESSION_STARTED" in events or "FRESH_END" in events:
-                self._log(f"Auto-switching to active view (Event: {events[-1]})")
-                self._viewing_file = None
-                self._refresh_sidebar()
-                interface.scroll_to_top(self)
-                interface.focus_window(self)
-
-        # 2. PID 관리 및 쓰레드 감시 시작
-        if init.get("c4d_pid") and init["c4d_pid"] != self.watched_pid:
-            self.watched_pid = init["c4d_pid"]
-            self.crash_sent = False
-            interface.update_info_label(self.pid_label, f"{self.g('pid', 'PID')}: {self.watched_pid}")
-            threading.Thread(target=self._watch_pid, args=(self.watched_pid,), daemon=True).start()
-
-        # 3. 주요 상태 이벤트 대응 (지휘)
-        if "SESSION_STARTED" in events:
-            self.progress_msg_id = None
-            self._reset_thumbnail_cache()
-            if is_realtime:
-                interface.prepare_session_view(self)
-
-        if "FRESH_START" in events:
-            self._handle_render_started(init)
-
-        # 4. 정보 패널 및 상태 뱃지 갱신
+        # 1. 최우선 피드백 처리 (Glow, 사운드 등 반응형 최우선)
         status = self.state_engine.last_status
+        if "FRESH_START" in events:
+            self._handle_render_started_feedback(init)
+        
+        if "FRESH_END" in events:
+            self._handle_render_ended_feedback(status, init, upd, end)
+
+        # 2. UI 텍스트 및 상태 뱃지 업데이트 (상세 정보 채우기)
         interface.update_render_info(self, init, upd, core.fmt_time)
 
-        # 5. 진행도/완료 상태별 UI 분기
+        # 3. 진행도/완료 상태별 UI 세부 분기
         pct = ren / tot if tot > 0 else 0.0
         if status == "Progress":
             self._handle_progress_update(upd, pct, events, init, is_realtime)
         elif status in ("Finished", "Stopped"):
-            self._handle_render_ended(status, events, init, upd, end, is_realtime, pct)
+            self._handle_render_ended_ui(status, events, init, upd, end, is_realtime, pct)
 
-        # 6. 실시간 썸네일 프로세싱
+        # 4. 실시간 썸네일 프로세싱
         self._update_thumbnails(init, upd, from_history)
 
-    def _handle_render_started(self, init):
-        """새로운 렌더링 시작 시 필요한 작업 수행"""
-        self._log(f"New render detected (TS: {init.get('start_ts')})")
-        threading.Thread(target=self._do_started, args=(dict(init),), daemon=True).start()
+    def _handle_render_started_feedback(self, init):
+        """시작 시 즉각 피드백 (Glow/Sound) 및 외부 알림"""
+        interface.trigger_main_glow(self, T.BLUE)
         interface.play_sound(self, "Start")
         interface.focus_window(self)
         QApplication.alert(self, 0)
-        interface.trigger_main_glow(self, T.BLUE)
+        self._log(f"New render detected (TS: {init.get('start_ts')})")
+        threading.Thread(target=self._do_started, args=(dict(init),), daemon=True).start()
 
-    def _reset_thumbnail_cache(self):
-        """세션 시작 시 썸네일 캐시 초기화"""
-        self._last_thumb_update_ts = 0
-        self._last_thumb_frame_num = -1
-        self._first_img_path = self._last_img_path = None
-        self._first_img_mtime = self._last_img_mtime = 0
+    def _handle_render_ended_feedback(self, status, init, upd, end):
+        """종료 시 즉각 피드백 (Glow/Sound) 및 외부 알림"""
+        is_fin = (status == "Finished")
+        interface.trigger_main_glow(self, T.GREEN if is_fin else T.RED)
+        interface.play_sound(self, "End" if is_fin else "Error")
+        interface.focus_window(self)
+        threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
 
-    def _handle_progress_update(self, upd, pct, events, init, is_realtime):
-        """진행 중 상태의 UI 갱신 및 디스코드 알림"""
-        if self.last_status != "NotResponding" or not is_realtime:
-            self.last_status = "Progress"
-            rem = upd.get("remaining_seconds", -1)
-            interface.update_info_label(self._info_vars.get("remaining"), core.fmt_time(rem) if rem >= 0 else "—")
-            interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
-            interface.update_info_label(self._info_vars.get("end_time"), "—")
-            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
-            interface.update_status_by_key(self, "progress", T.YELLOW, T.BADGE_YELLOW)
-        
-        interface.update_progress(self, pct, T.YELLOW)
-        if "PROGRESS_UPDATED" in events and is_realtime:
-            threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id, self._last_img_path), daemon=True).start()
-
-    def _handle_render_ended(self, status, events, init, upd, end, is_realtime, pct):
-        """렌더링 종료(성공/정지) 처리"""
+    def _handle_render_ended_ui(self, status, events, init, upd, end, is_realtime, pct):
+        """종료 시 UI 세부 요소 업데이트"""
         if f"STATUS_TO_{status.upper()}" in events:
             self.last_status = status
             is_fin = (status == "Finished")
-            
             interface.update_info_label(self._info_vars.get("current_frame_time"), self._info_vars["last_frame"].text())
             interface.update_info_label(self._info_vars.get("remaining"), "—")
             interface.update_info_label(self._info_vars.get("eta"), "—")
             interface.update_info_label(self._info_vars.get("end_time"), end.get("end_time","—"))
             interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
-            
             interface.update_status_by_key(self, status.lower(), (T.GREEN if is_fin else T.RED), (T.BADGE_GREEN if is_fin else T.BADGE_RED))
             interface.update_progress(self, pct, (T.GREEN if is_fin else T.RED))
             if is_realtime: interface.scroll_to_top(self)

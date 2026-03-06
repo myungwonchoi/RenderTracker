@@ -267,15 +267,11 @@ class RenderMonitor:
         self.state_engine = state_engine
 
     def _read_json(self, path):
-        """JSON 파일을 읽고 정합성을 체크합니다. (Unknown 방어)"""
+        """JSON 파일을 읽고 정합성을 체크합니다."""
         try:
             if not path or not os.path.exists(path): return None
             with open(path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            # 최소한의 정합성 체크 (시작 정보가 있고 이름이 유효한지)
-            if data.get("start", {}).get("doc_name") in (None, "", "Unknown"):
-                return None
-            return data
+                return json.load(f)
         except:
             return None
 
@@ -299,47 +295,22 @@ class RenderMonitor:
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 res["crashed"] = True
 
-        # 2. 최신 파일 체크 및 로드
-        latest = get_latest_render_file()
-        if latest and latest != active_file:
-            data = self._read_json(latest)
-            if data:
-                res["new_active"] = latest
-                res["data"] = data
-                res["is_history"] = False
-                return res # 즉시 반환 (전환 우선순위 높음)
-
-        # 3. 데이터 로드 대상 결정 및 분석
-        actual_active = active_file
+    def poll(self, target_file, active_file, watched_pid):
+        """정직한 데이터 제공자: 요청받은 데이터와 시스템 상태만 반환"""
+        res = {
+            "crashed": False,
+            "latest_file": get_latest_render_file(),
+            "target_data": self._read_json(target_file) if target_file else None,
+            "active_data": self._read_json(active_file) if active_file else None
+        }
         
-        # [백그라운드 감시 및 전환 결정]
-        if viewing_file and actual_active:
-            act_data = self._read_json(actual_active)
-            if act_data:
-                # 활성 파일이 종료되었는지 확인
-                if act_data.get("end", {}).get("end_ts", -1) > 0:
-                    res["active_ended"] = True
-                    res["data"] = act_data # 종료된 활성 데이터를 즉시 번들링
-                    res["is_history"] = False
-                    return res
-
-        # 4. 일반 데이터 로드 (전환 이벤트가 없을 때)
-        target = viewing_file if viewing_file else actual_active
-        if target:
-            data = self._read_json(target)
-            if data:
-                res["data"] = data
-                res["is_history"] = (viewing_file is not None)
+        # 프로세스 체크
+        if watched_pid:
+            try:
+                p = psutil.Process(watched_pid)
+                if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
+                    res["crashed"] = True
+            except:
+                res["crashed"] = True
                 
-                # 실시간 감시 중에만 행(Hang) 체크
-                if not res["is_history"]:
-                    mtime = os.path.getmtime(target)
-                    now = time.time()
-                    upd = data.get("update", {})
-                    avg = upd.get("avg_frame_duration", 10.0)
-                    threshold = max(avg * 3, 120.0)
-                    is_progress = (data.get("end", {}).get("end_ts", -1) <= 0)
-                    if is_progress and (now - mtime > threshold):
-                        res["hang_detected"] = True
-                        
         return res
