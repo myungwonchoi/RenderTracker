@@ -266,6 +266,19 @@ class RenderMonitor:
     def __init__(self, state_engine):
         self.state_engine = state_engine
 
+    def _read_json(self, path):
+        """JSON 파일을 읽고 정합성을 체크합니다. (Unknown 방어)"""
+        try:
+            if not path or not os.path.exists(path): return None
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            # 최소한의 정합성 체크 (시작 정보가 있고 이름이 유효한지)
+            if data.get("start", {}).get("doc_name") in (None, "", "Unknown"):
+                return None
+            return data
+        except:
+            return None
+
     def poll(self, active_file, viewing_file, watched_pid):
         """1초마다 실행되는 핵심 모니터링 로직"""
         res = {
@@ -274,6 +287,7 @@ class RenderMonitor:
             "data": None,
             "is_history": False,
             "hang_detected": False,
+            "active_ended": False
         }
         
         # 1. 프로세스 체크
@@ -285,47 +299,47 @@ class RenderMonitor:
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 res["crashed"] = True
 
-        # 2. 최신 파일 체크
+        # 2. 최신 파일 체크 및 로드
         latest = get_latest_render_file()
         if latest and latest != active_file:
-            res["new_active"] = latest
-
-        # 3. 데이터 로드 및 분석 대상 결정
-        # 사용자가 과거 기록을 보고 있더라도, 실제 활성화된 파일(active_file)의 상태 변화를 체크해야 함
-        target = viewing_file if viewing_file else (res["new_active"] or active_file)
-        
-        # [백그라운드 감시] 현재 보고 있는 파일이 active_file이 아닐 경우, active_file의 종료 여부를 별도로 체크
-        actual_active = (res["new_active"] or active_file)
-        if viewing_file and actual_active and os.path.exists(actual_active):
-            try:
-                with open(actual_active, "r", encoding="utf-8") as f_act:
-                    act_data = json.load(f_act)
-                    # 종료 일시(end_ts)가 기록되었는지 확인
-                    if act_data.get("end", {}).get("end_ts", -1) > 0:
-                        res["active_ended"] = True
-            except: pass
-
-        if target and os.path.exists(target):
-            is_history = (viewing_file is not None) or (target != actual_active)
-            res["is_history"] = is_history
-            
-            try:
-                with open(target, "r", encoding="utf-8") as fh:
-                    data = json.load(fh)
+            data = self._read_json(latest)
+            if data:
+                res["new_active"] = latest
                 res["data"] = data
+                res["is_history"] = False
+                return res # 즉시 반환 (전환 우선순위 높음)
+
+        # 3. 데이터 로드 대상 결정 및 분석
+        actual_active = active_file
+        
+        # [백그라운드 감시 및 전환 결정]
+        if viewing_file and actual_active:
+            act_data = self._read_json(actual_active)
+            if act_data:
+                # 활성 파일이 종료되었는지 확인
+                if act_data.get("end", {}).get("end_ts", -1) > 0:
+                    res["active_ended"] = True
+                    res["data"] = act_data # 종료된 활성 데이터를 즉시 번들링
+                    res["is_history"] = False
+                    return res
+
+        # 4. 일반 데이터 로드 (전환 이벤트가 없을 때)
+        target = viewing_file if viewing_file else actual_active
+        if target:
+            data = self._read_json(target)
+            if data:
+                res["data"] = data
+                res["is_history"] = (viewing_file is not None)
                 
                 # 실시간 감시 중에만 행(Hang) 체크
-                if not is_history:
+                if not res["is_history"]:
                     mtime = os.path.getmtime(target)
                     now = time.time()
                     upd = data.get("update", {})
                     avg = upd.get("avg_frame_duration", 10.0)
                     threshold = max(avg * 3, 120.0)
                     is_progress = (data.get("end", {}).get("end_ts", -1) <= 0)
-                    
                     if is_progress and (now - mtime > threshold):
                         res["hang_detected"] = True
-            except:
-                pass
-                
+                        
         return res

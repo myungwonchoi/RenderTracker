@@ -288,19 +288,7 @@ class RenderMonitorApp(QMainWindow):
 
             if res["new_active"]:
                 self._active_file = res["new_active"]
-                self._viewing_file = None
                 self._log(f"New render detected: {os.path.basename(res['new_active'])}")
-                # 새로운 렌더링 감지 즉시 UI 컨텍스트 전환 (사이드바 하이라이트 및 메인 뷰 초기화)
-                self._refresh_sidebar()
-                interface.reset_main_view(self)
-
-            if res.get("active_ended") and self._viewing_file:
-                self._log("Background render ended. Switching to active view.")
-                self._viewing_file = None
-                # 즉시 뷰 전환을 위해 사이드바 및 UI 초기화
-                self._refresh_sidebar()
-                interface.reset_main_view(self)
-                interface.scroll_to_top(self)
 
             if res["hang_detected"] and self.last_status != "NotResponding":
                 self._log("Potential render hang detected", "WARNING")
@@ -366,6 +354,15 @@ class RenderMonitorApp(QMainWindow):
         # 1. 상태 전이 엔진을 통한 이벤트 감지
         events = self.state_engine.detect_events(data, from_history)
         is_realtime = not from_history
+
+        # [Smart View Switch] 실시간 이벤트가 발생했는데 사용자가 과거 기록을 보고 있다면 자동 전환
+        if is_realtime and self._viewing_file:
+            if "SESSION_STARTED" in events or "FRESH_END" in events:
+                self._log(f"Auto-switching to active view (Event: {events[-1]})")
+                self._viewing_file = None
+                self._refresh_sidebar()
+                interface.scroll_to_top(self)
+                interface.focus_window(self)
 
         # 2. PID 관리 및 쓰레드 감시 시작
         if init.get("c4d_pid") and init["c4d_pid"] != self.watched_pid:
