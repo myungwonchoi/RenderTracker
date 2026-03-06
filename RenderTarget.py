@@ -290,6 +290,9 @@ class RenderMonitorApp(QMainWindow):
                 self._active_file = res["new_active"]
                 self._viewing_file = None
                 self._log(f"New render detected: {os.path.basename(res['new_active'])}")
+                # 새로운 렌더링 감지 즉시 UI 컨텍스트 전환 (사이드바 하이라이트 및 메인 뷰 초기화)
+                self._refresh_sidebar()
+                interface.reset_main_view(self)
 
             if res["hang_detected"] and self.last_status != "NotResponding":
                 self._log("Potential render hang detected", "WARNING")
