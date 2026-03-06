@@ -840,7 +840,7 @@ def scroll_to_top(app, sidebar=True):
 def play_sound(app, sound_type):
     """지정된 사운드 파일을 재생합니다."""
     import os
-    import path_manager
+    from utils import path_manager
     from PySide6.QtCore import QUrl
     s_path = os.path.join(path_manager.SOUNDS_DIR, f"{sound_type}.mp3")
     if os.path.exists(s_path):

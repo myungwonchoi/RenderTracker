@@ -1309,3 +1309,76 @@ AttributeError: 'RenderMonitorApp' object has no attribute '_activate_main_windo
 [2026-03-06 19:06:12] [ERROR] Polling error: No module named 'path_manager'
 [2026-03-06 19:06:13] [INFO] Started Discord notified
 [2026-03-06 19:06:13] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 19:11:03] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 19:11:05] [INFO] New render detected: Render_20260306_191104.json
+[2026-03-06 19:11:05] [INFO] New render detected (TS: 1772791864.9752023)
+[2026-03-06 19:11:05] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 19:11:06] [INFO] Started Discord notified
+[2026-03-06 19:11:06] [INFO] Thumbnail updated: Frame 8
+[2026-03-06 19:11:08] [INFO] Thumbnail updated: Frame 18
+[2026-03-06 19:11:10] [INFO] Thumbnail updated: Frame 27
+[2026-03-06 19:11:24] [INFO] New render detected: Render_20260306_191124.json
+[2026-03-06 19:11:24] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 19:11:25] [INFO] New render detected (TS: 1772791884.5981567)
+[2026-03-06 19:11:25] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 19:11:26] [INFO] Started Discord notified
+[2026-03-06 19:11:27] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 19:11:28] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:49:36] [INFO] New render detected: Render_20260306_194935.json
+[2026-03-06 19:49:36] [INFO] New render detected (TS: 1772794175.6361141)
+[2026-03-06 19:49:36] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 19:49:37] [INFO] Started Discord notified
+[2026-03-06 19:49:38] [INFO] Thumbnail updated: Frame 14
+[2026-03-06 19:49:39] [INFO] Thumbnail updated: Frame 19
+[2026-03-06 19:49:41] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:50:09] [INFO] New render detected: Render_20260306_195009.json
+[2026-03-06 19:50:09] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:50:10] [INFO] New render detected (TS: 1772794209.0268662)
+[2026-03-06 19:50:10] [INFO] Thumbnail updated: Frame 7
+[2026-03-06 19:50:11] [INFO] Started Discord notified
+[2026-03-06 19:50:11] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 19:50:13] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:50:31] [INFO] New render detected: Render_20260306_195031.json
+[2026-03-06 19:50:31] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 19:50:32] [INFO] New render detected (TS: 1772794231.0417078)
+[2026-03-06 19:50:32] [INFO] Thumbnail updated: Frame 7
+[2026-03-06 19:50:33] [INFO] Started Discord notified
+[2026-03-06 19:51:13] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:51:13] [INFO] Minimized to system tray
+[2026-03-06 19:51:14] [INFO] New render detected: Render_20260306_195114.json
+[2026-03-06 19:51:14] [INFO] New render detected (TS: 1772794274.7788537)
+[2026-03-06 19:51:15] [INFO] Started Discord notified
+[2026-03-06 19:51:15] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 19:51:16] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 19:51:18] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:51:28] [INFO] Minimized to system tray
+[2026-03-06 19:51:29] [INFO] New render detected: Render_20260306_195129.json
+[2026-03-06 19:51:29] [INFO] New render detected (TS: 1772794289.3224432)
+[2026-03-06 19:51:29] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 19:51:30] [INFO] Started Discord notified
+[2026-03-06 19:51:31] [INFO] Thumbnail updated: Frame 13
+[2026-03-06 19:51:32] [INFO] Thumbnail updated: Frame 18
+[2026-03-06 19:51:36] [INFO] New render detected: Render_20260306_195136.json
+[2026-03-06 19:51:36] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:51:37] [INFO] New render detected (TS: 1772794296.2841682)
+[2026-03-06 19:51:37] [INFO] Thumbnail updated: Frame 7
+[2026-03-06 19:51:38] [INFO] Started Discord notified
+[2026-03-06 19:51:39] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 19:51:42] [INFO] New render detected: Render_20260306_195142.json
+[2026-03-06 19:51:42] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:51:43] [INFO] New render detected (TS: 1772794302.6493998)
+[2026-03-06 19:51:44] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 19:51:44] [INFO] Started Discord notified
+[2026-03-06 19:51:45] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 19:52:29] [INFO] New render detected: Render_20260306_195229.json
+[2026-03-06 19:52:30] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:52:30] [INFO] New render detected (TS: 1772794349.0718546)
+[2026-03-06 19:52:31] [INFO] Thumbnail updated: Frame 9
+[2026-03-06 19:52:31] [INFO] Started Discord notified
+[2026-03-06 19:52:40] [INFO] New render detected: Render_20260306_195240.json
+[2026-03-06 19:52:41] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 19:52:41] [INFO] New render detected (TS: 1772794360.62934)
+[2026-03-06 19:52:42] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 19:52:42] [INFO] Started Discord notified
+[2026-03-06 19:52:44] [INFO] Thumbnail updated: Frame 16
+[2026-03-06 19:52:45] [INFO] Thumbnail updated: Frame 20
