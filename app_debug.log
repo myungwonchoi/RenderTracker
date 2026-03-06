@@ -1986,3 +1986,154 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 23:51:44] [INFO] Thumbnail updated: Frame 12
 [2026-03-06 23:51:45] [INFO] Thumbnail updated: Frame 17
 [2026-03-06 23:51:46] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:55:38] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:55:42] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:55:42] [INFO] New render detected (TS: 1772808942.0112762)
+[2026-03-06 23:55:42] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 23:55:43] [INFO] Started Discord notified
+[2026-03-06 23:55:44] [INFO] Thumbnail updated: Frame 10
+[2026-03-06 23:55:45] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 23:55:46] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:55:50] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:55:51] [INFO] New render detected (TS: 1772808950.346755)
+[2026-03-06 23:55:51] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:55:51] [INFO] Started Discord notified
+[2026-03-06 23:55:52] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 23:55:53] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 23:55:55] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:09:04] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:09:10] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:09:10] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-07 00:09:10] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:09:10] [INFO] New render detected (TS: 1772809750.1045089)
+[2026-03-07 00:09:10] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 00:09:11] [INFO] Started Discord notified
+[2026-03-07 00:09:12] [INFO] Thumbnail updated: Frame 11
+[2026-03-07 00:09:13] [INFO] Thumbnail updated: Frame 19
+[2026-03-07 00:09:15] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:09:47] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:10:28] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:13:15] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:13:25] [INFO] Minimized to system tray
+[2026-03-07 00:14:16] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:14:21] [INFO] Minimized to system tray
+[2026-03-07 00:16:04] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:22] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:26] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:19:27] [INFO] New render detected (TS: 1772810366.1479926)
+[2026-03-07 00:19:27] [INFO] Thumbnail updated: Frame 4
+[2026-03-07 00:19:27] [INFO] Started Discord notified
+[2026-03-07 00:19:28] [INFO] Thumbnail updated: Frame 12
+[2026-03-07 00:19:29] [INFO] Thumbnail updated: Frame 17
+[2026-03-07 00:19:30] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:34] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:19:34] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-07 00:19:34] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:34] [INFO] New render detected (TS: 1772810373.671797)
+[2026-03-07 00:19:34] [INFO] Thumbnail updated: Frame 4
+[2026-03-07 00:19:35] [INFO] Started Discord notified
+[2026-03-07 00:19:36] [INFO] Thumbnail updated: Frame 11
+[2026-03-07 00:19:37] [INFO] Thumbnail updated: Frame 19
+[2026-03-07 00:19:39] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:46] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:19:46] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-07 00:19:46] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:19:46] [INFO] New render detected (TS: 1772810385.8749847)
+[2026-03-07 00:19:46] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 00:19:47] [INFO] Started Discord notified
+[2026-03-07 00:19:48] [INFO] Thumbnail updated: Frame 11
+[2026-03-07 00:19:49] [INFO] Thumbnail updated: Frame 16
+[2026-03-07 00:19:50] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:21:31] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:21:34] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:21:34] [INFO] New render detected (TS: 1772810493.7375257)
+[2026-03-07 00:21:34] [INFO] Thumbnail updated: Frame 5
+[2026-03-07 00:21:35] [INFO] Started Discord notified
+[2026-03-07 00:21:36] [INFO] Thumbnail updated: Frame 13
+[2026-03-07 00:21:37] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:21:47] [INFO] New session detected: TestCube.blend
+[2026-03-07 00:21:47] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-07 00:21:47] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:21:48] [INFO] New render detected (TS: 1772810507.2153256)
+[2026-03-07 00:21:48] [INFO] Thumbnail updated: Frame 6
+[2026-03-07 00:21:48] [INFO] Started Discord notified
+[2026-03-07 00:21:49] [INFO] Thumbnail updated: Frame 13
+[2026-03-07 00:21:51] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:38:07] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:38:08] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:09] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:10] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:11] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:12] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:13] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:14] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:16] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:18] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:18] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:20] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:21] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:22] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:24] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:25] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:28] [INFO] New session detected: Render_20260307_003828.json
+[2026-03-07 00:38:28] [INFO] New render detected (TS: 1772811508.0342412)
+[2026-03-07 00:38:28] [INFO] Thumbnail updated: Frame 4
+[2026-03-07 00:38:28] [INFO] Started Discord notified
+[2026-03-07 00:38:30] [INFO] Thumbnail updated: Frame 13
+[2026-03-07 00:38:31] [INFO] Thumbnail updated: Frame 18
+[2026-03-07 00:38:32] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:38:34] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:35] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:41] [INFO] New session detected: Render_20260307_003840.json
+[2026-03-07 00:38:41] [INFO] New render detected (TS: 1772811520.8316956)
+[2026-03-07 00:38:41] [INFO] Thumbnail updated: Frame 2
+[2026-03-07 00:38:42] [INFO] Started Discord notified
+[2026-03-07 00:38:42] [INFO] Thumbnail updated: Frame 9
+[2026-03-07 00:38:44] [INFO] Thumbnail updated: Frame 17
+[2026-03-07 00:38:45] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:38:47] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:48] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:50] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:50] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:52] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:53] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:54] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:55] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:56] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:58] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:38:59] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:39:00] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:39:02] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:39:03] [INFO] New session detected: Render_20260307_003903.json
+[2026-03-07 00:39:03] [INFO] New render detected (TS: 1772811543.6037788)
+[2026-03-07 00:39:04] [INFO] Thumbnail updated: Frame 2
+[2026-03-07 00:39:04] [INFO] Started Discord notified
+[2026-03-07 00:39:05] [INFO] Thumbnail updated: Frame 10
+[2026-03-07 00:39:06] [INFO] Thumbnail updated: Frame 16
+[2026-03-07 00:39:07] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:39:08] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:39:10] [INFO] New session detected: Render_20260307_003910.json
+[2026-03-07 00:39:10] [INFO] New render detected (TS: 1772811550.2720304)
+[2026-03-07 00:39:10] [INFO] Thumbnail updated: Frame 2
+[2026-03-07 00:39:11] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'target_path'
+[2026-03-07 00:39:11] [INFO] Started Discord notified
+[2026-03-07 00:39:14] [INFO] Auto-switching: Background render ended (1772811554.4880576)
+[2026-03-07 00:39:14] [INFO] New render detected (TS: 1772811550.2720304)
+[2026-03-07 00:39:14] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:39:15] [INFO] Started Discord notified
+[2026-03-07 00:47:39] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:47:42] [INFO] New session detected: Render_20260307_004742.json
+[2026-03-07 00:47:42] [INFO] New render detected (TS: 1772812062.2995927)
+[2026-03-07 00:47:43] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 00:47:43] [INFO] Started Discord notified
+[2026-03-07 00:47:44] [INFO] Thumbnail updated: Frame 11
+[2026-03-07 00:47:45] [INFO] Thumbnail updated: Frame 17
+[2026-03-07 00:47:46] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:48:12] [INFO] New session detected: Render_20260307_004811.json
+[2026-03-07 00:48:12] [INFO] New render detected (TS: 1772812091.8355944)
+[2026-03-07 00:48:12] [INFO] Thumbnail updated: Frame 3
+[2026-03-07 00:48:12] [INFO] Started Discord notified
+[2026-03-07 00:48:16] [INFO] Auto-switching: Background render ended (1772812095.9321196)
+[2026-03-07 00:48:16] [INFO] New render detected (TS: 1772812091.8355944)
+[2026-03-07 00:48:16] [INFO] Thumbnail updated: Frame 20
+[2026-03-07 00:48:16] [INFO] Started Discord notified

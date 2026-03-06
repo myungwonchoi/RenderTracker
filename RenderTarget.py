@@ -8,7 +8,7 @@ import psutil
 from utils import constants
 from utils import path_manager
 from utils import config_manager
-from core import engine as core
+from core import engine
 from ui import interface
 from core import messenger
 from ui.styles import T, STYLE_SHEET_TEMPLATE
@@ -29,7 +29,7 @@ from PySide6.QtCore import Qt, QTimer, Signal, QPoint, QSize, QUrl, Property, QP
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 # 예외 처리기 설정
-sys.excepthook = core.handle_exception
+sys.excepthook = engine.handle_exception
 
 # --- Main Application Controller ---
 class RenderMonitorApp(QMainWindow):
@@ -54,8 +54,8 @@ class RenderMonitorApp(QMainWindow):
         
         # 상태 관리 엔진 및 초기 데이터 변수
         self.start_app_ts = time.time()
-        self.state_engine = core.RenderStateEngine(self.start_app_ts)
-        self.monitor = core.RenderMonitor(self.state_engine)
+        self.state_engine = engine.RenderStateEngine(self.start_app_ts)
+        self.monitor = engine.RenderMonitor(self.state_engine)
         self._init_state_vars()
         
         # 오디오 및 시스템 트레이 설정
@@ -101,7 +101,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _load_initial_data(self):
         """앱 시작 시 가장 최근의 렌더 기록을 모니터링 대상으로 설정 (Silent 로드)"""
-        latest = core.get_latest_render_file()
+        latest = engine.get_latest_render_file()
         if latest:
             try:
                 with open(latest, "r", encoding="utf-8") as f:
@@ -221,7 +221,7 @@ class RenderMonitorApp(QMainWindow):
         ts = time.strftime("%H:%M:%S")
         line = f"[{ts}] {msg}"
         print(line)
-        core.log_to_file(msg, level)
+        engine.log_to_file(msg, level)
         self.log_text.append(line)
         scrollbar = self.log_text.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
@@ -248,11 +248,12 @@ class RenderMonitorApp(QMainWindow):
     # --- Polling & Data Handling ---
     def _refresh_sidebar(self):
         """히스토리 파일 목록을 스캔하여 사이드바 위젯 동기화"""
-        history_files = core.get_history_files()
+        print("refresh sidebar")
+        history_files = engine.get_history_files()
         interface.sync_history_sidebar(
             self, history_files, 
-            core.get_history_item_data, 
-            lambda p: core.get_status_color_from_file(p, {'YELLOW': T.YELLOW, 'GREEN': T.GREEN, 'RED': T.RED}),
+            engine.get_history_item_data, 
+            lambda p: engine.get_status_color_from_file(p, {'YELLOW': T.YELLOW, 'GREEN': T.GREEN, 'RED': T.RED}),
             self._load_history, 
             self._show_history_context_menu
         )
@@ -272,77 +273,54 @@ class RenderMonitorApp(QMainWindow):
         try:
             with open(path, "r", encoding="utf-8") as fh:
                 data = json.load(fh)
-            self._process(data, from_history=True)
+            self._process(data, path, from_history=True)
         except Exception as e:
             self._log(f"[History] {e}")
 
     def _poll(self):
         """단일 책임 원칙에 따른 지휘자: 0.5초마다 모든 상황을 판단하고 조율"""
         try:
-            target_file = self._viewing_file if self._viewing_file else self._active_file
-            res = self.monitor.poll(target_file, self._active_file, self.watched_pid)
+            # 1. Discovery: 시스템 현재 상태 파악
+            latest_file = engine.get_latest_render_file()
             
-            # 1. 프로세스 상태 체크
+            # 2. Decision: 세션 변화 처리 (New Active)
+            if latest_file and latest_file != self._active_file:
+                self._active_file = latest_file
+                self._log(f"New session detected: {os.path.basename(latest_file)}")
+                # 자동 점프 판단 (과거 기록을 보고 있었다면)
+                if self._viewing_file:
+                    self._viewing_file = None # 실시간 활성 뷰로 강제 전환
+
+            # 3. Decision: 백그라운드 종료 감지에 따른 자동 점프
+            # (활성 파일이 바뀐 게 아니더라도, 활성 파일의 내용이 '끝남'으로 변했을 때)
+            target_path = self._viewing_file if self._viewing_file else self._active_file
+            res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
+            
+            # 프로세스 종료 감지
             if res["crashed"] and not self.crash_sent:
                 self.crash_sent = True
                 QTimer.singleShot(0, self._on_crash)
 
-            # 2. 새로운 렌더링 세션 감지 (Follow-the-Latest)
-            if res["latest_file"] and res["latest_file"] != self._active_file:
-                # 새로운 파일이 생겼다면 직접 읽어 내용 확인 (엔진에 의존하지 않음)
-                latest_data = self.monitor._read_json(res["latest_file"])
-                if latest_data:
-                    info = latest_data.get("start", {})
-                    # 데이터가 '정말로' 준비된 (Unknown 아님) 시점에 세션 교체
-                    if info.get("doc_name") not in (None, "", "Unknown"):
-                        self._active_file = res["latest_file"]
-                        self._log(f"New session detected: {info.get('doc_name')}")
-                        
-                        # 시작 시점 자동 전환 판단
-                        if self._viewing_file:
-                            start_ts = info.get("start_ts", 0)
-                            if start_ts > self._last_jump_start_ts:
-                                self._last_jump_start_ts = start_ts
-                                self._log(f"Auto-switching: New session started ({info.get('doc_name')})")
-                                self._viewing_file = None
-                                self._refresh_sidebar()
-                                interface.reset_main_view(self)
-
-            # 3. 백그라운드 종료(End) 감지 및 자동 전환
+            # 백그라운드 종료 시 점프 (res["active_data"]는 poll 시점에 읽어온 활성 파일의 최신 데이터)
             if self._viewing_file and res["active_data"]:
-                # 현재 보고 있는 파일이 활성 파일과 다를 때만 점프 (자기 자신 열람시는 방해 안 함)
-                if self._viewing_file != self._active_file:
-                    end_ts = res["active_data"].get("end", {}).get("end_ts", 0)
-                    if end_ts > self._last_jump_end_ts:
-                        self._last_jump_end_ts = end_ts
-                        self._log(f"Auto-switching: Background render ended ({end_ts})")
-                        self._viewing_file = None
-                        self._refresh_sidebar()
-                        interface.scroll_to_top(self)
-                        interface.focus_window(self)
+                end_ts = res["active_data"].get("end", {}).get("end_ts", 0)
+                if end_ts > self._last_jump_end_ts:
+                    self._last_jump_end_ts = end_ts
+                    self._log(f"Auto-switching: Background render ended ({end_ts})")
+                    self._viewing_file = None
+                    target_path = self._active_file
+                    # 점프했으므로 데이터 다시 읽기
+                    res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
 
-            # 4. 행(Hang) 감지 (실시간 감시 대상 기준)
-            if not self._viewing_file and res["target_data"]:
-                mtime = os.path.getmtime(self._active_file)
-                upd = res["target_data"].get("update", {})
-                avg = upd.get("avg_frame_duration", 10.0)
-                threshold = max(avg * 3, 120.0)
-                is_progress = (res["target_data"].get("end", {}).get("end_ts", -1) <= 0)
-                if is_progress and (time.time() - mtime > threshold) and self.last_status != "NotResponding":
-                    self._log("Potential render hang detected", "WARNING")
-                    self.last_status = "NotResponding"
-                    interface.update_status_by_key(self, "not_responding", T.ORANGE, T.BADGE_RED)
-
-            # 5. 데이터 프로세싱 및 판단 (Polling Stage Judgment)
+            # 4. Ingestion & Action: 결정된 target_path의 데이터를 UI에 투영
             if res["target_data"]:
                 from_history = (self._viewing_file is not None)
-                # [판단] 폴링 단계에서 사건 발생 여부를 먼저 파악
                 events = self.state_engine.detect_events(res["target_data"], from_history)
-                # [실행] 판단 결과를 넘겨서 UI, Glow, 사운드를 한곳에서 처리
-                self._process(res["target_data"], events, from_history)
+                # 데이터와 그 데이터의 출처(Path)를 함께 묶어서 전달 (정합성 확보)
+                self._process(res["target_data"], target_path, events, from_history)
 
-            # 사이드바 리스트 갱신 (0.5초 주기로 정직하게 동기화)
-            self._refresh_sidebar()
+        except Exception as e:
+            self._log(f"Polling error: {str(e)}", "ERROR")
 
         except Exception as e:
             self._log(f"Polling error: {str(e)}", "ERROR")
@@ -365,7 +343,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _remove_history_item(self, path):
         """특정 히스토리 항목 삭제"""
-        if core.delete_history_files(path):
+        if engine.delete_history_files(path):
             self._log(f"Removed history: {os.path.basename(path)}")
             # 현재 보고 있는 파일 삭제 시 뷰 초기화
             if self._viewing_file == path or self._active_file == path:
@@ -384,7 +362,7 @@ class RenderMonitorApp(QMainWindow):
             
         dlg = interface.CustomMessageBox(self, self.g("ui_history"), msg)
         if dlg.exec():
-            if core.clear_all_render_history():
+            if engine.clear_all_render_history():
                 self._log("Cleared all history")
                 self._viewing_file = self._active_file = None
                 interface.reset_main_view(self)
@@ -392,7 +370,7 @@ class RenderMonitorApp(QMainWindow):
             else:
                 self._log("Error clearing history", "ERROR")
 
-    def _process(self, data, events=None, from_history=False):
+    def _process(self, data, target_path, events=None, from_history=False):
         """UI 액션 센터: 넘겨받은 데이터를 기반으로 UI, Glow, 사운드 실행"""
         if events is None: events = []
         init, upd, end = data.get("start", {}), data.get("update", {}), data.get("end", {})
@@ -410,6 +388,7 @@ class RenderMonitorApp(QMainWindow):
         if "SESSION_STARTED" in events:
             self.progress_msg_id = None
             self._reset_thumbnail_cache()
+            self._refresh_sidebar() # 새 파일 감지 시 사이드바 갱신
             if is_realtime:
                 interface.prepare_session_view(self)
 
@@ -422,7 +401,7 @@ class RenderMonitorApp(QMainWindow):
             self._handle_render_ended_feedback(status, init, upd, end)
 
         # 2. UI 텍스트 및 상태 뱃지 업데이트 (상세 정보 채우기)
-        interface.update_render_info(self, init, upd, core.fmt_time)
+        interface.update_render_info(self, init, upd, engine.fmt_time)
 
         # 3. 진행도/완료 상태별 UI 세부 분기
         pct = ren / tot if tot > 0 else 0.0
@@ -431,8 +410,9 @@ class RenderMonitorApp(QMainWindow):
         elif status in ("Finished", "Stopped"):
             self._handle_render_ended_ui(status, events, init, upd, end, is_realtime, pct)
 
-        # 4. 실시간 썸네일 프로세싱
-        self._update_thumbnails(init, upd, from_history)
+        # 4. 실시간 썸네일 프로세싱 (의존성 주입: target_path 전달)
+        self._update_thumbnails(init, upd, target_path, from_history)
+
 
     def _handle_render_started_feedback(self, init):
         """시작 시 즉각 피드백 (Glow/Sound) 및 외부 알림"""
@@ -449,6 +429,7 @@ class RenderMonitorApp(QMainWindow):
         interface.trigger_main_glow(self, T.GREEN if is_fin else T.RED)
         interface.play_sound(self, "End" if is_fin else "Error")
         interface.focus_window(self)
+        self._refresh_sidebar() # 종료 상태 반영을 위해 사이드바 갱신
         threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
 
     def _handle_progress_update(self, upd, pct, events, init, is_realtime):
@@ -456,10 +437,10 @@ class RenderMonitorApp(QMainWindow):
         if self.last_status != "NotResponding" or not is_realtime:
             self.last_status = "Progress"
             rem = upd.get("remaining_seconds", -1)
-            interface.update_info_label(self._info_vars.get("remaining"), core.fmt_time(rem) if rem >= 0 else "—")
+            interface.update_info_label(self._info_vars.get("remaining"), engine.fmt_time(rem) if rem >= 0 else "—")
             interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
             interface.update_info_label(self._info_vars.get("end_time"), "—")
-            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
+            interface.update_info_label(self._info_vars.get("total_elapsed"), engine.fmt_time(upd.get("elapsed_seconds", 0)))
             interface.update_status_by_key(self, "progress", T.YELLOW, T.BADGE_YELLOW)
         
         interface.update_progress(self, pct, T.YELLOW)
@@ -482,19 +463,14 @@ class RenderMonitorApp(QMainWindow):
             interface.update_info_label(self._info_vars.get("remaining"), "—")
             interface.update_info_label(self._info_vars.get("eta"), "—")
             interface.update_info_label(self._info_vars.get("end_time"), end.get("end_time","—"))
-            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
+            interface.update_info_label(self._info_vars.get("total_elapsed"), engine.fmt_time(upd.get("elapsed_seconds", 0)))
             interface.update_status_by_key(self, status.lower(), (T.GREEN if is_fin else T.RED), (T.BADGE_GREEN if is_fin else T.BADGE_RED))
             interface.update_progress(self, pct, (T.GREEN if is_fin else T.RED))
             if is_realtime: interface.scroll_to_top(self)
 
-        if "FRESH_END" in events:
-            is_fin = (status == "Finished")
-            interface.trigger_main_glow(self, T.GREEN if is_fin else T.RED)
-            threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
-            interface.play_sound(self, "End" if is_fin else "Error")
-            interface.focus_window(self)
+        # Glow/Sound/Discord 등 모든 반응형 피드백은 이제 _handle_render_ended_feedback에서 통합 처리됩니다.
 
-    def _update_thumbnails(self, init, upd, from_history):
+    def _update_thumbnails(self, init, upd, target_path, from_history):
         """실시간 썸네일 업데이트 로직"""
 
         # 8. 썸네일 업데이트 (앱에서 직접 복사 및 리사이징 처리)
@@ -523,8 +499,8 @@ class RenderMonitorApp(QMainWindow):
             }
         ]
 
-        # JSON 파일명을 기반으로 저장될 썸네일 이름 결정
-        json_basename = os.path.basename(self._viewing_file or self._active_file)
+        # JSON 파일명을 기반으로 저장될 썸네일 이름 결정 (의존성 주입된 target_path 사용)
+        json_basename = os.path.basename(target_path)
         curr_f = upd.get("current_frame", 0)
         
         for cfg in base_configs:
@@ -537,7 +513,7 @@ class RenderMonitorApp(QMainWindow):
 
 
             # 원본 파일 해소 (로직 분리)
-            actual_source = core.resolve_image_path(raw_source)
+            actual_source = engine.resolve_image_path(raw_source)
             
             if not actual_source:
                 cfg["label"].setPixmap(QPixmap())
@@ -569,7 +545,7 @@ class RenderMonitorApp(QMainWindow):
                     needs_update = True
 
             if needs_update:
-                if core.process_thumbnail(actual_source, thumb_path):
+                if engine.process_thumbnail(actual_source, thumb_path):
                     # 화면 표시용 Pixmap 변환 (로직 분리 - interface.py)
                     interface.update_thumbnail_label(self, cfg["label"], thumb_path)
                     
@@ -606,7 +582,7 @@ class RenderMonitorApp(QMainWindow):
         self.last_status = "Crashed"
         
         # JSON 강제 업데이트 (분리된 로직 호출)
-        if core.force_update_json_on_crash(self._active_file):
+        if engine.force_update_json_on_crash(self._active_file):
             self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
         interface.update_status_by_key(self, "crashed", T.RED, T.BADGE_RED)
@@ -660,7 +636,7 @@ class RenderMonitorApp(QMainWindow):
 
 # --- Entry Point ---
 if __name__ == "__main__":
-    core.setup_dpi_awareness()
+    engine.setup_dpi_awareness()
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     
     app = QApplication(sys.argv)

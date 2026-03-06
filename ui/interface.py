@@ -826,10 +826,10 @@ def focus_window(app):
         QTimer.singleShot(50, app.activateWindow)
     app.activateWindow()
 
-def scroll_to_top(app, sidebar=True):
+def scroll_to_top(app):
     """사이드바와 메인 레이아웃의 스크롤을 최상단으로 이동합니다."""
     from PySide6.QtCore import QTimer
-    if sidebar and hasattr(app, "sidebar_scroll"):
+    if hasattr(app, "sidebar_scroll"):
         app.sidebar_scroll.verticalScrollBar().setValue(0)
         QTimer.singleShot(100, lambda: app.sidebar_scroll.verticalScrollBar().setValue(0))
     
