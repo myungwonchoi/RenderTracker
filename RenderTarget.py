@@ -16,6 +16,7 @@ from path_manager import (
     BASE_DIR, HISTORY_DIR, CONFIG_FILE, LOCALE_DIR, 
     FONTS_DIR, LOG_FILE, IMAGES_DIR, SOUNDS_DIR
 )
+from config_manager import load_config, save_config, load_messages
 from styles import T, STYLE_SHEET_TEMPLATE
 from datetime import datetime
 
@@ -65,28 +66,7 @@ sys.excepthook = handle_exception
 
 
 # ── 설정·메시지 유틸 ───────────────────────────────────────────────────────────
-def load_config():
-    try:
-        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
-
-def save_config(data):
-    try:
-        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
-        return True
-    except Exception:
-        return False
-
-def load_messages(lang="ko"):
-    try:
-        path = os.path.join(LOCALE_DIR, f"{lang}.json")
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
-        return {}
+# (Config management logic now handled via config_manager.py)
 
 def fmt_time(s):
     if s is None or s < 0:
@@ -94,8 +74,6 @@ def fmt_time(s):
     m, s = divmod(int(s), 60)
     h, m = divmod(m, 60)
     return f"{h:02d}:{m:02d}:{s:02d}"
-
-# ── 디스코드 웹훅 연동 (순수 파이썬 유지) ──────────────────────────────────────────
 
 # ── 커스텀 메시지 박스 ────────────────────────────────────────────────────────
 class CustomMessageBox(QDialog):
