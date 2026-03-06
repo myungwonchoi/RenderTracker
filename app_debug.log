@@ -1008,3 +1008,89 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 15:13:44] [INFO] → Finished
 [2026-03-06 15:13:44] [INFO] Thumbnail updated: Frame 100
 [2026-03-06 15:13:51] [INFO] Minimized to system tray
+[2026-03-06 15:17:33] [INFO] Monitor started (PySide6)
+[2026-03-06 15:17:33] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:17:34] [INFO] → Finished
+[2026-03-06 15:17:35] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:17:39] [INFO] New render detected: Render_20260306_151739.json
+[2026-03-06 15:17:39] [INFO] New render detected (TS: 1772777859.2663872)
+[2026-03-06 15:17:40] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 15:17:40] [INFO] Started Discord notified
+[2026-03-06 15:17:41] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 15:17:43] [INFO] Thumbnail updated: Frame 26
+[2026-03-06 15:17:44] [INFO] Thumbnail updated: Frame 34
+[2026-03-06 15:17:44] [INFO] → Stopped
+[2026-03-06 15:17:45] [INFO] Thumbnail updated: Frame 37
+[2026-03-06 15:20:38] [INFO] Monitor started (PySide6)
+[2026-03-06 15:20:38] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:20:39] [INFO] → Stopped
+[2026-03-06 15:20:39] [INFO] Thumbnail updated: Frame 37
+[2026-03-06 15:24:38] [INFO] Monitor started (PySide6)
+[2026-03-06 15:24:38] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:24:39] [INFO] → Stopped
+[2026-03-06 15:24:39] [INFO] Thumbnail updated: Frame 37
+[2026-03-06 15:25:19] [INFO] New render detected: Render_20260306_152519.json
+[2026-03-06 15:25:19] [INFO] New render detected (TS: 1772778319.0261543)
+[2026-03-06 15:25:19] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 15:25:19] [INFO] Started Discord notified
+[2026-03-06 15:25:21] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 15:25:22] [INFO] Thumbnail updated: Frame 25
+[2026-03-06 15:25:24] [INFO] Thumbnail updated: Frame 40
+[2026-03-06 15:25:25] [INFO] Thumbnail updated: Frame 48
+[2026-03-06 15:25:27] [INFO] Thumbnail updated: Frame 63
+[2026-03-06 15:25:29] [INFO] Thumbnail updated: Frame 78
+[2026-03-06 15:25:30] [INFO] Thumbnail updated: Frame 86
+[2026-03-06 15:25:32] [INFO] → Finished
+[2026-03-06 15:25:32] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:31:59] [INFO] Minimized to system tray
+[2026-03-06 15:35:12] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 1047, in <module>
+    window = RenderMonitorApp()
+             ^^^^^^^^^^^^^^^^^^
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 142, in __init__
+    self._build_ui()
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 185, in _build_ui
+    build_main_ui(self)
+  File "c:\Users\user\AppData\Roaming\RenderTracker\interface.py", line 658, in build_main_ui
+    app.progress_bar = QProgressBar()
+                       ^^^^^^^^^^^^
+NameError: name 'QProgressBar' is not defined
+
+[2026-03-06 15:35:53] [INFO] Monitor started (PySide6)
+[2026-03-06 15:35:53] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:35:54] [INFO] → Finished
+[2026-03-06 15:35:54] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:35:58] [INFO] Minimized to system tray
+[2026-03-06 15:44:31] [INFO] Monitor started (PySide6)
+[2026-03-06 15:44:31] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:44:32] [INFO] → Finished
+[2026-03-06 15:44:32] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:44:36] [INFO] New render detected: Render_20260306_154435.json
+[2026-03-06 15:44:36] [INFO] New render detected (TS: 1772779475.4961827)
+[2026-03-06 15:44:36] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 15:44:36] [INFO] Started Discord notified
+[2026-03-06 15:44:37] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 15:44:39] [INFO] Thumbnail updated: Frame 28
+[2026-03-06 15:44:40] [INFO] Thumbnail updated: Frame 36
+[2026-03-06 15:44:42] [INFO] Thumbnail updated: Frame 51
+[2026-03-06 15:44:43] [INFO] → Stopped
+[2026-03-06 15:44:44] [INFO] Thumbnail updated: Frame 57
+[2026-03-06 15:44:51] [INFO] New render detected: Render_20260306_154450.json
+[2026-03-06 15:44:51] [INFO] New render detected (TS: 1772779490.4663794)
+[2026-03-06 15:44:51] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 15:44:51] [INFO] Started Discord notified
+[2026-03-06 15:44:52] [INFO] Thumbnail updated: Frame 7
+[2026-03-06 15:44:53] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 15:44:54] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 15:44:56] [INFO] Thumbnail updated: Frame 27
+[2026-03-06 15:44:58] [INFO] Thumbnail updated: Frame 36
+[2026-03-06 15:44:59] [INFO] Thumbnail updated: Frame 40
+[2026-03-06 15:45:00] [INFO] Thumbnail updated: Frame 45
+[2026-03-06 15:45:02] [INFO] Thumbnail updated: Frame 55
+[2026-03-06 15:45:04] [INFO] Thumbnail updated: Frame 64
+[2026-03-06 15:45:06] [INFO] Thumbnail updated: Frame 72
+[2026-03-06 15:45:08] [INFO] Thumbnail updated: Frame 82
+[2026-03-06 15:45:10] [INFO] Thumbnail updated: Frame 91
+[2026-03-06 15:45:12] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:45:13] [INFO] → Finished
