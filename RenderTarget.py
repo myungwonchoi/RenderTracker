@@ -248,56 +248,7 @@ class RenderMonitorApp(QMainWindow):
         return self.app_msgs.get(f"ui_{key}", self.app_msgs.get(key, default or key))
 
     def _apply_lang(self):
-        # 최상단 타이틀바 고정 (메인 프로젝트명 라벨은 데이터에 따라 관리되므로 여기선 건드리지 않음)
-        self.title_bar.title_label.setText("MW Render Monitor")
-        
-        self.prog_hdr_lbl.setText(self.g("progress_label", "Progress"))
-
-        self.sb_hdr_lbl.setText(self.g("history", "Render History"))
-        
-        # 볼륨 아이콘 업데이트
-        if self.is_muted:
-            self.volume_btn.setText("🔇")
-        else:
-            self.volume_btn.setText("🔊")
-        
-        pid_text = self.g("pid", "PID")
-        cur_pid = (self.watched_pid if self.watched_pid else "—")
-        self.pid_label.setText(f"{pid_text}: {cur_pid}")
-        
-        MAP = {
-            "software": "ui_software", "renderer": "ui_renderer", "doc": "ui_doc", "render_set": "ui_render_set",
-            "take": "ui_take", "resolution": "ui_resolution", "frame_range": "ui_frame_range",
-            "start_time": "ui_start_time", "end_time": "ui_end_time", 
-            "total_elapsed": "ui_elapsed", "output_path": "ui_output_path"
-        }
-        for key, lbl in self._card_labels.items():
-            lbl.setText(self.app_msgs.get(MAP.get(key, f"ui_{key}"), key))
-            
-        PROG_MAP = {
-            "current_frame_time": "field_current_frame_time", "last_frame": "ui_last_frame",
-            "avg_frame": "ui_avg_frame", "elapsed": "ui_elapsed",
-            "remaining": "ui_remaining", "eta": "ui_eta"
-        }
-        for key, lbl in self._prog_labels.items():
-            lbl.setText(self.app_msgs.get(PROG_MAP.get(key, f"ui_{key}"), key))
-            
-        self._log_section_lbl.setText(self.g("log", "Log"))
-        self.open_log_btn = None # Removed
-        self.open_history_btn = None # Removed
-        
-        if self.last_status:
-            key_map = {
-                "Progress": "progress", 
-                "Started": "started", 
-                "Finished": "finished", 
-                "Stopped": "stopped", 
-                "Crashed": "crashed",
-                "NotResponding": "not_responding",
-                "SoftwareClosed": "software_closed"
-            }
-            badge_key = key_map.get(self.last_status, self.last_status.lower())
-            self.status_badge.setText(self.g(badge_key, self.last_status))
+        interface.apply_ui_translations(self)
 
     def _log(self, msg, level="INFO"):
         ts = time.strftime("%H:%M:%S")
@@ -310,13 +261,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _trigger_glow(self, color_hex):
         """창 전체 글로우 효과를 트리거합니다."""
-        if not hasattr(self, "glow_overlay"): return
-        # 트리거 시 크기 재조정
-        self.glow_overlay.resize(self.width(), self.height() - 34)
-        self.glow_overlay.raise_()
-        
-        if self._glow_anim: self._glow_anim.stop()
-        self._glow_anim = interface.trigger_glow_anim(self.glow_overlay, "intensity", color_hex)
+        interface.trigger_main_glow(self, color_hex)
 
     def _open_settings(self):
         dlg = interface.SettingsDialog(self, self.cfg, self.app_msgs, self._on_cfg_changed)
