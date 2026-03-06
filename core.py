@@ -259,3 +259,60 @@ class RenderStateEngine:
             self.last_rendered_frames = ren
 
         return events
+
+
+class RenderMonitor:
+    """렌더링 상태 및 프로세스를 1초마다 감시하는 엔진입니다."""
+    def __init__(self, state_engine):
+        self.state_engine = state_engine
+
+    def poll(self, active_file, viewing_file, watched_pid):
+        """1초마다 실행되는 핵심 모니터링 로직"""
+        res = {
+            "new_active": None,
+            "crashed": False,
+            "data": None,
+            "is_history": False,
+            "hang_detected": False,
+        }
+        
+        # 1. 프로세스 체크
+        if watched_pid:
+            try:
+                p = psutil.Process(watched_pid)
+                if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
+                    res["crashed"] = True
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                res["crashed"] = True
+
+        # 2. 최신 파일 체크
+        latest = get_latest_render_file()
+        if latest and latest != active_file:
+            res["new_active"] = latest
+
+        # 3. 데이터 로드 및 분석 대상 결정
+        target = viewing_file if viewing_file else (res["new_active"] or active_file)
+        if target and os.path.exists(target):
+            is_history = (viewing_file is not None) or (target != (res["new_active"] or active_file))
+            res["is_history"] = is_history
+            
+            try:
+                with open(target, "r", encoding="utf-8") as fh:
+                    data = json.load(fh)
+                res["data"] = data
+                
+                # 실시간 감시 중에만 행(Hang) 체크
+                if not is_history:
+                    mtime = os.path.getmtime(target)
+                    now = time.time()
+                    upd = data.get("update", {})
+                    avg = upd.get("avg_frame_duration", 10.0)
+                    threshold = max(avg * 3, 120.0)
+                    is_progress = (data.get("end", {}).get("end_ts", -1) <= 0)
+                    
+                    if is_progress and (now - mtime > threshold):
+                        res["hang_detected"] = True
+            except:
+                pass
+                
+        return res

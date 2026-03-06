@@ -8,7 +8,7 @@ import psutil
 import constants
 import path_manager
 import config_manager
-import render_processor
+import core
 import interface
 import messenger
 from styles import T, STYLE_SHEET_TEMPLATE
@@ -29,7 +29,7 @@ from PySide6.QtCore import Qt, QTimer, Signal, QPoint, QSize, QUrl, Property, QP
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 # 예외 처리기 설정
-sys.excepthook = render_processor.handle_exception
+sys.excepthook = core.handle_exception
 
 # --- Main Application Controller ---
 class RenderMonitorApp(QMainWindow):
@@ -54,7 +54,8 @@ class RenderMonitorApp(QMainWindow):
         
         # 상태 관리 엔진 및 초기 데이터 변수
         self.start_app_ts = time.time()
-        self.state_engine = render_processor.RenderStateEngine(self.start_app_ts)
+        self.state_engine = core.RenderStateEngine(self.start_app_ts)
+        self.monitor = core.RenderMonitor(self.state_engine)
         self._init_state_vars()
         
         # 오디오 및 시스템 트레이 설정
@@ -98,7 +99,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _load_initial_data(self):
         """앱 시작 시 가장 최근의 렌더 기록을 모니터링 대상으로 설정 (Silent 로드)"""
-        latest = render_processor.get_latest_render_file()
+        latest = core.get_latest_render_file()
         if latest:
             try:
                 with open(latest, "r", encoding="utf-8") as f:
@@ -216,7 +217,7 @@ class RenderMonitorApp(QMainWindow):
         ts = time.strftime("%H:%M:%S")
         line = f"[{ts}] {msg}"
         print(line)
-        render_processor.log_to_file(msg, level)
+        core.log_to_file(msg, level)
         self.log_text.append(line)
         scrollbar = self.log_text.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
@@ -243,11 +244,11 @@ class RenderMonitorApp(QMainWindow):
     # --- Polling & Data Handling ---
     def _refresh_sidebar(self):
         """히스토리 파일 목록을 스캔하여 사이드바 위젯 동기화"""
-        history_files = render_processor.get_history_files()
+        history_files = core.get_history_files()
         interface.sync_history_sidebar(
             self, history_files, 
-            render_processor.get_history_item_data, 
-            lambda p: render_processor.get_status_color_from_file(p, {'YELLOW': T.YELLOW, 'GREEN': T.GREEN, 'RED': T.RED}),
+            core.get_history_item_data, 
+            lambda p: core.get_status_color_from_file(p, {'YELLOW': T.YELLOW, 'GREEN': T.GREEN, 'RED': T.RED}),
             self._load_history, 
             self._show_history_context_menu
         )
@@ -272,53 +273,34 @@ class RenderMonitorApp(QMainWindow):
             self._log(f"[History] {e}")
 
     def _poll(self):
-        """메인 모니터링 루프: 상태 정지 감지 및 새로운 렌더 파일 확인"""
+        """메인 모니터링 루프: 엔진에 의뢰하여 상태 감시 및 UI 갱신"""
         try:
-            # 실시간 사이드바 및 상태 갱신
+            # 1. 사이드바 및 상태 갱신은 항시 수행 (사용자 요청)
             self._refresh_sidebar()
 
-            # 1. 프로세스 생존 여부 실시간 체크 (꺼졌다면 정지/종료로 판단)
-            if self.watched_pid and self.last_status == "Progress":
-                try:
-                    p = psutil.Process(self.watched_pid)
-                    if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
-                        self._log(f"Process {self.watched_pid} is no longer running.")
-                        self._on_crash()
-                except (psutil.NoSuchProcess, psutil.AccessDenied):
-                    self._log(f"Process {self.watched_pid} not found. Assuming closed.")
-                    self._on_crash()
+            # 2. 엔진에 폴링 의뢰 (비즈니스 로직 분리)
+            res = self.monitor.poll(self._active_file, self._viewing_file, self.watched_pid)
 
-            latest = render_processor.get_latest_render_file()
-            if latest:
-                if latest != self._active_file:
-                    self._active_file = latest
-                    self._viewing_file = None
-                    self._log(f"New render detected: {os.path.basename(latest)}")
+            # 3. 결과에 따른 처리
+            if res["crashed"] and not self.crash_sent:
+                self.crash_sent = True
+                QTimer.singleShot(0, self._on_crash)
 
-                target = self._viewing_file if self._viewing_file else self._active_file
-                if target:
-                    # 파일 수정 시간 체크 (응답 없음 감지용)
-                    mtime = os.path.getmtime(target)
-                    now = time.time()
-                    
-                    with open(target, "r", encoding="utf-8") as fh:
-                        data = json.load(fh)
-                    
-                    # 2. 응답 없음 감지 (파일 업데이트가 평균 시간의 3배 이상 지연될 때)
-                    upd = data.get("update", {})
-                    avg = upd.get("avg_frame_duration", 10.0) # 기본 10초
-                    timeout_threshold = max(avg * 3, 120.0)    # 최소 2분
-                    
-                    is_progress = (data.get("end", {}).get("end_ts", -1) <= 0)
-                    if is_progress and (now - mtime > timeout_threshold) and not self._viewing_file:
-                        if self.last_status != "NotResponding":
-                            self._log(f"Render update delayed ({int(now-mtime)}s). Potential hang.", "WARNING")
-                            self.last_status = "NotResponding"
-                            interface.update_status_by_key(self, "not_responding", T.ORANGE, T.BADGE_RED)
-                    
-                    self._process(data, from_history=(target != self._active_file))
+            if res["new_active"]:
+                self._active_file = res["new_active"]
+                self._viewing_file = None
+                self._log(f"New render detected: {os.path.basename(res['new_active'])}")
+
+            if res["hang_detected"] and self.last_status != "NotResponding":
+                self._log("Potential render hang detected", "WARNING")
+                self.last_status = "NotResponding"
+                interface.update_status_by_key(self, "not_responding", T.ORANGE, T.BADGE_RED)
+
+            if res["data"]:
+                self._process(res["data"], from_history=res["is_history"])
+
         except Exception as e:
-            pass
+            self._log(f"Polling error: {str(e)}", "ERROR")
 
     def _show_history_context_menu(self, path):
         """히스토리 항목에 대한 컨텍스트 메뉴 표시"""
@@ -338,7 +320,7 @@ class RenderMonitorApp(QMainWindow):
 
     def _remove_history_item(self, path):
         """특정 히스토리 항목 삭제"""
-        if render_processor.delete_history_files(path):
+        if core.delete_history_files(path):
             self._log(f"Removed history: {os.path.basename(path)}")
             # 현재 보고 있는 파일 삭제 시 뷰 초기화
             if self._viewing_file == path or self._active_file == path:
@@ -357,7 +339,7 @@ class RenderMonitorApp(QMainWindow):
             
         dlg = interface.CustomMessageBox(self, self.g("ui_history"), msg)
         if dlg.exec():
-            if render_processor.clear_all_render_history():
+            if core.clear_all_render_history():
                 self._log("Cleared all history")
                 self._viewing_file = self._active_file = None
                 interface.reset_main_view(self)
@@ -393,7 +375,7 @@ class RenderMonitorApp(QMainWindow):
 
         # 4. 정보 패널 및 상태 뱃지 갱신
         status = self.state_engine.last_status
-        interface.update_render_info(self, init, upd, render_processor.fmt_time)
+        interface.update_render_info(self, init, upd, core.fmt_time)
 
         # 5. 진행도/완료 상태별 UI 분기
         pct = ren / tot if tot > 0 else 0.0
@@ -426,10 +408,10 @@ class RenderMonitorApp(QMainWindow):
         if self.last_status != "NotResponding" or not is_realtime:
             self.last_status = "Progress"
             rem = upd.get("remaining_seconds", -1)
-            interface.update_info_label(self._info_vars.get("remaining"), render_processor.fmt_time(rem) if rem >= 0 else "—")
+            interface.update_info_label(self._info_vars.get("remaining"), core.fmt_time(rem) if rem >= 0 else "—")
             interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
             interface.update_info_label(self._info_vars.get("end_time"), "—")
-            interface.update_info_label(self._info_vars.get("total_elapsed"), render_processor.fmt_time(upd.get("elapsed_seconds", 0)))
+            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
             interface.update_status_by_key(self, "progress", T.YELLOW, T.BADGE_YELLOW)
         
         interface.update_progress(self, pct, T.YELLOW)
@@ -446,7 +428,7 @@ class RenderMonitorApp(QMainWindow):
             interface.update_info_label(self._info_vars.get("remaining"), "—")
             interface.update_info_label(self._info_vars.get("eta"), "—")
             interface.update_info_label(self._info_vars.get("end_time"), end.get("end_time","—"))
-            interface.update_info_label(self._info_vars.get("total_elapsed"), render_processor.fmt_time(upd.get("elapsed_seconds", 0)))
+            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
             
             interface.update_status_by_key(self, status.lower(), (T.GREEN if is_fin else T.RED), (T.BADGE_GREEN if is_fin else T.BADGE_RED))
             interface.update_progress(self, pct, (T.GREEN if is_fin else T.RED))
@@ -502,7 +484,7 @@ class RenderMonitorApp(QMainWindow):
 
 
             # 원본 파일 해소 (로직 분리)
-            actual_source = render_processor.resolve_image_path(raw_source)
+            actual_source = core.resolve_image_path(raw_source)
             
             if not actual_source:
                 cfg["label"].setPixmap(QPixmap())
@@ -534,7 +516,7 @@ class RenderMonitorApp(QMainWindow):
                     needs_update = True
 
             if needs_update:
-                if render_processor.process_thumbnail(actual_source, thumb_path):
+                if core.process_thumbnail(actual_source, thumb_path):
                     # 화면 표시용 Pixmap 변환 (로직 분리 - interface.py)
                     interface.update_thumbnail_label(self, cfg["label"], thumb_path)
                     
@@ -571,7 +553,7 @@ class RenderMonitorApp(QMainWindow):
         self.last_status = "Crashed"
         
         # JSON 강제 업데이트 (분리된 로직 호출)
-        if render_processor.force_update_json_on_crash(self._active_file):
+        if core.force_update_json_on_crash(self._active_file):
             self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
         interface.update_status_by_key(self, "crashed", T.RED, T.BADGE_RED)
@@ -625,7 +607,7 @@ class RenderMonitorApp(QMainWindow):
 
 # --- Entry Point ---
 if __name__ == "__main__":
-    render_processor.setup_dpi_awareness()
+    core.setup_dpi_awareness()
     QApplication.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
     
     app = QApplication(sys.argv)
