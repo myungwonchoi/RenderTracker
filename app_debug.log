@@ -1900,3 +1900,89 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 23:43:05] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'events'
 [2026-03-06 23:43:06] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'events'
 [2026-03-06 23:43:09] [INFO] [History] RenderMonitorApp._process() missing 1 required positional argument: 'events'
+[2026-03-06 23:44:25] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:44:30] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:44:30] [INFO] New render detected (TS: 1772808270.0438662)
+[2026-03-06 23:44:30] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:31] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:31] [INFO] Started Discord notified
+[2026-03-06 23:44:31] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:32] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:32] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:33] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:33] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:44:34] [ERROR] Polling error: 'RenderMonitorApp' object has no attribute '_handle_progress_update'
+[2026-03-06 23:49:09] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:13] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:49:13] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:14] [INFO] New render detected (TS: 1772808553.4742615)
+[2026-03-06 23:49:14] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:49:15] [INFO] Started Discord notified
+[2026-03-06 23:49:15] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 23:49:16] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 23:49:17] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:25] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:49:25] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:49:25] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:25] [INFO] New render detected (TS: 1772808564.8554916)
+[2026-03-06 23:49:25] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 23:49:26] [INFO] Started Discord notified
+[2026-03-06 23:49:27] [INFO] Thumbnail updated: Frame 13
+[2026-03-06 23:49:28] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:50] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:49:50] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:49:50] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:49:51] [INFO] New render detected (TS: 1772808590.6689754)
+[2026-03-06 23:49:51] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:49:51] [INFO] Started Discord notified
+[2026-03-06 23:49:52] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 23:49:53] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 23:49:55] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:00] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:50:00] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:50:00] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:01] [INFO] New render detected (TS: 1772808600.3128564)
+[2026-03-06 23:50:01] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 23:50:02] [INFO] Started Discord notified
+[2026-03-06 23:50:11] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:12] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:50:13] [INFO] New render detected (TS: 1772808612.7038798)
+[2026-03-06 23:50:13] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:50:14] [INFO] Started Discord notified
+[2026-03-06 23:50:14] [INFO] Thumbnail updated: Frame 8
+[2026-03-06 23:50:16] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 23:50:17] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:25] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:50:26] [INFO] New render detected (TS: 1772808625.1131098)
+[2026-03-06 23:50:26] [INFO] Thumbnail updated: Frame 5
+[2026-03-06 23:50:26] [INFO] Started Discord notified
+[2026-03-06 23:50:27] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 23:50:29] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:33] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:50:33] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:50:33] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:33] [INFO] New render detected (TS: 1772808632.5909946)
+[2026-03-06 23:50:33] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:50:34] [INFO] Started Discord notified
+[2026-03-06 23:50:37] [INFO] Auto-switching: Background render ended (1772808636.6318994)
+[2026-03-06 23:50:37] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:37] [INFO] New render detected (TS: 1772808632.5909946)
+[2026-03-06 23:50:38] [INFO] Started Discord notified
+[2026-03-06 23:50:55] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:50:55] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:50:55] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:50:56] [INFO] New render detected (TS: 1772808655.2837892)
+[2026-03-06 23:50:56] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:50:56] [INFO] Started Discord notified
+[2026-03-06 23:50:57] [INFO] Thumbnail updated: Frame 11
+[2026-03-06 23:50:59] [INFO] Thumbnail updated: Frame 18
+[2026-03-06 23:51:00] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:51:42] [INFO] New session detected: TestCube.blend
+[2026-03-06 23:51:42] [INFO] Auto-switching: New session started (TestCube.blend)
+[2026-03-06 23:51:42] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 23:51:43] [INFO] New render detected (TS: 1772808702.2239275)
+[2026-03-06 23:51:43] [INFO] Thumbnail updated: Frame 4
+[2026-03-06 23:51:43] [INFO] Started Discord notified
+[2026-03-06 23:51:44] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 23:51:45] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 23:51:46] [INFO] Thumbnail updated: Frame 20

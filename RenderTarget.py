@@ -392,8 +392,9 @@ class RenderMonitorApp(QMainWindow):
             else:
                 self._log("Error clearing history", "ERROR")
 
-    def _process(self, data, events, from_history=False):
+    def _process(self, data, events=None, from_history=False):
         """UI 액션 센터: 넘겨받은 데이터를 기반으로 UI, Glow, 사운드 실행"""
+        if events is None: events = []
         init, upd, end = data.get("start", {}), data.get("update", {}), data.get("end", {})
         ren, tot = upd.get("rendered_frames", 0), init.get("total_frames", 1)
         is_realtime = not from_history
@@ -404,6 +405,13 @@ class RenderMonitorApp(QMainWindow):
             curr_end_ts = end.get("end_ts", 0)
             if curr_end_ts > 0:
                 self._last_jump_end_ts = max(self._last_jump_end_ts, curr_end_ts)
+
+        # 0. 세션 시작 처리 (캐시 초기화 등)
+        if "SESSION_STARTED" in events:
+            self.progress_msg_id = None
+            self._reset_thumbnail_cache()
+            if is_realtime:
+                interface.prepare_session_view(self)
 
         # 1. 최우선 피드백 처리 (Glow, 사운드 등 반응형 최우선)
         status = self.state_engine.last_status
@@ -442,6 +450,28 @@ class RenderMonitorApp(QMainWindow):
         interface.play_sound(self, "End" if is_fin else "Error")
         interface.focus_window(self)
         threading.Thread(target=self._do_finished, args=(dict(init), dict(upd), dict(end), is_fin, self._last_img_path), daemon=True).start()
+
+    def _handle_progress_update(self, upd, pct, events, init, is_realtime):
+        """진행 중 상태의 UI 갱신 및 디스코드 알림"""
+        if self.last_status != "NotResponding" or not is_realtime:
+            self.last_status = "Progress"
+            rem = upd.get("remaining_seconds", -1)
+            interface.update_info_label(self._info_vars.get("remaining"), core.fmt_time(rem) if rem >= 0 else "—")
+            interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
+            interface.update_info_label(self._info_vars.get("end_time"), "—")
+            interface.update_info_label(self._info_vars.get("total_elapsed"), core.fmt_time(upd.get("elapsed_seconds", 0)))
+            interface.update_status_by_key(self, "progress", T.YELLOW, T.BADGE_YELLOW)
+        
+        interface.update_progress(self, pct, T.YELLOW)
+        if "PROGRESS_UPDATED" in events and is_realtime:
+            threading.Thread(target=self._do_progress, args=(dict(init), dict(upd), self.progress_msg_id, self._last_img_path), daemon=True).start()
+
+    def _reset_thumbnail_cache(self):
+        """세션 시작 시 썸네일 캐시 초기화"""
+        self._last_thumb_update_ts = 0
+        self._last_thumb_frame_num = -1
+        self._first_img_path = self._last_img_path = None
+        self._first_img_mtime = self._last_img_mtime = 0
 
     def _handle_render_ended_ui(self, status, events, init, upd, end, is_realtime, pct):
         """종료 시 UI 세부 요소 업데이트"""
