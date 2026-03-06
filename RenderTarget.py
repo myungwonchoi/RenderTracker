@@ -45,7 +45,7 @@ else:
 
 HISTORY_DIR   = os.path.join(BASE_DIR, "history")
 CONFIG_FILE   = os.path.join(BASE_DIR, "config.json")
-STRINGS_FILE  = os.path.join(BASE_DIR, "source", "strings.json")
+LOCALE_DIR    = os.path.join(BASE_DIR, "locale")
 FONTS_DIR     = os.path.join(BASE_DIR, "source", "fonts")
 LOG_FILE      = os.path.join(BASE_DIR, "app_debug.log")
 
@@ -85,8 +85,9 @@ def save_config(data):
 
 def load_messages(lang="ko"):
     try:
-        with open(STRINGS_FILE, "r", encoding="utf-8") as f:
-            return json.load(f).get(lang, {})
+        path = os.path.join(LOCALE_DIR, f"{lang}.json")
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
     except Exception:
         return {}
 
