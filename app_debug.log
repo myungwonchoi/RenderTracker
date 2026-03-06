@@ -1471,3 +1471,69 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 21:07:34] [INFO] New render detected (TS: 1772798848.5221279)
 [2026-03-06 21:07:34] [INFO] Thumbnail updated: Frame 20
 [2026-03-06 21:07:35] [INFO] Started Discord notified
+[2026-03-06 21:17:23] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:17:25] [INFO] New render detected: Render_20260306_211725.json
+[2026-03-06 21:17:25] [INFO] New render detected (TS: 1772799445.2255542)
+[2026-03-06 21:17:25] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 21:17:26] [INFO] Started Discord notified
+[2026-03-06 21:17:27] [INFO] Thumbnail updated: Frame 13
+[2026-03-06 21:17:29] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:17:31] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:17:31] [INFO] New render detected (TS: 1772799445.2255542)
+[2026-03-06 21:17:32] [INFO] New render detected (TS: 1772799445.2255542)
+[2026-03-06 21:17:33] [INFO] Started Discord notified
+[2026-03-06 21:17:46] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:17:47] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:17:49] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:17:50] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:17:52] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:18:01] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:12] [INFO] New render detected: Render_20260306_211811.json
+[2026-03-06 21:18:12] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 21:18:13] [INFO] New render detected (TS: 1772799491.715053)
+[2026-03-06 21:18:13] [INFO] Thumbnail updated: Frame 8
+[2026-03-06 21:18:13] [INFO] Started Discord notified
+[2026-03-06 21:18:15] [INFO] Thumbnail updated: Frame 17
+[2026-03-06 21:18:16] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:20] [INFO] New render detected: Render_20260306_211820.json
+[2026-03-06 21:18:20] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:21] [INFO] New render detected (TS: 1772799500.1102147)
+[2026-03-06 21:18:21] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 21:18:21] [INFO] Started Discord notified
+[2026-03-06 21:18:23] [INFO] Thumbnail updated: Frame 16
+[2026-03-06 21:18:24] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:33] [INFO] New render detected: Render_20260306_211833.json
+[2026-03-06 21:18:33] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:34] [INFO] New render detected (TS: 1772799513.1296182)
+[2026-03-06 21:18:34] [INFO] Thumbnail updated: Frame 6
+[2026-03-06 21:18:35] [INFO] Started Discord notified
+[2026-03-06 21:18:36] [INFO] Thumbnail updated: Frame 16
+[2026-03-06 21:18:37] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:18:41] [INFO] New render detected: Render_20260306_211840.json
+[2026-03-06 21:18:41] [INFO] New render detected (TS: 1772799520.7008696)
+[2026-03-06 21:18:41] [INFO] Thumbnail updated: Frame 3
+[2026-03-06 21:18:42] [INFO] Started Discord notified
+[2026-03-06 21:20:15] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:20:17] [INFO] New render detected: Render_20260306_212016.json
+[2026-03-06 21:20:17] [INFO] New render detected (TS: 1772799616.9223547)
+[2026-03-06 21:20:17] [INFO] Thumbnail updated: Frame 2
+[2026-03-06 21:20:18] [INFO] Started Discord notified
+[2026-03-06 21:20:19] [INFO] Thumbnail updated: Frame 12
+[2026-03-06 21:20:20] [INFO] Thumbnail updated: Frame 16
+[2026-03-06 21:20:21] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 21:20:22] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:23] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:24] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:25] [INFO] New render detected (TS: 1772799616.9223547)
+[2026-03-06 21:20:25] [INFO] Started Discord notified
+[2026-03-06 21:20:28] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:29] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:30] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:31] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:32] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:33] [INFO] New render detected (TS: 1772799616.9223547)
+[2026-03-06 21:20:34] [INFO] Started Discord notified
+[2026-03-06 21:20:34] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:40] [INFO] Background render ended. Switching to active view.
+[2026-03-06 21:20:41] [INFO] New render detected (TS: 1772799616.9223547)
+[2026-03-06 21:20:42] [INFO] Started Discord notified
