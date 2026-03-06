@@ -988,3 +988,18 @@ AttributeError: type object 'PySide6.QtWidgets.QSystemTrayIcon' has no attribute
 [2026-03-06 14:50:39] [INFO] Thumbnail updated: Frame 100
 [2026-03-06 14:50:40] [INFO] → Finished
 [2026-03-06 14:50:45] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:05:28] [INFO] Monitor started (PySide6)
+[2026-03-06 15:05:28] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:05:29] [INFO] → Finished
+[2026-03-06 15:05:29] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:05:42] [INFO] Settings updated
+[2026-03-06 15:05:44] [INFO] Settings updated
+[2026-03-06 15:05:46] [INFO] Minimized to system tray
+[2026-03-06 15:07:18] [INFO] Monitor started (PySide6)
+[2026-03-06 15:07:18] [INFO] Watching: c:\Users\user\AppData\Roaming\RenderTracker\history
+[2026-03-06 15:07:19] [INFO] → Finished
+[2026-03-06 15:07:19] [INFO] Thumbnail updated: Frame 100
+[2026-03-06 15:07:36] [INFO] Settings updated
+[2026-03-06 15:07:37] [INFO] Settings updated
+[2026-03-06 15:07:39] [INFO] Settings updated
+[2026-03-06 15:07:40] [INFO] Settings updated
