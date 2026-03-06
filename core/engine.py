@@ -6,9 +6,9 @@ import sys
 import traceback
 from datetime import datetime
 from PIL import Image
-from path_manager import HISTORY_DIR, IMAGES_DIR, LOG_FILE
-import messenger
-from config_manager import save_config
+from utils.path_manager import HISTORY_DIR, IMAGES_DIR, LOG_FILE
+from core import messenger
+from utils.config_manager import save_config
 
 def log_to_file(msg, level="INFO"):
     """app_debug.log 파일에 로그를 기록합니다."""

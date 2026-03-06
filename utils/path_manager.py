@@ -5,11 +5,11 @@ import sys
 if getattr(sys, 'frozen', False):
     BASE_DIR = os.path.dirname(sys.executable)
 else:
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ── 주요 경로 정의 ─────────────────────────────────────────────────────────────
 HISTORY_DIR   = os.path.join(BASE_DIR, "history")
-CONFIG_FILE   = os.path.join(BASE_DIR, "config.json")
+CONFIG_FILE   = os.path.join(BASE_DIR, "settings.json")
 LOCALE_DIR    = os.path.join(BASE_DIR, "locale")
 LOG_FILE      = os.path.join(BASE_DIR, "app_debug.log")
 

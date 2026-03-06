@@ -5,13 +5,13 @@ import time
 import threading
 import traceback
 import psutil
-import constants
-import path_manager
-import config_manager
-import core
-import interface
-import messenger
-from styles import T, STYLE_SHEET_TEMPLATE
+from utils import constants
+from utils import path_manager
+from utils import config_manager
+from core import engine as core
+from ui import interface
+from core import messenger
+from ui.styles import T, STYLE_SHEET_TEMPLATE
 from datetime import datetime
 
 # 데이터 및 폴더 초기화

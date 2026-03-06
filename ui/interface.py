@@ -9,9 +9,9 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtGui import QColor, QPainter, QCursor, QLinearGradient, QBrush, QIcon, QPainterPath, QPen, QPixmap
 from PySide6.QtCore import Qt, Signal, Property, QSize, QRectF, QPropertyAnimation, QEasingCurve
-from styles import T
-from config_manager import save_config, load_messages
-from path_manager import IMAGES_DIR
+from ui.styles import T
+from utils.config_manager import save_config, load_messages
+from utils.path_manager import IMAGES_DIR
 
 # ── 커스텀 메시지 박스 ────────────────────────────────────────────────────────
 class CustomMessageBox(QDialog):

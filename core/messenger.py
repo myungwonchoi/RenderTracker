@@ -2,7 +2,7 @@ import json
 import os
 import requests
 import time
-from constants import DISCORD_COOLDOWN_SEC
+from utils.constants import DISCORD_COOLDOWN_SEC
 
 # 내부 쿨타임 관리 변수
 _last_progress_ts = 0

@@ -1234,3 +1234,35 @@ AttributeError: 'RenderMonitorApp' object has no attribute '_activate_main_windo
 [2026-03-06 16:58:11] [INFO] Thumbnail updated: Frame 36
 [2026-03-06 16:58:13] [INFO] Thumbnail updated: Frame 46
 [2026-03-06 16:58:15] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 18:50:39] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 18:50:44] [INFO] New render detected: Render_20260306_185043.json
+[2026-03-06 18:50:44] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 18:50:45] [INFO] New render detected (TS: 1772790643.8011699)
+[2026-03-06 18:50:45] [ERROR] Polling error: No module named 'path_manager'
+[2026-03-06 18:50:46] [INFO] Started Discord notified
+[2026-03-06 18:50:46] [INFO] Thumbnail updated: Frame 14
+[2026-03-06 18:50:47] [INFO] Thumbnail updated: Frame 18
+[2026-03-06 18:50:48] [INFO] Thumbnail updated: Frame 23
+[2026-03-06 18:50:50] [INFO] Thumbnail updated: Frame 32
+[2026-03-06 18:50:52] [INFO] Thumbnail updated: Frame 41
+[2026-03-06 18:50:53] [INFO] Thumbnail updated: Frame 46
+[2026-03-06 18:50:54] [ERROR] Polling error: No module named 'path_manager'
+[2026-03-06 18:50:55] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 18:51:02] [INFO] New render detected: Render_20260306_185101.json
+[2026-03-06 18:51:02] [INFO] New render detected (TS: 1772790661.9930444)
+[2026-03-06 18:51:02] [ERROR] Polling error: No module named 'path_manager'
+[2026-03-06 18:51:03] [INFO] Started Discord notified
+[2026-03-06 18:51:03] [INFO] Thumbnail updated: Frame 8
+[2026-03-06 18:51:05] [INFO] [History] Expecting value: line 1 column 1 (char 0)
+[2026-03-06 18:52:15] [INFO] New render detected: Render_20260306_185214.json
+[2026-03-06 18:52:15] [INFO] Thumbnail updated: Frame 50
+[2026-03-06 18:52:16] [INFO] New render detected (TS: 1772790734.7663913)
+[2026-03-06 18:52:16] [ERROR] Polling error: No module named 'path_manager'
+[2026-03-06 18:52:17] [INFO] Started Discord notified
+[2026-03-06 18:52:17] [INFO] Thumbnail updated: Frame 15
+[2026-03-06 18:52:18] [INFO] Thumbnail updated: Frame 20
+[2026-03-06 18:52:20] [INFO] Thumbnail updated: Frame 29
+[2026-03-06 18:52:22] [INFO] Thumbnail updated: Frame 39
+[2026-03-06 18:52:24] [INFO] Thumbnail updated: Frame 47
+[2026-03-06 18:52:25] [ERROR] Polling error: No module named 'path_manager'
+[2026-03-06 18:52:26] [INFO] Thumbnail updated: Frame 50

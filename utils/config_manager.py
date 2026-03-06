@@ -1,6 +1,6 @@
 import json
 import os
-from path_manager import CONFIG_FILE, LOCALE_DIR
+from utils.path_manager import CONFIG_FILE, LOCALE_DIR
 
 def load_config():
     """config.json 파일을 로드합니다."""
