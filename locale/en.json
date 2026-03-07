@@ -36,6 +36,7 @@
     "ui_end_time": "End Time",
     "ui_output_path": "Output Path",
     "ui_current_frame": "Current Frame",
+    "ui_current_frame_time": "Current Frame Time",
     "ui_prog_progress": "Progress",
     "ui_last_frame": "Last Frame Time",
     "ui_avg_frame": "Avg Frame Time",

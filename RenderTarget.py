@@ -3,6 +3,7 @@ import os
 import json
 import time
 import threading
+import socket
 import traceback
 import psutil
 from utils import constants
@@ -12,7 +13,6 @@ from core import engine
 from ui import interface
 from core import messenger
 from ui.styles import T, STYLE_SHEET_TEMPLATE
-from datetime import datetime
 
 # 데이터 및 폴더 초기화
 path_manager.ensure_directories()
@@ -20,19 +20,19 @@ path_manager.ensure_directories()
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
     QLabel, QPushButton, QScrollArea, QFrame, QGridLayout,
-    QProgressBar, QTextEdit, QLineEdit, QCheckBox, QRadioButton,
-    QDialog, QButtonGroup, QSpacerItem, QSizePolicy, QSizeGrip, QMessageBox,
-    QMenu, QSystemTrayIcon
+    QProgressBar, QTextEdit, QMenu, QSystemTrayIcon
 )
-from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QIcon, QCursor, QColor, QPainter, QAction, QPainterPath, QImageReader, QLinearGradient, QBrush
-from PySide6.QtCore import Qt, QTimer, Signal, QPoint, QSize, QUrl, Property, QPropertyAnimation, QEasingCurve
+from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QIcon, QCursor, QColor, QAction
+from PySide6.QtCore import Qt, QTimer, Signal
 from PySide6.QtMultimedia import QMediaPlayer, QAudioOutput
 
 # 예외 처리기 설정
 sys.excepthook = engine.handle_exception
 
 # --- Main Application Controller ---
-class RenderMonitorApp(QMainWindow):
+class RenderTrackerMonitor(QMainWindow):
+    socket_signal = Signal(dict) # 소켓 메시지 처리를 위한 시그널
+
     def __init__(self):
         super().__init__()
         # 기본 윈도우 속성 설정 (Frameless, 반투명 등)
@@ -55,7 +55,6 @@ class RenderMonitorApp(QMainWindow):
         # 상태 관리 엔진 및 초기 데이터 변수
         self.start_app_ts = time.time()
         self.state_engine = engine.RenderStateEngine(self.start_app_ts)
-        self.monitor = engine.RenderMonitor(self.state_engine)
         self._init_state_vars()
         
         # 오디오 및 시스템 트레이 설정
@@ -67,10 +66,13 @@ class RenderMonitorApp(QMainWindow):
         interface.apply_ui_translations(self)
         self._load_initial_data()
         
-        # 모니터링 타이머 시작
-        self.poll_timer = QTimer(self)
-        self.poll_timer.timeout.connect(self._poll)
-        self.poll_timer.start(constants.POLLING_INTERVAL_MS)
+        # 모니터링 타이머 및 소켓 서버 시작
+        self.main_timer = QTimer(self)
+        self.main_timer.timeout.connect(self._update_app_state)
+        self.main_timer.start(constants.POLLING_INTERVAL_MS)
+
+        self.socket_signal.connect(self._on_socket_received)
+        self._start_socket_server()
 
         # 시각 효과 오버레이
         self.glow_overlay = interface.MainGlowOverlay(self)
@@ -96,8 +98,6 @@ class RenderMonitorApp(QMainWindow):
         self._first_img_mtime = 0
         self._last_img_path = None
         self._last_img_mtime = 0
-        self._last_jump_start_ts = 0
-        self._last_jump_end_ts = 0
 
     def _load_initial_data(self):
         """앱 시작 시 가장 최근의 렌더 기록을 모니터링 대상으로 설정 (Silent 로드)"""
@@ -106,9 +106,6 @@ class RenderMonitorApp(QMainWindow):
             try:
                 with open(latest, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                    init, end = data.get("start", {}), data.get("end", {})
-                    self._last_jump_start_ts = init.get("start_ts", 0)
-                    self._last_jump_end_ts = end.get("end_ts", 0)
                     self._active_file = latest
                     
                     # [Fix] 초기 가동 시 상태 엔진 동기화 및 경로 정합성 확보
@@ -241,6 +238,15 @@ class RenderMonitorApp(QMainWindow):
         dlg = interface.SettingsDialog(self, self.cfg, self.app_msgs, self._on_cfg_changed)
         dlg.exec()
 
+    def _open_output_folder(self):
+        """현재 렌더링 결과물이 저장되는 폴더를 엽니다."""
+        # last_init에서 경로를 가져오거나, state_engine에 저장된 데이터에서 가져옵니다.
+        path = self.last_init.get("output_path") if hasattr(self, 'last_init') else None
+        if path and os.path.exists(path):
+            os.startfile(path)
+        else:
+            self._log("Output path not found or invalid", "WARNING")
+
     def _on_cfg_changed(self, new_cfg):
         prev_lang = self._app_lang
         self.cfg = new_cfg
@@ -251,6 +257,89 @@ class RenderMonitorApp(QMainWindow):
             interface.apply_ui_translations(self)
         self._update_volume()
         self._log("Settings updated")
+
+    # --- Network Socket Server ---
+    def _start_socket_server(self):
+        """백그라운드에서 소켓 서버를 시작합니다."""
+        port = self.cfg.get("socket_port", constants.DEFAULT_PORT)
+        threading.Thread(target=self._socket_server_loop, args=(port,), daemon=True).start()
+        self._log(f"Socket server standby (Port: {port})")
+
+    def _socket_server_loop(self, port):
+        """실제 TCP 수신 루프"""
+        try:
+            server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            # 포트 재사용 설정 (앱 재시작 시 포트 바인딩 에러 방지)
+            server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            server.bind(('127.0.0.1', port))
+            server.listen(5)
+            
+            while True:
+                conn, addr = server.accept()
+                try:
+                    data = conn.recv(8192) # 긴 경로 대비 8KB 수신
+                    if data:
+                        msg = json.loads(data.decode('utf-8'))
+                        self.socket_signal.emit(msg)
+                except Exception as e:
+                    engine.log_to_file(f"Socket receive error: {e}", "ERROR")
+                finally:
+                    conn.close()
+        except Exception as e:
+            self._log(f"Socket server critical error: {e}", "ERROR")
+            engine.log_to_file(f"Socket Server Crash:\n{traceback.format_exc()}", "CRITICAL")
+
+    def _save_socket_data_to_file(self, msg):
+        """소켓으로 전달받은 렌더링 상태를 JSON 히스토리 파일로 저장합니다."""
+        event_type = msg.get("event", "UNKNOWN")
+        
+        # 새 세션(START)이거나 켤 때부터 렌더링 중이었다면 새 파일 생성
+        if event_type == "START" or not self._active_file:
+            ts_str = time.strftime("%Y%m%d_%H%M%S")
+            self._active_file = os.path.join(path_manager.HISTORY_DIR, f"Render_{ts_str}.json")
+            
+        if self._active_file:
+            try:
+                with open(self._active_file, "w", encoding="utf-8") as f:
+                    json.dump(msg, f, ensure_ascii=False, indent=2)
+            except Exception as e:
+                engine.log_to_file(f"Failed to save socket data: {e}", "ERROR")
+            return self._active_file
+        return None
+
+    def _on_socket_received(self, msg):
+        """소켓에서 수신된 데이터를 파싱하고 저장 및 UI에 반영합니다."""
+        event_type = msg.get("event", "UNKNOWN")
+        
+        # 1. 파일로 저장하여 히스토리 유지
+        saved_path = self._save_socket_data_to_file(msg)
+        if not saved_path: return
+        
+        # [신규 추가] 세션 동기화 로직
+        # 새로운 세션이 시작되거나, 백그라운드에서 FINISH 이벤트가 온 경우
+        if event_type == "START" or (event_type == "FINISH" and self._active_file != saved_path):
+            self._active_file = saved_path
+            self.watched_pid = msg.get("start", {}).get("dcc_pid")
+            
+            # 과거기록 시청 중 배경에서 렌더가 시작/종료되면 실시간 뷰로 자동 점프
+            if self._viewing_file:
+                self._log(f"Auto-switching: Background render {event_type}")
+                self._viewing_file = None
+                
+            if event_type == "START":
+                self.crash_sent = False
+                soft = msg.get("start", {}).get("software", "Unknown")
+                self._log(f"Session Changed: [{soft}] (PID:{self.watched_pid})")
+                self._refresh_sidebar()
+
+        # 2. 실시간 시간 보정 (파이썬에서 경과시간/ETA 직접 계산)
+        msg = engine.enrich_realtime_metrics(msg)
+        
+        # 3. 모델 폴링(detect_events) 및 UI 업데이트
+        # 과거 기록 시청 중이 아닐 때만 즉각 반영
+        if not self._viewing_file:
+            events = self.state_engine.detect_events(msg, from_history=False)
+            self._process(msg, saved_path, events, from_history=False)
 
     # --- Polling & Data Handling ---
     def _refresh_sidebar(self):
@@ -281,6 +370,9 @@ class RenderMonitorApp(QMainWindow):
             with open(path, "r", encoding="utf-8") as fh:
                 data = json.load(fh)
             
+            # [Fix] 히스토리 로드 시에도 시간/지표 보정 적용
+            data = engine.enrich_realtime_metrics(data)
+
             # [Fix] 히스토리 로드 시 즉각적인 상태 반영 (상태 엔진 동기화 및 UI 강제 갱신)
             events = self.state_engine.detect_events(data, from_history=True)
             self.last_status = None 
@@ -288,84 +380,32 @@ class RenderMonitorApp(QMainWindow):
         except Exception as e:
             self._log(f"[History] {e}")
 
-    def _poll(self):
-        """단일 책임 원칙에 따른 지휘자: 0.5초마다 모든 상황을 판단하고 조율"""
+    def _update_app_state(self):
+        """단일 책임 원칙: 0.5초마다 (1) 크래시 감시 (2) 활성 렌더 UI 시계 갱신"""
         try:
-            target_path = self._viewing_file if self._viewing_file else self._active_file
-            
-            # 1. 시스템 정보 수집 (Engine 위임)
-            #watched_pid = self.watched_pid
-            res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
-            
-            latest_file = res.get("latest_file")
-
-            # 2. 프로세스 종료 감지 (Crashed/Ended)
-            # 종료 처리를 세션 전환보다 먼저 수행하여, 이전 세션 파일에 정확히 종료 기록을 남김
-            if res["crashed"] and not self.crash_sent:
-                self._log(f"Process termination detected (PID: {self.watched_pid})")
-                self.crash_sent = True
-                self._on_crash() # 즉시 실행하여 데이터 정합성 유지
-
-            # 3. Decision: 세션 변화 처리 (New Active)
-            # 실시간 렌더가 없는 상태에서 새 파일이 감지되거나, 활성 파일이 바뀐 경우
-            if latest_file and latest_file != self._active_file:
-                # [Log] 신규 세션 상세 정보 기록 및 상태 초기화
+            # 1. 프로세스 크래시 감시 (진행 중인 렌더링에만 해당)
+            if self.watched_pid and not self.crash_sent:
                 try:
-                    with open(latest_file, "r", encoding="utf-8") as f:
-                        meta = json.load(f).get("start", {})
-                        soft = meta.get("software", "Unknown")
-                        pid = meta.get("c4d_pid", None)
-                        
-                        # 중요: 신규 세션 감지 시 감시 PID 업데이트 및 크래시 상태 초기화
-                        self.watched_pid = pid
-                        self._active_file = latest_file # Ensure _active_file is updated
-                        # 히스토리 모드 여부와 상관없이 새로운 세션으로 강제 점프 (최상단 정보 표시)
-                        if self._viewing_file:
-                            self._log(f"Auto-switching to new session: {os.path.basename(latest_file)}")
-                            self._viewing_file = None
+                    p = psutil.Process(self.watched_pid)
+                    if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
+                        self._log(f"Process termination detected (PID: {self.watched_pid})")
+                        self.crash_sent = True
+                        self._on_crash()
+                except psutil.NoSuchProcess:
+                    self._log(f"Process termination detected (PID: {self.watched_pid})")
+                    self.crash_sent = True
+                    self._on_crash()
+                except Exception:
+                    pass
 
-                        target_path = latest_file
-                        self._refresh_sidebar()
-                        self._log(f"Session Changed: [{soft}] (PID:{pid}) {os.path.basename(latest_file)}")
-                        
-                        # [핵심] 세션이 바뀌었으므로 새 파일의 데이터를 즉시 다시 로드하여 낡은 데이터 오염 방지
-                        res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
-                except Exception as e:
-                    self._log(f"Session switch error: {str(e)}", "ERROR")
-                    self._active_file = latest_file # 에러나도 일단 경로는 업데이트
-
-            # 4. 등 뒤의 감시자 로직 보강 (시작/종료 감시)
-            if res["active_data"]:
-                active_init = res["active_data"].get("start", {})
-                active_end = res["active_data"].get("end", {})
-                start_ts = active_init.get("start_ts", 0)
-                end_ts = active_end.get("end_ts", 0)
-
-                # 백그라운드 "시작" 감지 (과거 기록을 보고 있을 때만 알림 발생시 점프)
-                if start_ts > self._last_jump_start_ts:
-                    self._last_jump_start_ts = start_ts
-                    if self._viewing_file:
-                        self._log(f"Auto-switching: Background render started ({start_ts})")
-                        self._viewing_file = None
-                        target_path = self._active_file
-                        # 점프했으므로 데이터 다시 읽기
-                        res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
-
-                # 백그라운드 "종료" 감지 (실시간 뷰로 강제 점프)
-                if self._viewing_file and end_ts > self._last_jump_end_ts:
-                    self._last_jump_end_ts = end_ts
-                    self._log(f"Auto-switching: Background render ended ({end_ts})")
-                    self._viewing_file = None
-                    target_path = self._active_file
-                    # 점프했으므로 데이터 다시 읽기
-                    res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
-
-            # 4. Ingestion & Action: 결정된 target_path의 데이터를 UI에 투영
-            if res["target_data"]:
-                from_history = (self._viewing_file is not None)
-                events = self.state_engine.detect_events(res["target_data"], from_history)
-                # 데이터와 그 데이터의 출처(Path)를 함께 묶어서 전달 (정합성 확보)
-                self._process(res["target_data"], target_path, events, from_history)
+            # 2. 실시간 시계 갱신 (과거 기록을 보고 있지 않고, 진행 중인 상태일 때)
+            if not self._viewing_file and self.state_engine.last_status == "Progress" and self.state_engine.last_known_data:
+                # 파일 I/O 없이 메모리 상의 마지막 데이터를 가져옴
+                data_to_process = engine.enrich_realtime_metrics(self.state_engine.last_known_data)
+                events = self.state_engine.detect_events(data_to_process, from_history=False)
+                # 데이터와 그 데이터의 출처(Path)를 함께 묶어서 전달
+                if self._active_file:
+                    self._process(data_to_process, self._active_file, events, from_history=False)
 
         except Exception as e:
             err_details = traceback.format_exc()
@@ -431,15 +471,9 @@ class RenderMonitorApp(QMainWindow):
             is_realtime = not from_history
             software = init.get("software", "Unknown")
             
-            # 실시간 데이터 시각 동기화
-            if is_realtime:
-                start_ts = init.get("start_ts", 0)
-                if start_ts > self._last_jump_start_ts:
-                    self._log(f"Processing real-time data for {software} (Start TS: {start_ts})")
-                self._last_jump_start_ts = max(self._last_jump_start_ts, start_ts)
-                curr_end_ts = end.get("end_ts", 0)
-                if curr_end_ts > 0:
-                    self._last_jump_end_ts = max(self._last_jump_end_ts, curr_end_ts)
+            # 실시간 데이터 로깅 (필요 시)
+            if is_realtime and "FRESH_START" in events:
+                self._log(f"Processing real-time data for {software}")
 
             # 0. 세션 시작 처리 (캐시 초기화 등)
             if "SESSION_STARTED" in events:
@@ -495,14 +529,16 @@ class RenderMonitorApp(QMainWindow):
 
     def _handle_progress_update(self, upd, pct, events, init, is_realtime):
         """진행 중 상태의 UI 갱신 및 디스코드 알림"""
-        # [구조적 개선] 히스토리 모드이거나 상태 전이 이벤트가 있을 때 UI 갱신 허용
+        # [Fix] 실시간 시간 데이터 (남은 시간, ETA, 경과 시간)는 매 프레임 상시 업데이트
+        rem = upd.get("remaining_seconds", -1)
+        interface.update_info_label(self._info_vars.get("remaining"), engine.fmt_time(rem) if rem >= 0 else "—")
+        interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if (is_realtime and rem >= 0) else "—")
+        interface.update_info_label(self._info_vars.get("end_time"), "—")
+        interface.update_info_label(self._info_vars.get("total_elapsed"), engine.fmt_time(upd.get("elapsed_seconds", 0)))
+
+        # 상태 뱃지 및 최초 진입 처리
         if self.last_status != "Progress" or not is_realtime:
             self.last_status = "Progress"
-            rem = upd.get("remaining_seconds", -1)
-            interface.update_info_label(self._info_vars.get("remaining"), engine.fmt_time(rem) if rem >= 0 else "—")
-            interface.update_info_label(self._info_vars.get("eta"), time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()+rem)) if rem >= 0 else "—")
-            interface.update_info_label(self._info_vars.get("end_time"), "—")
-            interface.update_info_label(self._info_vars.get("total_elapsed"), engine.fmt_time(upd.get("elapsed_seconds", 0)))
             interface.update_status_by_key(self, "progress", T.YELLOW, T.BADGE_YELLOW)
         
         interface.update_progress(self, pct, T.YELLOW)
@@ -536,7 +572,7 @@ class RenderMonitorApp(QMainWindow):
 
         # 8. 썸네일 업데이트 (앱에서 직접 복사 및 리사이징 처리)
         # 중요: 렌더 중 실시간 경로는 init 대신 upd에서 가져와야 최신화됩니다.
-        curr_path = upd.get("current_frame_path")
+        curr_path = upd.get("last_frame_path")
         if curr_path:
             init["last_frame_path"] = curr_path
 
@@ -721,7 +757,7 @@ if __name__ == "__main__":
     final_style = STYLE_SHEET_TEMPLATE.replace("{FONT_FAMILY}", f"'{target_font}', 'Segoe UI', sans-serif")
     app.setStyleSheet(final_style)
     
-    window = RenderMonitorApp()
+    window = RenderTrackerMonitor()
     window.show()
     window.raise_()
     window.activateWindow()

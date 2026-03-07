@@ -163,3 +163,151 @@
 [2026-03-08 00:34:18] [INFO] Session Changed: [Blender] (PID:52284) Render_20260308_003418.json
 [2026-03-08 00:34:18] [INFO] New render detected (TS: 1772897658.2277687)
 [2026-03-08 00:34:19] [INFO] Started Discord notified
+[2026-03-08 02:50:49] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 02:51:17] [INFO] Session Changed: [Blender] (PID:41480)
+[2026-03-08 02:51:17] [INFO] Processing real-time data for Blender
+[2026-03-08 02:51:17] [INFO] New render detected (TS: 1772905877.0377471)
+[2026-03-08 02:51:20] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 02:51:24] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 02:51:27] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 02:51:31] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 02:51:34] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 02:51:38] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 02:51:59] [INFO] Session Changed: [Blender] (PID:41480)
+[2026-03-08 02:51:59] [INFO] Processing real-time data for Blender
+[2026-03-08 02:51:59] [INFO] New render detected (TS: 1772905919.7376451)
+[2026-03-08 02:52:03] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 02:52:06] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 02:52:10] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 02:52:13] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 02:52:17] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 02:52:20] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 02:53:51] [INFO] Process termination detected (PID: 41480)
+[2026-03-08 02:53:51] [INFO] Blender process ended (PID: 41480)
+[2026-03-08 02:54:06] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 02:54:06] [INFO] Processing real-time data for Blender
+[2026-03-08 02:54:06] [INFO] New render detected (TS: 1772906046.3818436)
+[2026-03-08 02:54:10] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 02:54:13] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 02:54:16] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 02:54:20] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 02:54:23] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 02:54:27] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 02:56:08] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 02:56:08] [INFO] Processing real-time data for Blender
+[2026-03-08 02:56:08] [INFO] New render detected (TS: 1772906168.1740382)
+[2026-03-08 02:56:11] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 02:56:15] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 02:56:18] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 02:56:22] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 02:56:25] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 02:56:29] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 02:59:37] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 02:59:37] [INFO] Processing real-time data for Blender
+[2026-03-08 02:59:37] [INFO] New render detected (TS: 1772906377.8671088)
+[2026-03-08 02:59:41] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 02:59:44] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 02:59:48] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 02:59:51] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 02:59:55] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 02:59:58] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:03:34] [INFO] Auto-switching: Background render START
+[2026-03-08 03:03:34] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:03:34] [INFO] Processing real-time data for Blender
+[2026-03-08 03:03:34] [INFO] New render detected (TS: 1772906614.2767513)
+[2026-03-08 03:03:37] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:03:41] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:03:45] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:03:48] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:03:52] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:03:55] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:04:00] [INFO] Auto-switching: Background render START
+[2026-03-08 03:04:00] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:04:00] [INFO] Processing real-time data for Blender
+[2026-03-08 03:04:00] [INFO] New render detected (TS: 1772906640.1244068)
+[2026-03-08 03:04:03] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:04:07] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:04:10] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:04:14] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:04:17] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:04:21] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:04:56] [INFO] Auto-switching: Background render START
+[2026-03-08 03:04:56] [INFO] Session Changed: [Cinema 4D] (PID:74892)
+[2026-03-08 03:04:56] [INFO] Processing real-time data for Cinema 4D
+[2026-03-08 03:04:56] [INFO] New render detected (TS: 1772906696.0)
+[2026-03-08 03:04:57] [INFO] Thumbnail updated: Frame 0
+[2026-03-08 03:04:59] [INFO] Thumbnail updated: Frame 1
+[2026-03-08 03:05:00] [INFO] Thumbnail updated: Frame 2
+[2026-03-08 03:05:01] [INFO] Thumbnail updated: Frame 3
+[2026-03-08 03:05:03] [INFO] Thumbnail updated: Frame 4
+[2026-03-08 03:05:05] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:06:18] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 03:06:30] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:06:30] [INFO] Processing real-time data for Blender
+[2026-03-08 03:06:30] [INFO] New render detected (TS: 1772906790.5764391)
+[2026-03-08 03:06:34] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:06:37] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:06:41] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:06:44] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:06:48] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:06:51] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:07:03] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:07:03] [INFO] Processing real-time data for Blender
+[2026-03-08 03:07:03] [INFO] New render detected (TS: 1772906823.6950955)
+[2026-03-08 03:07:07] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:07:10] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:07:14] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:07:17] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:07:21] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:07:24] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:07:37] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:07:37] [INFO] Processing real-time data for Blender
+[2026-03-08 03:07:37] [INFO] New render detected (TS: 1772906857.3832655)
+[2026-03-08 03:07:40] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:07:42] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 167, in <lambda>
+    self._info_vars["output_path"].mousePressEvent = lambda e: self._open_output_folder()
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RenderTrackerMonitor' object has no attribute '_open_output_folder'
+
+[2026-03-08 03:07:42] [CRITICAL] CRITICAL UNHANDLED EXCEPTION:
+Traceback (most recent call last):
+  File "c:\Users\user\AppData\Roaming\RenderTracker\RenderTarget.py", line 167, in <lambda>
+    self._info_vars["output_path"].mousePressEvent = lambda e: self._open_output_folder()
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'RenderTrackerMonitor' object has no attribute '_open_output_folder'
+
+[2026-03-08 03:07:44] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:07:47] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:07:51] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:07:55] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:07:58] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:08:00] [INFO] Minimized to system tray
+[2026-03-08 03:08:10] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 03:19:09] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 03:19:12] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:19:12] [INFO] Processing real-time data for Blender
+[2026-03-08 03:19:12] [INFO] New render detected (TS: 1772907552.5654273)
+[2026-03-08 03:19:16] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:19:19] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:19:23] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:19:26] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:19:30] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:19:33] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:19:48] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:19:48] [INFO] Processing real-time data for Blender
+[2026-03-08 03:19:48] [INFO] New render detected (TS: 1772907588.126417)
+[2026-03-08 03:20:18] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:20:20] [INFO] Auto-switching: Background render START
+[2026-03-08 03:20:20] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 03:20:20] [INFO] Processing real-time data for Blender
+[2026-03-08 03:20:20] [INFO] New render detected (TS: 1772907620.854768)
+[2026-03-08 03:20:24] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 03:20:27] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 03:20:31] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 03:20:34] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 03:20:38] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 03:20:41] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 03:23:06] [INFO] Minimized to system tray
+[2026-03-08 03:23:16] [INFO] Socket server standby (Port: 50000)

@@ -36,6 +36,7 @@
     "ui_end_time": "종료 시각",
     "ui_output_path": "출력 경로",
     "ui_current_frame": "현재 프레임",
+    "ui_current_frame_time": "현재 프레임 시간",
     "ui_prog_progress": "진행 상황",
     "ui_last_frame": "직전 프레임 시간",
     "ui_avg_frame": "평균 프레임 시간",

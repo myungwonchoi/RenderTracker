@@ -8,3 +8,6 @@ POLLING_INTERVAL_MS = 500
 # 디스코드 진행 상황 업데이트 쿨타임 (단위: seconds)
 # 5.0 = 최소 5초 간격으로 디스코드 메시지를 업데이트합니다.
 DISCORD_COOLDOWN_SEC = 3.0
+
+# 네트워크 소켓 설정
+DEFAULT_PORT = 50000

@@ -55,6 +55,61 @@ def get_latest_render_file():
     files.sort(reverse=True)
     return os.path.join(HISTORY_DIR, files[0])
 
+def enrich_realtime_metrics(data):
+    """실시간 타임스탬프를 기반으로 경과 시간, 평균 시간, 남은 시간을 계산하여 원본 데이터에 주입합니다."""
+    if not data: return data
+    init = data.get("start", {})
+    upd = data.get("update", {})
+    end = data.get("end", {})
+    start_ts = init.get("start_ts", 0)
+    end_ts = end.get("end_ts", -1)
+    ren = upd.get("rendered_frames", 0)
+    tot = init.get("total_frames", 0)
+
+    # 시작/종료 시각 포맷팅 보완
+    if start_ts > 0 and (not init.get("start_time") or init.get("start_time") == "—"):
+        init["start_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(start_ts))
+
+    # 종료된 렌더라면 이미 끝난 시간 기준
+    if end_ts and end_ts > 0:
+        if not end.get("end_time") or end.get("end_time") == "—":
+            end["end_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(end_ts))
+            
+        elapsed = max(0, end_ts - start_ts)
+        upd["elapsed_seconds"] = elapsed
+        if ren > 0:
+            upd["avg_frame_duration"] = elapsed / ren
+        upd["remaining_seconds"] = 0
+        upd["field_current_frame_time"] = "—" # 종료 시에는 현재 프레임 시간 없음
+        return data
+
+    # 진행 중인 렌더링
+    now_ts = time.time()
+    elapsed = max(0, now_ts - start_ts) if start_ts > 0 else 0
+    upd["elapsed_seconds"] = elapsed
+    
+    # 현재 프레임 경과 시간 계산
+    curr_start = upd.get("current_frame_start_ts", 0)
+    # Cinema 4D 등에서 내부 타이머를 보낼 경우를 대비해 10억 초(약 1970년 이후) 이상일 때만 wall clock으로 간주
+    if curr_start > 1000000000: 
+        curr_elapsed = max(0, now_ts - curr_start)
+        upd["field_current_frame_time"] = fmt_time(curr_elapsed)
+    else:
+        upd["field_current_frame_time"] = "—"
+    
+    if ren > 0:
+        avg = elapsed / ren
+        upd["avg_frame_duration"] = avg
+        if tot > ren:
+            upd["remaining_seconds"] = avg * (tot - ren)
+        else:
+            upd["remaining_seconds"] = 0
+    else:
+        upd["remaining_seconds"] = -1
+        upd["avg_frame_duration"] = 0
+        
+    return data
+
 def determine_render_status(info, upd, end):
     """JSON 데이터를 기반으로 현재 렌더링 상태를 판정합니다."""
     end_ts = end.get("end_ts", -1)
@@ -216,11 +271,13 @@ class RenderStateEngine:
         self.last_start_ts = None
         self.last_status = None
         self.last_rendered_frames = -1
+        self.last_known_data = None
 
     def detect_events(self, data, from_history=False):
         """데이터를 분석하여 발생한 이벤트 목록을 반환합니다."""
         events = []
         is_realtime = not from_history
+        self.last_known_data = data
         
         info = data.get("start", {})
         upd = data.get("update", {})
@@ -260,37 +317,3 @@ class RenderStateEngine:
 
         return events
 
-
-class RenderMonitor:
-    """렌더링 상태 및 프로세스를 1초마다 감시하는 엔진입니다."""
-    def __init__(self, state_engine):
-        self.state_engine = state_engine
-
-    def _read_json(self, path):
-        """JSON 파일을 읽고 정합성을 체크합니다."""
-        try:
-            if not path or not os.path.exists(path): return None
-            with open(path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except:
-            return None
-
-    def poll(self, target_file, active_file, watched_pid):
-        """정직한 데이터 제공자: 요청받은 데이터와 시스템 상태만 반환"""
-        res = {
-            "crashed": False,
-            "latest_file": get_latest_render_file(),
-            "target_data": self._read_json(target_file) if target_file else None,
-            "active_data": self._read_json(active_file) if active_file else None
-        }
-        
-        # 프로세스 체크
-        if watched_pid:
-            try:
-                p = psutil.Process(watched_pid)
-                if not p.is_running() or p.status() == psutil.STATUS_ZOMBIE:
-                    res["crashed"] = True
-            except:
-                res["crashed"] = True
-                
-        return res
