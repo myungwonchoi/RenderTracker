@@ -214,8 +214,7 @@ def on_render_pre(scene):
         
     state.last_frame_time = now
     state.frame_start_time = now
-    state.current_frame += 1
-    state.frame_number = scene.frame_current
+    state.current_frame = scene.frame_current
     state.current_frame_time_str = "00:00:00"
     
     elapsed_seconds = now - state.render_start_time
