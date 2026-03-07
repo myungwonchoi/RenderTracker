@@ -1,3 +1,4 @@
 # 렌더링 히스토리 폴더
 \history
 .log
+\__pycache__
