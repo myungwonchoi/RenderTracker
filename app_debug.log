@@ -140,3 +140,26 @@
 [2026-03-08 00:08:58] [INFO] Thumbnail updated: Frame 8
 [2026-03-08 00:08:59] [INFO] Thumbnail updated: Frame 9
 [2026-03-08 00:09:00] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 00:15:03] [INFO] Auto-switching to new session: Render_20260308_001503.json
+[2026-03-08 00:15:03] [INFO] Session Changed: [Blender] (PID:13192) Render_20260308_001503.json
+[2026-03-08 00:15:03] [INFO] New render detected (TS: 1772896503.0375211)
+[2026-03-08 00:15:03] [INFO] Started Discord notified
+[2026-03-08 00:15:07] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 00:15:08] [INFO] Process termination detected (PID: 13192)
+[2026-03-08 00:15:08] [INFO] Blender process ended (PID: 13192)
+[2026-03-08 00:15:08] [INFO] Force updated JSON on process end: Render_20260308_001503.json
+[2026-03-08 00:15:12] [INFO] Session Changed: [Cinema 4D] (PID:30452) Render_20260308_001512.json
+[2026-03-08 00:15:12] [INFO] New render detected (TS: 1772896512.0)
+[2026-03-08 00:15:13] [INFO] Started Discord notified
+[2026-03-08 00:15:13] [INFO] Thumbnail updated: Frame 0
+[2026-03-08 00:15:15] [INFO] Thumbnail updated: Frame 2
+[2026-03-08 00:15:16] [INFO] Thumbnail updated: Frame 3
+[2026-03-08 00:15:37] [INFO] Auto-switching to new session: Render_20260308_001537.json
+[2026-03-08 00:15:37] [INFO] Session Changed: [Blender] (PID:33068) Render_20260308_001537.json
+[2026-03-08 00:15:37] [INFO] New render detected (TS: 1772896537.1755886)
+[2026-03-08 00:15:38] [INFO] Started Discord notified
+[2026-03-08 00:15:41] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 00:34:18] [INFO] Auto-switching to new session: Render_20260308_003418.json
+[2026-03-08 00:34:18] [INFO] Session Changed: [Blender] (PID:52284) Render_20260308_003418.json
+[2026-03-08 00:34:18] [INFO] New render detected (TS: 1772897658.2277687)
+[2026-03-08 00:34:19] [INFO] Started Discord notified
