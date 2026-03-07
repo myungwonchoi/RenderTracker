@@ -238,7 +238,7 @@ void RenderNotifierVideoPost::WriteStatusJson(
         ToStdString(EscapeJson(_firstFrameImagePath)).c_str(),
         ToStdString(EscapeJson(_lastFrameImagePath)).c_str(),
         // update
-        _currentFrame,
+        _completedFramesCount,
         frameNumber,
         elapsedSeconds, remainingSeconds,
         avgFrameDuration, lastFrameDuration, currentFrameDuration,
