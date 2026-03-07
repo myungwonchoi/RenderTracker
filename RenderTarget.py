@@ -112,8 +112,13 @@ class RenderMonitorApp(QMainWindow):
                     self._active_file = latest
                     
                     # [Fix] 초기 가동 시 상태 엔진 동기화 및 경로 정합성 확보
-                    events = self.state_engine.detect_events(data, from_history=True)
-                    self._process(data, latest, events, from_history=True) 
+                    # 현재 진행 중인 상태라면 실시간 모드로 로드하여 감지 가능하게 함
+                    status = engine.determine_render_status(init, data.get("update", {}), end)
+                    is_progress = (status == "Progress")
+                    
+                    self._viewing_file = None if is_progress else latest
+                    events = self.state_engine.detect_events(data, from_history=not is_progress)
+                    self._process(data, latest, events, from_history=not is_progress) 
             except: pass
 
     def _restore_window_geometry(self):
@@ -250,7 +255,7 @@ class RenderMonitorApp(QMainWindow):
     # --- Polling & Data Handling ---
     def _refresh_sidebar(self):
         """히스토리 파일 목록을 스캔하여 사이드바 위젯 동기화"""
-        print("refresh sidebar")
+        # print("refresh sidebar")
         history_files = engine.get_history_files()
         interface.sync_history_sidebar(
             self, history_files, 
@@ -294,7 +299,14 @@ class RenderMonitorApp(QMainWindow):
             
             latest_file = res.get("latest_file")
 
-            # 2. Decision: 세션 변화 처리 (New Active)
+            # 2. 프로세스 종료 감지 (Crashed/Ended)
+            # 종료 처리를 세션 전환보다 먼저 수행하여, 이전 세션 파일에 정확히 종료 기록을 남김
+            if res["crashed"] and not self.crash_sent:
+                self._log(f"Process termination detected (PID: {self.watched_pid})")
+                self.crash_sent = True
+                self._on_crash() # 즉시 실행하여 데이터 정합성 유지
+
+            # 3. Decision: 세션 변화 처리 (New Active)
             # 실시간 렌더가 없는 상태에서 새 파일이 감지되거나, 활성 파일이 바뀐 경우
             if latest_file and latest_file != self._active_file:
                 # [Log] 신규 세션 상세 정보 기록 및 상태 초기화
@@ -306,29 +318,41 @@ class RenderMonitorApp(QMainWindow):
                         
                         # 중요: 신규 세션 감지 시 감시 PID 업데이트 및 크래시 상태 초기화
                         self.watched_pid = pid
-                        self.crash_sent = False
-                        self._active_file = latest_file
-                        
-                        # 타겟 경로 갱신 (히스토리를 보는 중이 아니면 새 파일로 즉시 점프)
-                        if not self._viewing_file:
-                            target_path = latest_file
-                            res["target_data"] = res.get("active_data") # active_data를 target_data로 활용 가능하나, poll 구조상 새로 읽어오는게 안전
-                        
+                        self._active_file = latest_file # Ensure _active_file is updated
+                        # 히스토리 모드 여부와 상관없이 새로운 세션으로 강제 점프 (최상단 정보 표시)
+                        if self._viewing_file:
+                            self._log(f"Auto-switching to new session: {os.path.basename(latest_file)}")
+                            self._viewing_file = None
+
+                        target_path = latest_file
+                        self._refresh_sidebar()
                         self._log(f"Session Changed: [{soft}] (PID:{pid}) {os.path.basename(latest_file)}")
+                        
+                        # [핵심] 세션이 바뀌었으므로 새 파일의 데이터를 즉시 다시 로드하여 낡은 데이터 오염 방지
+                        res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
                 except Exception as e:
                     self._log(f"Session switch error: {str(e)}", "ERROR")
                     self._active_file = latest_file # 에러나도 일단 경로는 업데이트
 
-            # 3. 프로세스 종료 감지 (Crashed/Ended)
-            if res["crashed"] and not self.crash_sent:
-                self._log(f"Process termination detected (PID: {self.watched_pid})")
-                self.crash_sent = True
-                QTimer.singleShot(0, self._on_crash)
+            # 4. 등 뒤의 감시자 로직 보강 (시작/종료 감시)
+            if res["active_data"]:
+                active_init = res["active_data"].get("start", {})
+                active_end = res["active_data"].get("end", {})
+                start_ts = active_init.get("start_ts", 0)
+                end_ts = active_end.get("end_ts", 0)
 
-            # 백그라운드 종료 시 점프 (res["active_data"]는 poll 시점에 읽어온 활성 파일의 최신 데이터)
-            if self._viewing_file and res["active_data"]:
-                end_ts = res["active_data"].get("end", {}).get("end_ts", 0)
-                if end_ts > self._last_jump_end_ts:
+                # 백그라운드 "시작" 감지 (과거 기록을 보고 있을 때만 알림 발생시 점프)
+                if start_ts > self._last_jump_start_ts:
+                    self._last_jump_start_ts = start_ts
+                    if self._viewing_file:
+                        self._log(f"Auto-switching: Background render started ({start_ts})")
+                        self._viewing_file = None
+                        target_path = self._active_file
+                        # 점프했으므로 데이터 다시 읽기
+                        res = self.monitor.poll(target_path, self._active_file, self.watched_pid)
+
+                # 백그라운드 "종료" 감지 (실시간 뷰로 강제 점프)
+                if self._viewing_file and end_ts > self._last_jump_end_ts:
                     self._last_jump_end_ts = end_ts
                     self._log(f"Auto-switching: Background render ended ({end_ts})")
                     self._viewing_file = None
@@ -614,28 +638,17 @@ class RenderMonitorApp(QMainWindow):
                 QTimer.singleShot(0, self._on_crash) # 메인 스레드에서 실행
 
     def _on_crash(self):
-        """렌더링 프로세스 비정상 종료 시 처리"""
+        """렌더링 프로세스 비정상 종료 시 처리: 오직 데이터 갱신만 수행"""
         try:
             soft = self.last_init.get("software", "DCC")
             pid_str = f" (PID: {self.watched_pid})" if self.watched_pid else ""
             self._log(f"{soft} process ended{pid_str}")
-            self.last_status = "Crashed"
             
             # JSON 강제 업데이트 (분리된 로직 호출)
+            # 사운드/글로우/알림 등 피드백은 데이터 변화를 감지한 상태 엔진이 다음 루프에서 처리하도록 위임
             if engine.force_update_json_on_crash(self._active_file):
                 self._log(f"Force updated JSON on process end: {os.path.basename(self._active_file)}")
 
-            interface.update_status_by_key(self, "crashed", T.RED, T.BADGE_RED)
-            interface.trigger_main_glow(self, T.RED)
-            interface.update_progress(self, self.progress_bar.value() / 1000.0, T.RED)
-            interface.play_sound(self, "Error")
-            interface.focus_window(self)
-            interface.scroll_to_top(self)
-            
-            # 알림 데이터 복제 (스레드 안전)
-            init_copy = dict(self.last_init)
-            upd_copy = dict(self.last_upd)
-            threading.Thread(target=messenger.notify_crash, args=(init_copy, upd_copy, self.cfg, self.msgs), daemon=True).start()
         except Exception as e:
             self._log(f"Crash handler error: {str(e)}", "ERROR")
 

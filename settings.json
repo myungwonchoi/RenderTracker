@@ -1,10 +1,10 @@
 {
-  "window_geometry": "01d9d0cb0003000000000443000000c3000007da0000047800000443000000c3000007da0000047800000000000000000a0000000443000000c3000007da00000478",
+  "window_geometry": "01d9d0cb00030000000000a7000000ae0000043e00000463000000a7000000ae0000043e0000046300000000000000000a00000000a7000000ae0000043e00000463",
   "app_language": "ko",
   "language": "ko",
   "webhook_url": "https://discord.com/api/webhooks/1476771074220757074/lLU4wJmKEPE2_RpkFeQ2YBexFOVZqZUpUeC9M1hrf4abKwbNyG2k2ZMRRR-z5ii0Hp2q",
-  "discord_userid": "",
-  "use_mention": false,
+  "discord_userid": "254929765356666881",
+  "use_mention": true,
   "pc_name": "",
   "volume": 50
 }
