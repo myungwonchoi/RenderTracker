@@ -311,3 +311,4966 @@ AttributeError: 'RenderTrackerMonitor' object has no attribute '_open_output_fol
 [2026-03-08 03:20:41] [INFO] Thumbnail updated: Frame 10
 [2026-03-08 03:23:06] [INFO] Minimized to system tray
 [2026-03-08 03:23:16] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 08:51:56] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 08:52:01] [DEBUG] Socket Data Received (START): {"end": {"end_ts": -1.0}, "event": "START", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "", "last_frame_path": "", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 0, "current_frame_start_ts": 1772927521.046652, "last_frame_duration": 0.0, "last_rendered_image_path": "", "rendered_frames": 0}}
+[2026-03-08 08:52:01] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:52:01] [INFO] Processing real-time data for Blender
+[2026-03-08 08:52:01] [INFO] New render detected (TS: 1772927521.046652)
+[2026-03-08 08:52:01] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "", "last_frame_path": "", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 5, "current_frame_start_ts": 1772927521.0476532, "last_frame_duration": 0.0, "last_rendered_image_path": "", "rendered_frames": 0}}
+[2026-03-08 08:52:04] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "", "last_frame_path": "", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 5, "current_frame_start_ts": 1772927521.0476532, "last_frame_duration": 3.5864975452423096, "last_rendered_image_path": "", "rendered_frames": 1}}
+[2026-03-08 08:52:04] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0005.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 5, "current_frame_start_ts": 1772927521.0476532, "last_frame_duration": 3.5864975452423096, "last_rendered_image_path": "C:\\tmp\\Test0005.png", "rendered_frames": 1}}
+[2026-03-08 08:52:04] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:52:04] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0005.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 6, "current_frame_start_ts": 1772927524.6341507, "last_frame_duration": 3.5864975452423096, "last_rendered_image_path": "C:\\tmp\\Test0005.png", "rendered_frames": 1}}
+[2026-03-08 08:52:08] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0005.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 6, "current_frame_start_ts": 1772927524.6341507, "last_frame_duration": 3.4841668605804443, "last_rendered_image_path": "C:\\tmp\\Test0005.png", "rendered_frames": 2}}
+[2026-03-08 08:52:08] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0006.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 6, "current_frame_start_ts": 1772927524.6341507, "last_frame_duration": 3.4841668605804443, "last_rendered_image_path": "C:\\tmp\\Test0006.png", "rendered_frames": 2}}
+[2026-03-08 08:52:08] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 08:52:08] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0006.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 7, "current_frame_start_ts": 1772927528.119824, "last_frame_duration": 3.485673189163208, "last_rendered_image_path": "C:\\tmp\\Test0006.png", "rendered_frames": 2}}
+[2026-03-08 08:52:11] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0006.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 7, "current_frame_start_ts": 1772927528.119824, "last_frame_duration": 3.5167605876922607, "last_rendered_image_path": "C:\\tmp\\Test0006.png", "rendered_frames": 3}}
+[2026-03-08 08:52:11] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0007.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 7, "current_frame_start_ts": 1772927528.119824, "last_frame_duration": 3.5167605876922607, "last_rendered_image_path": "C:\\tmp\\Test0007.png", "rendered_frames": 3}}
+[2026-03-08 08:52:11] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 08:52:11] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0007.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 8, "current_frame_start_ts": 1772927531.6534781, "last_frame_duration": 3.53365421295166, "last_rendered_image_path": "C:\\tmp\\Test0007.png", "rendered_frames": 3}}
+[2026-03-08 08:52:15] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0007.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 8, "current_frame_start_ts": 1772927531.6534781, "last_frame_duration": 3.5306599140167236, "last_rendered_image_path": "C:\\tmp\\Test0007.png", "rendered_frames": 4}}
+[2026-03-08 08:52:15] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0008.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 8, "current_frame_start_ts": 1772927531.6534781, "last_frame_duration": 3.5306599140167236, "last_rendered_image_path": "C:\\tmp\\Test0008.png", "rendered_frames": 4}}
+[2026-03-08 08:52:15] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 08:52:15] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0008.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 9, "current_frame_start_ts": 1772927535.1967094, "last_frame_duration": 3.543231248855591, "last_rendered_image_path": "C:\\tmp\\Test0008.png", "rendered_frames": 4}}
+[2026-03-08 08:52:18] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0008.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 9, "current_frame_start_ts": 1772927535.1967094, "last_frame_duration": 3.533644676208496, "last_rendered_image_path": "C:\\tmp\\Test0008.png", "rendered_frames": 5}}
+[2026-03-08 08:52:18] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0009.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 9, "current_frame_start_ts": 1772927535.1967094, "last_frame_duration": 3.533644676208496, "last_rendered_image_path": "C:\\tmp\\Test0009.png", "rendered_frames": 5}}
+[2026-03-08 08:52:18] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 08:52:18] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0009.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 10, "current_frame_start_ts": 1772927538.7462137, "last_frame_duration": 3.549504280090332, "last_rendered_image_path": "C:\\tmp\\Test0009.png", "rendered_frames": 5}}
+[2026-03-08 08:52:22] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0009.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 10, "current_frame_start_ts": 1772927538.7462137, "last_frame_duration": 3.5411622524261475, "last_rendered_image_path": "C:\\tmp\\Test0009.png", "rendered_frames": 6}}
+[2026-03-08 08:52:22] [DEBUG] Socket Data Received (PROGRESS): {"end": {"end_ts": -1.0}, "event": "PROGRESS", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0010.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 10, "current_frame_start_ts": 1772927538.7462137, "last_frame_duration": 3.5411622524261475, "last_rendered_image_path": "C:\\tmp\\Test0010.png", "rendered_frames": 6}}
+[2026-03-08 08:52:22] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 08:52:22] [DEBUG] Socket Data Received (FINISH): {"end": {"end_ts": 1772927542.2883759}, "event": "FINISH", "start": {"dcc_pid": 36972, "doc_name": "TestCube.blend", "end_frame": 10, "first_frame_path": "C:\\tmp\\Test0005.png", "last_frame_path": "C:\\tmp\\Test0010.png", "output_path": "C:\\tmp", "render_setting": null, "renderer": "Blender Render", "res_x": 1920, "res_y": 1080, "software": "Blender", "start_frame": 5, "start_ts": 1772927521.046652, "take_name": null, "total_frames": 6}, "update": {"current_frame": 10, "current_frame_start_ts": 1772927538.7462137, "last_frame_duration": 3.5411622524261475, "last_rendered_image_path": "C:\\tmp\\Test0010.png", "rendered_frames": 6}}
+[2026-03-08 08:53:49] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 08:53:53] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927633.5095239,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:53:53] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:53:53] [INFO] Processing real-time data for Blender
+[2026-03-08 08:53:53] [INFO] New render detected (TS: 1772927633.5095239)
+[2026-03-08 08:53:53] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927633.5111387,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:53:57] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927633.5111387,
+    "last_frame_duration": 3.5038583278656006,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:53:57] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927633.5111387,
+    "last_frame_duration": 3.5038583278656006,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:53:57] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:53:57] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927637.014997,
+    "last_frame_duration": 3.5038583278656006,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:00] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927637.014997,
+    "last_frame_duration": 3.5161497592926025,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:00] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927637.014997,
+    "last_frame_duration": 3.5161497592926025,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:00] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 08:54:00] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927640.5435112,
+    "last_frame_duration": 3.5285141468048096,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:04] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927640.5435112,
+    "last_frame_duration": 3.473384380340576,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:04] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927640.5435112,
+    "last_frame_duration": 3.473384380340576,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:04] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 08:54:04] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927644.0295455,
+    "last_frame_duration": 3.486034393310547,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:07] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927644.0295455,
+    "last_frame_duration": 3.490469455718994,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:07] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927644.0295455,
+    "last_frame_duration": 3.490469455718994,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:07] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 08:54:07] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927647.5217955,
+    "last_frame_duration": 3.4922499656677246,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:11] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927647.5217955,
+    "last_frame_duration": 3.511976718902588,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:11] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927647.5217955,
+    "last_frame_duration": 3.511976718902588,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:11] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 08:54:11] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927651.0337722,
+    "last_frame_duration": 3.511976718902588,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:14] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927651.0337722,
+    "last_frame_duration": 3.5185863971710205,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:14] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927651.0337722,
+    "last_frame_duration": 3.5185863971710205,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:14] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 08:54:14] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772927654.562523
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927633.5095239,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927651.0337722,
+    "last_frame_duration": 3.5185863971710205,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:22] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927662.3051555,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:54:22] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:54:22] [INFO] Processing real-time data for Blender
+[2026-03-08 08:54:22] [INFO] New render detected (TS: 1772927662.3051555)
+[2026-03-08 08:54:22] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927662.3066823,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:54:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927662.3066823,
+    "last_frame_duration": 3.5265424251556396,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927662.3066823,
+    "last_frame_duration": 3.5265424251556396,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:25] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:54:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927665.8452232,
+    "last_frame_duration": 3.538540840148926,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927665.8452232,
+    "last_frame_duration": 3.479410409927368,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927665.8452232,
+    "last_frame_duration": 3.479410409927368,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:29] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 08:54:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927669.3258343,
+    "last_frame_duration": 3.4806110858917236,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:54:32] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927669.3258343,
+    "last_frame_duration": 3.466982841491699,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:32] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927669.3258343,
+    "last_frame_duration": 3.466982841491699,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:32] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 08:54:32] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927672.792817,
+    "last_frame_duration": 3.466982841491699,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:54:36] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927672.792817,
+    "last_frame_duration": 3.4693896770477295,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:36] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927672.792817,
+    "last_frame_duration": 3.4693896770477295,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:36] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927676.2727048,
+    "last_frame_duration": 3.4798877239227295,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:54:39] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927676.2727048,
+    "last_frame_duration": 3.4489943981170654,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:39] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927676.2727048,
+    "last_frame_duration": 3.4489943981170654,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:39] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927679.7216992,
+    "last_frame_duration": 3.4489943981170654,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:54:43] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927679.7216992,
+    "last_frame_duration": 3.472114086151123,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:43] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927679.7216992,
+    "last_frame_duration": 3.472114086151123,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:43] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772927683.2042837
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927662.3051555,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927679.7216992,
+    "last_frame_duration": 3.472114086151123,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:54:54] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927694.4734612,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:54:54] [INFO] Auto-switching: Background render START
+[2026-03-08 08:54:54] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:54:54] [INFO] Processing real-time data for Blender
+[2026-03-08 08:54:54] [INFO] New render detected (TS: 1772927694.4734612)
+[2026-03-08 08:54:54] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927694.4852607,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:54:58] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927694.4852607,
+    "last_frame_duration": 3.5492732524871826,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:58] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927694.4852607,
+    "last_frame_duration": 3.5492732524871826,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:54:58] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:54:58] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927698.034534,
+    "last_frame_duration": 3.5492732524871826,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:55:01] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927698.034534,
+    "last_frame_duration": 3.4879889488220215,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:55:01] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927698.034534,
+    "last_frame_duration": 3.4879889488220215,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:55:01] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 08:55:01] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927701.523526,
+    "last_frame_duration": 3.4889919757843018,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:55:05] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927701.523526,
+    "last_frame_duration": 3.524662494659424,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:55:05] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927701.523526,
+    "last_frame_duration": 3.524662494659424,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:55:05] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 08:55:05] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927705.0496113,
+    "last_frame_duration": 3.526085376739502,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:55:08] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927705.0496113,
+    "last_frame_duration": 3.4840004444122314,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:55:08] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927705.0496113,
+    "last_frame_duration": 3.4840004444122314,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:55:08] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 08:55:08] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927708.53412,
+    "last_frame_duration": 3.484508752822876,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:55:12] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927708.53412,
+    "last_frame_duration": 3.5284550189971924,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:55:12] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927708.53412,
+    "last_frame_duration": 3.5284550189971924,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:55:12] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 08:55:12] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927712.0635793,
+    "last_frame_duration": 3.529459238052368,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:55:15] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927712.0635793,
+    "last_frame_duration": 3.5086400508880615,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:55:15] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927712.0635793,
+    "last_frame_duration": 3.5086400508880615,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:55:15] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 08:55:15] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772927715.595281
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927694.4734612,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927712.0635793,
+    "last_frame_duration": 3.5086400508880615,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:09] [INFO] Socket server standby (Port: 50000)
+[2026-03-08 08:59:12] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927952.1218398,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:12] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:59:12] [INFO] Processing real-time data for Blender
+[2026-03-08 08:59:12] [INFO] New render detected (TS: 1772927952.1218398)
+[2026-03-08 08:59:12] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927952.123347,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:15] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927952.123347,
+    "last_frame_duration": 3.5552027225494385,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:15] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927952.123347,
+    "last_frame_duration": 3.5552027225494385,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:15] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:59:15] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927955.6795595,
+    "last_frame_duration": 3.5562124252319336,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:19] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927955.6795595,
+    "last_frame_duration": 3.515580892562866,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:19] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927955.6795595,
+    "last_frame_duration": 3.515580892562866,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:19] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 08:59:19] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927959.1961458,
+    "last_frame_duration": 3.5165863037109375,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:22] [DEBUG] Socket Data Received [STOP]:
+{
+  "end": {
+    "end_ts": 1772927962.5389009
+  },
+  "event": "STOP",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927952.1218398,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927959.1961458,
+    "last_frame_duration": 3.515580892562866,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927964.1467438,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:24] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:59:24] [INFO] Processing real-time data for Blender
+[2026-03-08 08:59:24] [INFO] New render detected (TS: 1772927964.1467438)
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927964.1482582,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927964.1482582,
+    "last_frame_duration": 0.3069953918457031,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927964.1482582,
+    "last_frame_duration": 0.3069953918457031,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:24] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927964.4557586,
+    "last_frame_duration": 0.30750036239624023,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927964.4557586,
+    "last_frame_duration": 0.1780402660369873,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927964.4557586,
+    "last_frame_duration": 0.1780402660369873,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927964.6448865,
+    "last_frame_duration": 0.18912792205810547,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927964.6448865,
+    "last_frame_duration": 0.1799628734588623,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927964.6448865,
+    "last_frame_duration": 0.1799628734588623,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927964.8253543,
+    "last_frame_duration": 0.18046784400939941,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927964.8253543,
+    "last_frame_duration": 0.17708373069763184,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927964.8253543,
+    "last_frame_duration": 0.17708373069763184,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927965.0034423,
+    "last_frame_duration": 0.17808794975280762,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927965.0034423,
+    "last_frame_duration": 0.17982268333435059,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927965.0034423,
+    "last_frame_duration": 0.17982268333435059,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927965.19377,
+    "last_frame_duration": 0.19032764434814453,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927965.19377,
+    "last_frame_duration": 0.17823576927185059,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927965.19377,
+    "last_frame_duration": 0.17823576927185059,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:25] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772927965.3835695
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927964.1467438,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927965.19377,
+    "last_frame_duration": 0.17823576927185059,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 1772927968.3286572,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:28] [INFO] Session Changed: [Blender] (PID:36972)
+[2026-03-08 08:59:28] [INFO] Processing real-time data for Blender
+[2026-03-08 08:59:28] [INFO] New render detected (TS: 1772927968.3286572)
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927968.3297665,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927968.3297665,
+    "last_frame_duration": 0.3350503444671631,
+    "last_rendered_image_path": "",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 1772927968.3297665,
+    "last_frame_duration": 0.3350503444671631,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:28] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927968.6658146,
+    "last_frame_duration": 0.3360481262207031,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0005.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927968.6658146,
+    "last_frame_duration": 0.32220911979675293,
+    "last_rendered_image_path": "C:\\tmp\\Test0005.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 1772927968.6658146,
+    "last_frame_duration": 0.32220911979675293,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:28] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927968.988529,
+    "last_frame_duration": 0.32271432876586914,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0006.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927968.988529,
+    "last_frame_duration": 0.17801547050476074,
+    "last_rendered_image_path": "C:\\tmp\\Test0006.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 1772927968.988529,
+    "last_frame_duration": 0.17801547050476074,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927969.176647,
+    "last_frame_duration": 0.18811798095703125,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0007.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927969.176647,
+    "last_frame_duration": 0.1761934757232666,
+    "last_rendered_image_path": "C:\\tmp\\Test0007.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 1772927969.176647,
+    "last_frame_duration": 0.1761934757232666,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927969.3543458,
+    "last_frame_duration": 0.17769885063171387,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0008.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927969.3543458,
+    "last_frame_duration": 0.17713212966918945,
+    "last_rendered_image_path": "C:\\tmp\\Test0008.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 1772927969.3543458,
+    "last_frame_duration": 0.17713212966918945,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927969.531983,
+    "last_frame_duration": 0.17763710021972656,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0009.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927969.531983,
+    "last_frame_duration": 0.17938637733459473,
+    "last_rendered_image_path": "C:\\tmp\\Test0009.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927969.531983,
+    "last_frame_duration": 0.17938637733459473,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:29] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772927969.7123754
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 36972,
+    "doc_name": "TestCube.blend",
+    "end_frame": 10,
+    "first_frame_path": "C:\\tmp\\Test0005.png",
+    "last_frame_path": "C:\\tmp\\Test0010.png",
+    "output_path": "C:\\tmp",
+    "render_setting": null,
+    "renderer": "Blender Render",
+    "res_x": 1920,
+    "res_y": 1080,
+    "software": "Blender",
+    "start_frame": 5,
+    "start_ts": 1772927968.3286572,
+    "take_name": null,
+    "total_frames": 6
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 1772927969.531983,
+    "last_frame_duration": 0.17938637733459473,
+    "last_rendered_image_path": "C:\\tmp\\Test0010.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 08:59:29] [INFO] Auto-switching: Background render FINISH
+[2026-03-08 08:59:29] [INFO] Processing real-time data for Blender
+[2026-03-08 08:59:29] [INFO] New render detected (TS: 1772927968.3286572)
+[2026-03-08 08:59:29] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 09:00:24] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465059.27,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 09:00:24] [INFO] Session Changed: [Cinema 4D] (PID:74892)
+[2026-03-08 09:00:24] [INFO] Processing real-time data for Cinema 4D
+[2026-03-08 09:00:24] [INFO] New render detected (TS: 1772928024.0)
+[2026-03-08 09:00:24] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465059.27,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 09:00:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465059.27,
+    "last_frame_duration": 1.42,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 09:00:25] [INFO] Thumbnail updated: Frame 0
+[2026-03-08 09:00:25] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 1,
+    "current_frame_start_ts": 465060.8,
+    "last_frame_duration": 1.53,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 09:00:26] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 1,
+    "current_frame_start_ts": 465060.8,
+    "last_frame_duration": 1.02,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 09:00:26] [INFO] Thumbnail updated: Frame 1
+[2026-03-08 09:00:26] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 2,
+    "current_frame_start_ts": 465061.92,
+    "last_frame_duration": 1.12,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 09:00:27] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 2,
+    "current_frame_start_ts": 465061.92,
+    "last_frame_duration": 1.2,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 09:00:27] [INFO] Thumbnail updated: Frame 2
+[2026-03-08 09:00:27] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 3,
+    "current_frame_start_ts": 465063.23,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 09:00:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 3,
+    "current_frame_start_ts": 465063.23,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 09:00:29] [INFO] Thumbnail updated: Frame 3
+[2026-03-08 09:00:29] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 4,
+    "current_frame_start_ts": 465064.56,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 09:00:30] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 4,
+    "current_frame_start_ts": 465064.56,
+    "last_frame_duration": 1.2,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 09:00:30] [INFO] Thumbnail updated: Frame 4
+[2026-03-08 09:00:30] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 465065.88,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 09:00:31] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 465065.88,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 09:00:31] [INFO] Thumbnail updated: Frame 5
+[2026-03-08 09:00:31] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 465067.2,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 09:00:33] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 465067.2,
+    "last_frame_duration": 1.2,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "rendered_frames": 7
+  }
+}
+[2026-03-08 09:00:33] [INFO] Thumbnail updated: Frame 6
+[2026-03-08 09:00:33] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 465068.52,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "rendered_frames": 7
+  }
+}
+[2026-03-08 09:00:34] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 465068.52,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "rendered_frames": 8
+  }
+}
+[2026-03-08 09:00:34] [INFO] Thumbnail updated: Frame 7
+[2026-03-08 09:00:34] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 465069.84,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "rendered_frames": 8
+  }
+}
+[2026-03-08 09:00:36] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 465069.84,
+    "last_frame_duration": 1.41,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "rendered_frames": 9
+  }
+}
+[2026-03-08 09:00:36] [INFO] Thumbnail updated: Frame 8
+[2026-03-08 09:00:36] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 465071.36,
+    "last_frame_duration": 1.52,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "rendered_frames": 9
+  }
+}
+[2026-03-08 09:00:37] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 465071.36,
+    "last_frame_duration": 1.42,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "rendered_frames": 10
+  }
+}
+[2026-03-08 09:00:37] [INFO] Thumbnail updated: Frame 9
+[2026-03-08 09:00:37] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465072.89,
+    "last_frame_duration": 1.53,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "rendered_frames": 10
+  }
+}
+[2026-03-08 09:00:39] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465072.89,
+    "last_frame_duration": 1.42,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "rendered_frames": 11
+  }
+}
+[2026-03-08 09:00:39] [INFO] Thumbnail updated: Frame 10
+[2026-03-08 09:00:39] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772928039.0
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928024.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465072.89,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "rendered_frames": 11
+  }
+}
+[2026-03-08 09:00:43] [DEBUG] Socket Data Received [START]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "START",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465078.47,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 09:00:43] [INFO] Session Changed: [Cinema 4D] (PID:74892)
+[2026-03-08 09:00:43] [INFO] Processing real-time data for Cinema 4D
+[2026-03-08 09:00:43] [INFO] New render detected (TS: 1772928043.0)
+[2026-03-08 09:00:43] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "",
+    "last_frame_path": "",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465078.47,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "",
+    "rendered_frames": 0
+  }
+}
+[2026-03-08 09:00:44] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 0,
+    "current_frame_start_ts": 465078.47,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 09:00:44] [INFO] Thumbnail updated: Frame 0
+[2026-03-08 09:00:44] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 1,
+    "current_frame_start_ts": 465079.78,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "rendered_frames": 1
+  }
+}
+[2026-03-08 09:00:45] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 1,
+    "current_frame_start_ts": 465079.78,
+    "last_frame_duration": 1.01,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 09:00:45] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 2,
+    "current_frame_start_ts": 465080.91,
+    "last_frame_duration": 1.12,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0001.png",
+    "rendered_frames": 2
+  }
+}
+[2026-03-08 09:00:46] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 2,
+    "current_frame_start_ts": 465080.91,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 09:00:46] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 3,
+    "current_frame_start_ts": 465082.22,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0002.png",
+    "rendered_frames": 3
+  }
+}
+[2026-03-08 09:00:48] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 3,
+    "current_frame_start_ts": 465082.22,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 09:00:48] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 4,
+    "current_frame_start_ts": 465083.55,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0003.png",
+    "rendered_frames": 4
+  }
+}
+[2026-03-08 09:00:49] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 4,
+    "current_frame_start_ts": 465083.55,
+    "last_frame_duration": 1.02,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 09:00:49] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 465084.67,
+    "last_frame_duration": 1.12,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0004.png",
+    "rendered_frames": 5
+  }
+}
+[2026-03-08 09:00:50] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 5,
+    "current_frame_start_ts": 465084.67,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 09:00:50] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 465086.0,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0005.png",
+    "rendered_frames": 6
+  }
+}
+[2026-03-08 09:00:51] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 6,
+    "current_frame_start_ts": 465086.0,
+    "last_frame_duration": 1.2,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "rendered_frames": 7
+  }
+}
+[2026-03-08 09:00:52] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 465087.31,
+    "last_frame_duration": 1.31,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0006.png",
+    "rendered_frames": 7
+  }
+}
+[2026-03-08 09:00:53] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 7,
+    "current_frame_start_ts": 465087.31,
+    "last_frame_duration": 1.22,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "rendered_frames": 8
+  }
+}
+[2026-03-08 09:00:53] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 465088.64,
+    "last_frame_duration": 1.33,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0007.png",
+    "rendered_frames": 8
+  }
+}
+[2026-03-08 09:00:54] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 8,
+    "current_frame_start_ts": 465088.64,
+    "last_frame_duration": 1.41,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "rendered_frames": 9
+  }
+}
+[2026-03-08 09:00:54] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 465090.16,
+    "last_frame_duration": 1.52,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0008.png",
+    "rendered_frames": 9
+  }
+}
+[2026-03-08 09:00:56] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 9,
+    "current_frame_start_ts": 465090.16,
+    "last_frame_duration": 1.42,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "rendered_frames": 10
+  }
+}
+[2026-03-08 09:00:56] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465091.69,
+    "last_frame_duration": 1.53,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0009.png",
+    "rendered_frames": 10
+  }
+}
+[2026-03-08 09:00:57] [DEBUG] Socket Data Received [PROGRESS]:
+{
+  "end": {
+    "end_ts": -1.0
+  },
+  "event": "PROGRESS",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465091.69,
+    "last_frame_duration": 1.41,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "rendered_frames": 11
+  }
+}
+[2026-03-08 09:00:57] [DEBUG] Socket Data Received [FINISH]:
+{
+  "end": {
+    "end_ts": 1772928057.0
+  },
+  "event": "FINISH",
+  "start": {
+    "dcc_pid": 74892,
+    "doc_name": "Cube.c4d",
+    "end_frame": 10,
+    "first_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0000.png",
+    "last_frame_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "output_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render",
+    "render_setting": null,
+    "renderer": "Redshift",
+    "res_x": 1280,
+    "res_y": 720,
+    "software": "Cinema 4D",
+    "start_frame": 0,
+    "start_ts": 1772928043.0,
+    "take_name": null,
+    "total_frames": 11
+  },
+  "update": {
+    "current_frame": 10,
+    "current_frame_start_ts": 465091.69,
+    "last_frame_duration": 0.0,
+    "last_rendered_image_path": "C:\\Users\\user\\Desktop\\260303_RenderTracker\\Cinema4D\\Render\\AA0010.png",
+    "rendered_frames": 11
+  }
+}
+[2026-03-08 09:00:57] [INFO] Auto-switching: Background render FINISH
+[2026-03-08 09:00:57] [INFO] Processing real-time data for Cinema 4D
+[2026-03-08 09:00:57] [INFO] New render detected (TS: 1772928043.0)
+[2026-03-08 09:00:58] [INFO] Thumbnail updated: Frame 10

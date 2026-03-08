@@ -311,26 +311,34 @@ class RenderTrackerMonitor(QMainWindow):
         """소켓에서 수신된 데이터를 파싱하고 저장 및 UI에 반영합니다."""
         event_type = msg.get("event", "UNKNOWN")
         
+        # 소켓 수신 데이터를 예쁘게 줄바꿈하여 UI 로그와 파일 로그에 모두 기록
+        formatted_msg = json.dumps(msg, indent=2, ensure_ascii=False)
+        self._log(f"Socket Data Received [{event_type}]:\n{formatted_msg}", "DEBUG")
+        
         # 1. 파일로 저장하여 히스토리 유지
         saved_path = self._save_socket_data_to_file(msg)
         if not saved_path: return
         
         # [신규 추가] 세션 동기화 로직
-        # 새로운 세션이 시작되거나, 백그라운드에서 FINISH 이벤트가 온 경우
-        if event_type == "START" or (event_type == "FINISH" and self._active_file != saved_path):
-            self._active_file = saved_path
-            self.watched_pid = msg.get("start", {}).get("dcc_pid")
-            
-            # 과거기록 시청 중 배경에서 렌더가 시작/종료되면 실시간 뷰로 자동 점프
+        # 새로운 세션이 시작되거나, 배경에서 렌더링이 종료(FINISH/STOP)된 경우 자동 전환 처리
+        if event_type in ("START", "FINISH", "STOP"):
+            # 과거기록 시청 중 배경에서 렌더 이벤트가 발생하면 실시간 뷰로 자동 점프
             if self._viewing_file:
                 self._log(f"Auto-switching: Background render {event_type}")
                 self._viewing_file = None
+
+            # 세션 정보 동기화 (START이거나 활성 파일이 바뀐 경우)
+            if event_type == "START" or self._active_file != saved_path:
+                self._active_file = saved_path
+                self.watched_pid = msg.get("start", {}).get("dcc_pid")
                 
-            if event_type == "START":
-                self.crash_sent = False
-                soft = msg.get("start", {}).get("software", "Unknown")
-                self._log(f"Session Changed: [{soft}] (PID:{self.watched_pid})")
-                self._refresh_sidebar()
+                if event_type == "START":
+                    self.crash_sent = False
+                    soft = msg.get("start", {}).get("software", "Unknown")
+                    self._log(f"Session Changed: [{soft}] (PID:{self.watched_pid})")
+
+            # 시작/종료 이벤트 발생 시 사이드바(상태 아이콘 등) 갱신
+            self._refresh_sidebar()
 
         # 2. 실시간 시간 보정 (파이썬에서 경과시간/ETA 직접 계산)
         msg = engine.enrich_realtime_metrics(msg)
